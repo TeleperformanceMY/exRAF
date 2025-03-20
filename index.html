@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refer A Friend</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo-container">
+            <img src="TPLogo11.png" alt="Logo">
+        </div>
+    </header>
+
+    <main class="popup-container">
+        <div class="popup-content" id="step1">
+            <h2>Please Key In Your BMS ID</h2>
+            <input type="text" id="bms-id" placeholder="Key in your BMS ID here.">
+
+            <h3>Choose Your Referrer’s Preferences</h3>
+            <label for="language-select">Language:</label>
+            <select id="language-select"></select>
+
+            <label for="location-select">Working Location:</label>
+            <select id="location-select"></select>
+
+            <label for="job-type-select">Job Position:</label>
+            <select id="job-type-select"></select>
+
+            <button onclick="nextStep()">Next</button>
+        </div>
+
+        <div class="popup-content" id="step2" style="display: none;">
+            <h2>Thank You for Your Referral!</h2>
+            <p>As we grow in Malaysia and Thailand, become #MoreTogether as we #ElevateAsia, here are the links your friend can use so this is tagged to your profile into our Recruiting System.</p>
+            <div id="generated-link"></div>
+            <button onclick="refreshPage()">Back</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
