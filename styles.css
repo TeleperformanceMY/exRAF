@@ -7,8 +7,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,13 +22,14 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #fff;
+    background-color: #f5f5f5; /* Light gray for contrast */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo-container img {
     max-width: 100px;
     height: auto;
+    filter: grayscale(100%); /* Convert logo to black and white */
 }
 
 .popup-container {
@@ -36,7 +37,7 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #fff; /* White background */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -45,6 +46,7 @@ body {
 .popup-content h2 {
     font-size: 24px;
     margin-bottom: 20px;
+    color: #000; /* Black headings */
 }
 
 .popup-content input {
@@ -53,12 +55,15 @@ body {
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #f5f5f5; /* Light gray for inputs */
+    color: #000; /* Black text */
 }
 
 .popup-content label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
+    color: #000; /* Black labels */
 }
 
 .popup-content select {
@@ -67,12 +72,14 @@ body {
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #f5f5f5; /* Light gray for dropdowns */
+    color: #000; /* Black text */
 }
 
 .popup-content button {
     padding: 10px 20px;
-    background-color: #000;
-    color: #fff;
+    background-color: #000; /* Black buttons */
+    color: #fff; /* White text */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -80,9 +87,29 @@ body {
 }
 
 .popup-content button:hover {
-    background-color: #333;
+    background-color: #333; /* Dark gray on hover */
 }
 
-#step2 {
-    display: none;
+.social-btn {
+    padding: 10px;
+    border-radius: 50%; /* Circular buttons */
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    transition: background-color 0.3s ease;
+}
+
+.social-btn:hover {
+    background-color: #333; /* Dark gray on hover */
+}
+
+.social-btn img {
+    max-width: 100%;
+    height: auto;
+    filter: grayscale(100%); /* Convert social media icons to black and white */
 }
