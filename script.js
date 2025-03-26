@@ -1,473 +1,467 @@
 
-  
-
-/* Dropdown styling */
-select {
-    padding: 8px 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #780096;
-    transition: all 0.3s ease;
-    width: 100%;
-    appearance: none; /* Remove default arrow */
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
-    cursor: pointer; /* Add pointer cursor */
-}
-
-/* Container hover effect */
-select:hover, select:focus {
-    background-color: #ffffff;
-    border-color: #fffcfc; /* Change border color on hover */
-}
-
-/* Dropdown options styling */
-select option {
-    font-size: 18px; /* Increase font size for options */
-    padding: 10px; /* Add padding for better spacing */
-    background-color: #fff; /* Default background color for options */
-    color: #030303; /* Default text color for options */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for option hover */
-}
-
-/* Styling for the options when hovered */
-select:hover option {
-    background-color: #f5eef5; /* Custom background color for hovered option */
-    color: #661a1a; /* Custom text color for hovered option */
-}
-
-/* Styling for the selected option */
-select option:checked {
-    background-color: #aa3c75; /* Custom background color for selected option */
-    color: #000000; /* Custom text color for selected option */
-    font-weight: bold; /* Make selected option bold */
-}
 
 
- 
-  
- 
-.small-share-button {
-    padding: 5px; /* Adjust padding as needed */
-}
+// Translation function
+function translate(language) {
+    const translations = {
+        english: {
+            chooseLanguage: "Choose Your Language:",
+            enterBMS: "Please key in your BMS ID ",
+            bmsIdPlaceholder: "Key in your BMS ID here.",
 
-.small-share-button img {
-    max-width: 25px; /* Adjust maximum width of the image */
-    max-height: 25px; /* Adjust maximum height of the image */
-}
-.small-share-button:hover {
-    background-color: #FF0082;
+            bmsIdPlaceholder: "Key in your BMS ID here.",
 
-}
- /* How To button container styling */
-#how-to {
-    text-align: center;
-    margin-top: 20px; /* Adjust margin as needed */
-    position: absolute;
-    top: 100px; /* Adjust to account for spacer height */
-    left: calc(50% + 50px); /* Adjust as needed */
-}
-
-/* Button styles */
-.how-to-button1 {
-    padding: 10px 10px;
-    font-size: 14px;
-    background-color: #780096;
-    color: #fffcfc;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.how-to-button1:hover {
-    background-color: #FF0082;
-}
-
-.additional-logo1{
-    display: flex;
-    position: absolute;
-    top: -100px; /* Adjust as needed */
-    right: -100px; /* Adjust as needed */
-    align-items: center;
-    justify-content: flex-start; /* Align content to the start (left) */
-    transform: scale(0.2); /* Maintain the scale */
-    padding: 5px; /* Adjust for desired spacing around the logo */
-    border-radius: 5px; /* Adjust to create rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
-}
-/* Dropdown label styling */
-.popup-content > div:not(.additional-logo) > label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333; /* Change label color */
-}
-
-
-
-/* Next button styling */
-.popup-content button {
-    padding: 10px 10px;
-    background-color: #780096;
-    color: white;
-    border: none;
-     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.popup-content button:hover {
-    background-color: #FF0082;
-}
-
- 
- 
-.popup-content {
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-    padding: 50px 50px 50px 60px; /* Adjust padding to move content up */
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative; 
-    text-align: center;
-    display: flex;
-    flex-direction: column; /* Set flex direction to column */
-    justify-content: center; /* Center content vertically */
-    align-items: center; 
-}
-
-h2 {
-    color: #b52b65; /* Pinkish purple */
-        font-size: 28px; /* Larger font size */
-    margin-bottom: 20px;
+            chooseYourReferrerPreferred: "Choose for your referrer his preferred",
+            languageLabel: "Language:",
+            locationLabel: "Working location:",
+            jobLabel: "Job Position:",
+            nextButton: "Next",
+            HowtoButton: "How To!",
+            thankYou: "Thank you for your referral!",
+            referralMessage1: "As we grow in Malaysia and Thailand, and become #MoreTogether as we #ElevateAsia, here are the links your friend can use so this is tagged to your profile into our Recruiting System.",
+            shareWhatsApp: "Share via WhatsApp",
+            shareLine: "Share via Line",
+            qrCodeMessage: "or have your friend scanning this code above!",
+            vrMessage: "They can visit our locations in VR so they learn of us:",
+            talentTeamMessage: "The Talent Attraction Team",
+            BackButton: "Back"
     
-}
-h3 {
-    color: #361e3d; /* Pinkish purple */
-     margin-bottom: 20px;
+        },
+        korean: {
+            chooseLanguage: "사용 언어를 선택 해 주세요 :",
+            enterBMS: "BMS ID(사원번호)를 입력 해 주세요   ",
+            bmsIdPlaceholder: "BMS ID(사원번호)를 입력 해 주세요  ",
+
+            chooseYourReferrerPreferred: "지인추천 상세 입력 ",
+            languageLabel: "언어:",
+            locationLabel: "업무장소:",
+            jobLabel: "지원포지션:",
+            nextButton: "다음",
+            thankYou: "지인분을 추천 해 주셔서 감사합니다.",
+            referralMessage1: "말레이시아와 태국에서 성장하고 #ElevateAsia를 지향하며 #MoreTogether가 되어가는 가운데, 친구가 사용할 수 있는 링크는 다음과 같습니다. 이 링크는 귀하의 프로필에 태그되어 채용 시스템에 추가됩니다.",
+            shareWhatsApp: "왓츠앱을 통한 공유",
+            shareLine: "라인을 통한 공유",
+            qrCodeMessage: "또는 이 코드를 통해 지인을 추천부탁드립니다.",
+            vrMessage: "VR을 통해 좀더 저희회사에 대해 자세히 알아 보십시오 : ",
+            talentTeamMessage: "채용담당팀",
+             HowtoButton: "H어떻게	!",
+             BackButton: "뒤로"
+     
+
+        },
+        thai: {
+            chooseLanguage: "เลือกภาษาของคุณ  :",
+            enterBMS: " กรุณาใส่รหัส BMS ของคุณ  ",
+            bmsIdPlaceholder: "กรุณาใส่หมายเลข BMS ของคุณที่นี่ ",
+
+            chooseYourReferrerPreferred: "กรุณากรอกข้อมูลเพื่อนของคุณ ",
+            languageLabel: "ภาษา:",
+            locationLabel: "สถานที่ทำงาน :",
+            jobLabel: "ตำแหน่งงาน :",
+            nextButton: "ถัดไป",
+            thankYou: "ขอบคุณที่แนะนำเพื่อนของคุณ!",
+            referralMessage1: "ในขณะที่เราเติบโตในมาเลเซียและประเทศไทย และกลายเป็น #MoreTogether ในฐานะที่เรา #ElevateAsia ต่อไปนี้คือลิงก์ที่เพื่อนของคุณสามารถใช้ได้ ซึ่งจะแท็กลิงก์นี้ไว้ในโปรไฟล์ของคุณในระบบการสรรหาบุคลากรของเรา",
+            shareWhatsApp: "แชร์ผ่าน WhatsApp",
+            shareLine: "แชร์ผ่าน Line",
+            qrCodeMessage: "หรือขอให้เพื่อนของคุณสแกนโค้ดด้านบน!",
+            vrMessage: "เพื่อนของคุณสามารถเยี่ยมชมสถานที่ของเราใน VR เพื่อเรียนรู้เกี่ยวกับเราได้",
+            talentTeamMessage: "ทีม Talent Attraction",
+            HowtoButton: "วิธีการ",
+            BackButton: "กลับ"
     
-}
 
+        },
+        malay: {
+            chooseLanguage: "Pilih Bahasa Anda   :",
+            enterBMS: " ila Masukkan BMS ID Anda ",
+            bmsIdPlaceholder: "Sila Masukkan BMS ID Andy di sini  ",
 
-label {
-    display: block;
-    margin-bottom: 10px;
-    color: #666666;
+            chooseYourReferrerPreferred: "Sila pilih pilihan rujukan anda",
+            languageLabel: "Bahasa:",
+            locationLabel: "Lokasi bekerja:",
+            jobLabel: "Jawatan kerja  :",
+            nextButton: "Seterusnya",
+            thankYou: "Terima kasih atas rujukan anda!",
+            referralMessage1: "Semasa kami berkembang di Malaysia dan Thailand, dan menjadi #MoreTogether sambil kami #ElevateAsia, berikut adalah pautan yang boleh digunakan oleh rakan anda supaya ini ditandakan pada profil anda ke dalam Sistem Perekrutan kami.",
+            shareWhatsApp: "Kongsi melalui WhatsApp",
+            shareLine: "Kongsi melalui Line",
+            qrCodeMessage: "atau minta rakan anda mengimbas kod ini di atas!",
+            vrMessage: "Mereka boleh melawat lokasi kami dalam VR supaya mereka mengetahui tentang kami:",
+            talentTeamMessage: "Pasukan Tarikan Bakat",
+            HowtoButton: "Bagaimana Untuk",
+            BackButton: "Kembali"
     
-}
-/* Spacer class to create empty space */
-.spacer {
-    height: 20px; /* Adjust as needed */
-}
 
+        },
+        mandarin: {
+            chooseLanguage: "请选择您的语言 ",
+            enterBMS: "请输入您的 BMS 识别码 ",
+            bmsIdPlaceholder: "“在这里输入您的 BMS 识别码 ",
 
-/* Additional logo styling */
-.additional-logo {
-    display: flex;
-    position: absolute;
-    top: -100px; /* Adjust as needed */
-    right: 150px; /* Adjust as needed */
-    align-items: center;
-    justify-content: flex-start; /* Align content to the start (left) */
-    transform: scale(0.2); /* Maintain the scale */
-    padding: 5px; /* Adjust for desired spacing around the logo */
-    border-radius: 5px; /* Adjust to create rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
-}
+            chooseYourReferrerPreferred: "请选择以下的推荐选项 ",
+            languageLabel: "语言:",
+            locationLabel: "工作地点 ：",
+            jobLabel: "工作岗位 ：",
+            nextButton: "下一步",
 
-/* Dropdown styling */
-.language-selection {
-    position: absolute;
-    top: 23px; /* Adjust to account for spacer height */
-    left: calc(60% + 50px); /* Adjust as needed */
-}
+            thankYou: "感谢您的推荐!",
+            referralMessage1: "随着我们在马来西亚和泰国的发展，并在#ElevateAsia 上变得更加#MoreTogether，以下是您的朋友可以使用的链接，因此会将其标记到我们招聘系统中的您的个人资料中。",
+            shareWhatsApp: "通过 WhatsApp 分享",
+            shareLine: "通过 Line 分享",
+            qrCodeMessage: "或者让您的朋友扫描以上的二维码！",
+            vrMessage: "他们可以通过虚拟现实参观我们的位置，以便他们了解我们：",
+            talentTeamMessage: "人才招聘团队",
+            HowtoButton: "操作方法!",
+            BackButton: "返回"
+    
+        },
+       
+        japanese: {
+     chooseLanguage: "言語を選択:",
+        enterBMS: "BMS IDの入力",
+        bmsIdPlaceholder: "BMS IDを入力して下さい.",
 
+        chooseYourReferrerPreferred: "紹介したい方の情報を選択 ",
+        languageLabel: "言語:",
+        locationLabel: "勤務地 :",
+        jobLabel: "職名 :",
+        nextButton: "次に進む",
 
+        thankYou: "友人をご紹介いただき、ありがとうございます！",
+        referralMessage: "当社がマレーシアとタイで成長し、#ElevateAsia として #MoreTogether になるにつれ、あなたの友人が使用できるリンクがここにあります。これにより、これが採用システムのあなたのプロフィールにタグ付けされます。",
+        shareWhatsApp: "WhatsAppで共有",
+        shareLine: "LINEで共有",
+        qrCodeMessage: "または上のコードを友達にスキャンしてもらいまし ょう ！",
+        vrMessage: "VRで勤務地を訪問してもらい、当社についてさらに知ってもらいましょう：",
+        talentTeamMessage: "タレントアトラクションチームより",
+        HowtoButton: "ご利用方法!",
+        BackButton: "元に戻る"
 
+    }     };
 
- 
-input {
-    width: calc(100% - 20px); /* Subtract padding from width */
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 2px solid #f2f2f2; /* Light gray border */
-    border-radius: 10px;
-    font-size: 16px; /* Larger font size */
-    transition: border-color 0.3s; /* Smooth border transition */
-}
-input:focus {
-    outline: none; /* Remove default focus outline */
-    border-color: #FF0082; /* Hot pink border color on focus */
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #780096; /* Deep purple */
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #FF0082;
-}
-
-/* Add styles for the QR code container */
-#qr-code {
-    margin-top: 20px; /* Adjust spacing */
-    text-align: center; /* Center QR code */
-    position: relative; /* Position container for absolute positioning of logo */
-}
-
-/* Optional: Style for the generated QR code itself */
-#qr-code canvas {
-    width: 200px; /* Adjust the size of the QR code */
-    height: auto;
-    border: 1px solid #ccc; /* Add a border */
-    border-radius: 5px; /* Add some border radius for rounded corners */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-}
-
-/* Add styles for the logo */
-#qr-code img.logo {
-    position: absolute; /* Position the logo relative to the container */
-    top: 50%; /* Center the logo vertically */
-    left: 50%; /* Center the logo horizontally */
-    transform: translate(-50%, -50%); /* Center the logo precisely */
-    max-width: 80px; /* Adjust the maximum width of the logo */
-    max-height: 80px; /* Adjust the maximum height of the logo */
-    z-index: 1; /* Ensure the logo appears above the QR code */
-}
-
-/* Add styles for the share buttons */
-#share-button-whatsapp,
-#share-button-line {
-    margin-top: 20px; /* Adjust spacing */
-    margin-bottom: 20px; /* Adjust spacing */
-    padding: 10px 20px;
-    background-color: #780096; /* Deep purple */
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#share-button-whatsapp:hover,
-#share-button-line:hover {
-    background-color: #FF0082; /* Lighter purple on hover */
-}
-
-/* Color hashtags */
-.popup-content::before,
-.popup-content::after {
-    content: attr(data-content);
-    color: #FF0082; /* Hot pink */
-    font-weight: bold; /* Make hashtags bold */
-}
-#picture-container {
-    margin-top: 20px; /* Adjust spacing */
-    text-align: center; /* Center the image */
-    position: relative;
-}
-#picture-container img {
-    width: 200px; /* Set the width to match the QR code size */
-    height: 200px; /* Set the height to match the QR code size */
-    border: 1px solid #ccc; /* Add a border for clarity */
-    border-radius: 5px; /* Add border radius for rounded corners */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-}
-
-#custom-image {
-    max-width: 200px; /* Adjust the maximum width of the image */
-    max-height: 200px; /* Adjust the maximum height of the image */
-}
- 
-/* Adjustments for other elements */
-.popup-container {
-    position: relative;  /* Ensure the logo container is positioned relative to this container */
-    z-index: 1; /* Ensure other content appears above the logo */
+    return translations[language];
 }
 
 
-  
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedLanguage = urlParams.get('lang') || localStorage.getItem('selectedLanguage') || 'english';
 
-/* Container for the whole page */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    // Update page content based on selected language
+    updatePageContent(selectedLanguage);
+
+    // Update video source based on selected language
+    const videoElement = document.getElementById('video-source');
+    const videoSources = {
+        english: 'video_english.mp4',
+        korean: 'video_korean.mp4',
+        thai: 'video_thai.mp4',
+        malay: 'video_malay.mp4',
+        mandarin: 'video_mandarin.mp4',
+        japanese: 'video_japanese.mp4'
+    };
+    videoElement.src = videoSources[selectedLanguage];
+    videoElement.load(); // Reload the video
+
+    // Update "How To" link
+    updateHowToLink(selectedLanguage);
+});
+
+// Function to update "How To" link with current language and UTM parameters
+function updateHowToLink(language) {
+    const howToLink = document.querySelector("#how-to a");
+    const utmParams = getUTMParameters();
+    howToLink.href = `HowtoVid.html?lang=${language}${utmParams}`;
 }
 
-/* Content container */
-#content1 {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    position: fixed; /* Position the content container relative to the viewport */
-    z-index: 1; /* Ensure other content appears above the background picture */
-    top: 55%; /* Adjust as needed */
-    left: 50%; /* Adjust as needed */
-    transform: translate(-50%, -50%); /* Center by shifting half of its width and height */
+// Function to get UTM parameters from the URL
+function getUTMParameters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmParams = ['utm_source', 'utm_medium', 'utm_campaign']; // Add any other UTM parameters you need to pass
+    let utmString = '';
+
+    utmParams.forEach(param => {
+        const value = urlParams.get(param);
+        if (value) {
+            utmString += `&${param}=${value}`;
+        }
+    });
+
+    return utmString;
 }
 
-/* Logo container */
-.logo-container1 {
-    position: fixed; /* Use fixed to ensure it stays in the same position relative to the viewport */
-    top: 60%; /* Adjust this value to move it down */
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center by shifting half of its width and height */
-    z-index: 1; /* Ensure the logo appears above other content */
-}
 
- 
-/* Global body styling */
-body {
-    margin: 0;
-    padding: 0;
-    width: 80%; /* Adjust the width as needed */
-    margin: auto; /* Center the body horizontally */
-}
+// Function to update page content based on selected language
+function updatePageContent(language) {
+    const translations = translate(language);
 
-.popup-container {
-    display: block;
-    justify-content: center;
-    align-items: center;
+    // Update labels and texts
+    document.querySelector(".language-selection label").textContent = translations.chooseLanguage;
+    document.querySelector("#step1 h2").textContent = translations.enterBMS;
+    document.querySelector("#bms-id").placeholder = translations.bmsIdPlaceholder;
+    document.querySelectorAll("#step1 h2")[1].textContent = translations.chooseYourReferrerPreferred;
+    document.querySelectorAll("#step1 h3")[0].textContent = translations.languageLabel;
+    document.querySelectorAll("#step1 h3")[1].textContent = translations.locationLabel;
+    document.querySelectorAll("#step1 h3")[2].textContent = translations.jobLabel;
+    document.querySelector("#step1 button").textContent = translations.nextButton;
+    document.querySelector("#how-to button1").textContent = translations.HowtoButton;
+    document.querySelector("#step2 h2").textContent = translations.thankYou;
+    document.querySelector("#step2 button").textContent = translations.BackButton;
+    document.querySelector("#step2 p:nth-of-type(1)").textContent = translations.referralMessage1;
+    document.querySelector("#share-button-whatsapp").textContent = translations.shareWhatsApp;
+    document.querySelector("#share-button-line").textContent = translations.shareLine;
+    document.querySelector("#scan-code-button").textContent = translations.qrCodeMessage;
+    document.querySelector("#thank-you").textContent = translations.thankYou;
+    document.querySelector("#referral-message").textContent = translations.referralMessage1;
+    document.querySelector("#vr-message").textContent = translations.vrMessage;
+    document.querySelector("#talent-team-message").textContent = translations.talentTeamMessage;
 
-    width: 600px;
-    height: 200px; /* Assuming the popup has some height */
-
-     top: 13%; /* Adjust this value to move it down */
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* Popup content */
-#step2.popup-content {
- width: 1000px;
-      top: 230%; /* Move it up */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Center the content */
+    // Update options in select elements
  }
 
-/* Logo container for Step 2 */
-#step2 .additional-logo {
-    display: none;
-    position: fixed; /* Ensure it stays in the same position relative to the viewport */
-    top: -20%; /* Adjust this value to move it down */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Center vertically */
-    transform: scale(0.2);
-    z-index: 1; /* Ensure it appears above other content */
-}
 
-#step2 .additional-logo img {
-    max-width: 100%; /* Make it responsive */
-    height: auto;
-}
-
-
-/* Logo container */
-.logo-container {
-    position: fixed; /* Use fixed to ensure it stays in the same position relative to the viewport */
-    top: 60%; /* Adjust this value to move it down */
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center by shifting half of its width and height */
-    z-index: 1; /* Ensure the logo appears above other content */
-}
-
-.logo-container img {
-    max-width: 100%; /* Make the logo responsive */
-    height: auto;
-}
-
- 
-/* Content section */
-#content {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    position: relative;  /* Ensure the logo container is positioned relative to this container */
-    z-index: 1; /* Ensure other content appears above the logo */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1; /* Ensure the logo appears above other content */
-}
-
-#content h2 {
-    color: #FF0082;
-    font-size: 28px;
-    margin-bottom: 20px;
-    position: relative;  /* Ensure the logo container is positioned relative to this container */
-    z-index: 1; /* Ensure other content appears above the logo */
+document.addEventListener('DOMContentLoaded', function() {
+    const languageSelect = document.getElementById('language-select');
+    const locationSelect = document.getElementById('location-select');
+    const jobSelect = document.getElementById('job-type-select');
+    const jobTitleDisplay = document.getElementById('job-title-display');
+    const jobLinkDisplay = document.getElementById('job-link-display');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const generatedLink = document.getElementById('generated-link');
+    const qrImg = document.getElementById('qrImg');
     
-}
-
- .social-btn {
-    border-radius: 50%; /* Make buttons circular */
-    display: inline-block;
-    margin: 5px 2px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 40px; /* Set fixed width */
-    height: 40px; /* Set fixed height */
-    background-size: contain; /* Ensure the logo fits inside the circle */
-    background-repeat: no-repeat; /* Prevent background repetition */
-    background-position: center; /* Center the background image */
-}
-
-/* Specific background colors for social buttons */
-.fb-btn {
-    background-color: #3b5998;
-    background-image: url('fb.png'); /* Add Facebook logo */
- }
-
-.ig-btn {
-    background-color: #e4405f;
-    background-image: url('ig.jpeg'); /* Add Instagram logo */
- }
-
-.yt-btn {
-    background-color: #cd201f;
-    background-image: url('yt.png'); /* Add YouTube logo */
- }
-
-/* Hover effect for social buttons */
-.social-btn:hover, .social-btn:focus {
-    border-color: #662222; /* Change border color on hover */
-    opacity: 0.9;
-}
 
 
 
-/* Mobile view adjustments */
-@media (max-width: 600px) {
-    select {
-        font-size: 14px; /* Adjust font size for mobile */
-        padding: 8px 10px; /* Adjust padding for mobile */
+    document.getElementById("emp-lang-select").addEventListener("change", function() {
+        const selectedLanguage = this.value;
+        updatePageContent(selectedLanguage);
+    
+        // Update the URL with the selected language
+        const url = new URL(window.location);
+        url.searchParams.set('lang', selectedLanguage);
+        window.history.pushState({}, '', url);
+    
+        // Store the selected language in local storage
+        localStorage.setItem('selectedLanguage', selectedLanguage);
+    
+        // Update "How To" link with the new language and UTM parameters
+        updateHowToLink(selectedLanguage);
+    });
+    
+
+    
+ 
+    let jsonData = [];
+
+    // Fetch JSON data
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            jsonData = data;
+            populatePreferredLanguages(jsonData);
+            populateLocations(jsonData); // Populate both language and location at the beginning
+        })
+        .catch(error => console.error('Error loading JSON data:', error));
+    
+    // Populate preferred languages based on JSON data
+    function populatePreferredLanguages(data) {
+        const languages = [...new Set(data.map(item => item.Language))];
+        populateDropdown(languageSelect, languages);
+    }
+    
+    // Populate locations based on JSON data
+    function populateLocations(data) {
+        const locations = [...new Set(data.map(item => item.Location))];
+        populateDropdown(locationSelect, locations);
+    }
+    
+    // Event listener for language selection
+    languageSelect.addEventListener('change', function() {
+        const selectedLanguage = this.value;
+        
+        // Filter locations based on the selected language, but keep existing location selection
+        const filteredLocations = selectedLanguage 
+            ? [...new Set(jsonData.filter(item => item.Language === selectedLanguage).map(item => item.Location))]
+            : [...new Set(jsonData.map(item => item.Location))]; // If no language is selected, show all locations
+    
+        // Update the locations dropdown but keep the previously selected location if still valid
+        updateDropdownWithSelectedValue(locationSelect, filteredLocations, locationSelect.value);
+    
+        // Update jobs dropdown if both language and location are selected
+        updateJobsDropdown();
+    });
+    
+    // Event listener for location selection
+    locationSelect.addEventListener('change', function() {
+        const selectedLocation = this.value;
+    
+        // Filter languages based on the selected location, but keep existing language selection
+        const filteredLanguages = selectedLocation
+            ? [...new Set(jsonData.filter(item => item.Location === selectedLocation).map(item => item.Language))]
+            : [...new Set(jsonData.map(item => item.Language))]; // If no location is selected, show all languages
+    
+        // Update the languages dropdown but keep the previously selected language if still valid
+        updateDropdownWithSelectedValue(languageSelect, filteredLanguages, languageSelect.value);
+    
+        // Update jobs dropdown if both language and location are selected
+        updateJobsDropdown();
+    });
+    
+    // Update the job dropdown based on both selected language and location
+    function updateJobsDropdown() {
+        const selectedLanguage = languageSelect.value;
+        const selectedLocation = locationSelect.value;
+    
+        if (selectedLanguage && selectedLocation) {
+            const jobs = jsonData
+                .filter(item => item.Language === selectedLanguage && item.Location === selectedLocation)
+                .map(item => item.Positions);
+            populateDropdown(jobSelect, jobs);
+        } else {
+            // Reset jobs dropdown if either dropdown is not selected
+            populateDropdown(jobSelect, []);
+        }
+    }
+    
+    // Function to populate a dropdown with options, keeping the current selected value if possible
+    function updateDropdownWithSelectedValue(dropdown, options, currentValue) {
+        populateDropdown(dropdown, options);
+    
+        // If the current value is still a valid option, reselect it
+        if (options.includes(currentValue)) {
+            dropdown.value = currentValue;
+        } else {
+            dropdown.value = ''; // Reset to default if the current value is no longer valid
+        }
+    }
+    
+    // Function to populate a dropdown with options
+    function populateDropdown(dropdown, options) {
+        dropdown.innerHTML = ''; // Clear previous options
+        dropdown.appendChild(new Option('--Select--', '')); // Default "Select" option
+        options.forEach(option => {
+            const opt = document.createElement('option');
+            opt.value = option;
+            opt.text = option;
+            dropdown.appendChild(opt);
+        });
+    }
+    
+    // Move to the next step and display the generated link
+    window.nextStep = function() {
+        const bmsId = document.getElementById('bms-id').value;
+        if (!bmsId) {
+            alert("Please enter a valid BMS ID (numbers only).");
+            return;
+        }
+    
+        const selectedLanguage = languageSelect.value;
+        const selectedLocation = locationSelect.value;
+        const selectedJob = jobSelect.value;
+        const jobData = jsonData.find(item => item.Language === selectedLanguage && item.Location === selectedLocation && item.Positions === selectedJob);
+    
+        if (jobData) {
+            const finalLink = jobData["Evergreen link"] + bmsId;
+            generatedLink.innerHTML = `<a href="${finalLink}" target="_blank">${finalLink}</a>`;
+            generateQrCode(finalLink);
+        }
+    
+        step1.style.display = 'none';
+        step2.style.display = 'block';
+    };
+    
+    // Function to populate dropdown options
+    function populateDropdown(dropdown, options) {
+        dropdown.innerHTML = '<option value="">Select</option>';
+        options.forEach(option => {
+            const opt = document.createElement('option');
+            opt.value = option;
+            opt.textContent = option;
+            dropdown.appendChild(opt);
+        });
     }
 
-    select option {
-        font-size: 16px; /* Adjust font size for mobile options */
-        padding: 8px; /* Adjust padding for mobile options */
+    // Function to generate QR code
+    function generateQrCode(url) {
+        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(url)}`;
+        qrImg.src = qrCodeUrl;
     }
-    /* Mobile view adjustments */
-     .social-btn {
-        font-size: 14px; /* Adjust font size for mobile */
-        padding: 8px 10px; /* Adjust padding for mobile */
-    }
+
+    // Event listener for share buttons
+    document.getElementById("share-button-whatsapp").addEventListener("click", function() {
+        const message = "🌟 Exciting news! Join our amazing team at Teleperformance! 🌟 We're expanding our family and want you to be a part of it. Click the link below to start your new journey :";
+        const message2 = "\n\nLet's grow together! 🚀 #JoinTheTeam";
+        const whatsappLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(message + "\n\n" + generatedLink.querySelector('a').href + "\n\n" + message2)}`;
+        window.open(whatsappLink, "_blank");
+    });
+
+    document.getElementById("share-button-line").addEventListener("click", function() {
+        const message = "🌟 Exciting news! Join our amazing team at Teleperformance! 🌟 We're expanding our family and want you to be a part of it. Click the link below to start your new journey :";
+        const message2 = "\n\nLet's grow together! 🚀 #JoinTheTeam";
+        const lineLink = `https://line.me/R/msg/text/?${encodeURIComponent(message + "\n\n" + generatedLink.querySelector('a').href + "\n\n" + message2)}`;
+        window.open(lineLink, "_blank");
+    });
+
  
+    document.getElementById("share-button-facebook").addEventListener("click", function() {
+        const facebookMessage = "🌟 Exciting news! Join our amazing team at Teleperformance! 🌟 We're expanding our family and want you to be a part of it. Click the link below to start your new journey :";
+        const facebookMessage2 = "\n\nLet's grow together! 🚀 #JoinTheTeam";
+        const facebookCaption = encodeURIComponent(facebookMessage + "\n\n" + generatedLink.querySelector('a').href + "\n\n" + facebookMessage2);
+        const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(generatedLink.querySelector('a').href)}&quote=${facebookCaption}`;
+        window.open(facebookLink, "_blank", "width=600,height=400");
+    });
+    
+      
+    document.getElementById("share-button-IG").addEventListener("click", function() {
+        const message = "🌟 Exciting news! Join our amazing team at Teleperformance! 🌟 We're expanding our family and want you to be a part of it. Click the link below to start your new journey :";
+        const message2 = "\n\nLet's grow together! 🚀 #JoinTheTeam";
+        const instagramCaption = encodeURIComponent(message + "\n\n" + generatedLink.querySelector('a').href + "\n\n" + message2);
+        
+        // Open Instagram app if available, otherwise open Instagram website
+        const instagramAppLink = `instagram://library?Caption=${instagramCaption}`;
+        const instagramWebLink = `https://www.instagram.com/stories/myday?utm_source=ig_story_share&igshid=YOUR_IG_USER_ID`;
+    
+        // Try opening Instagram app, if it fails, open Instagram website
+        window.open(instagramAppLink, "_blank", "width=600,height=400") || window.open(instagramWebLink, "_blank");
+    });
+    
+    document.getElementById("share-button-TikTok").addEventListener("click", function() {
+        const message = "🌟 Exciting news! Join our amazing team at Teleperformance! 🌟 We're expanding our family and want you to be a part of it. Click the link below to start your new journey :";
+        const message2 = "\n\nLet's grow together! 🚀 #JoinTheTeam";
+        const tiktokCaption = encodeURIComponent(message + "\n\n" + generatedLink.querySelector('a').href + "\n\n" + message2);
+        
+        // Open TikTok app if available, otherwise open TikTok website
+        const tiktokAppLink = `tiktok://share?text=${tiktokCaption}`;
+        const tiktokWebLink = `https://www.tiktok.com/share?url=YOUR_VIDEO_URL`;
+    
+        // Try opening TikTok app, if it fails, open TikTok website
+        window.open(tiktokAppLink, "_blank") || window.open(tiktokWebLink, "_blank");
+    });
+    
+// Request prompt as last message
+window.onload = function() {
+    var prompts = document.querySelectorAll('.popup-content > div:not(.additional-logo):not(#how-to)');
+    var lastPrompt = prompts[prompts.length - 1];
+    lastPrompt.innerHTML += " ";
+};
+ // JavaScript code
+document.addEventListener('DOMContentLoaded', function() {
+    var video = document.querySelector('video');
+
+    video.addEventListener('contextmenu', function(e) {
+        e.preventDefault(); // Prevent the default context menu from appearing
+
+        // Display a custom menu at the mouse position
+        // You can customize this menu with your own options and styling
+        // For simplicity, let's just show an alert for now
+        alert('Custom menu options here');
+    });
+});
+
+
+});
+function refreshPage() {
+    location.reload();
 }
-
-
-} 
