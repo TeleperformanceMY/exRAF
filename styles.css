@@ -30,7 +30,8 @@ body {
 
 .logo-container img {
   max-width: 80px; /* Adjusted logo size */
-  height: auto;
+  max-height: 80px; /* Ensure the logo doesn't exceed this size */
+  height: auto; /* Maintain aspect ratio */
   filter: grayscale(100%); /* Convert logo to grayscale */
 }
 
@@ -162,4 +163,47 @@ body {
     width: 120px; /* Further reduce size */
     height: 120px;
   }
+}
+
+/* Additional Logo Styling */
+.additional-logo {
+  display: flex;
+  position: absolute;
+  top: -50px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  align-items: center;
+  justify-content: flex-start;
+  transform: scale(0.2); /* Scale down the logo */
+  z-index: 1; /* Ensure it appears above other content */
+}
+
+.additional-logo img {
+  max-width: 80px; /* Ensure the logo doesn't exceed this size */
+  max-height: 80px;
+  height: auto; /* Maintain aspect ratio */
+  filter: grayscale(100%); /* Convert logo to grayscale */
+}
+
+/* Dropdown Label Styling */
+.popup-content > div:not(.additional-logo) > label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333; /* Change label color */
+}
+
+/* How-To Button Styling */
+.how-to-button1 {
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #333; /* Dark gray buttons */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.how-to-button1:hover {
+  background-color: #666; /* Medium gray on hover */
 }
