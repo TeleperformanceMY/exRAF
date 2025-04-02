@@ -14,6 +14,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  padding: 20px; /* Add padding for mobile responsiveness */
 }
 
 /* Header Styling */
@@ -22,119 +23,65 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10px; /* Reduced padding */
   background-color: #fff; /* White header */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo-container img {
-  max-width: 100px;
+  max-width: 80px; /* Adjusted logo size */
   height: auto;
   filter: grayscale(100%); /* Convert logo to grayscale */
 }
 
 /* Spacer Divs */
 .spacer {
-  height: 20px; /* Adjust spacing as needed */
+  height: 10px; /* Reduced height for spacers */
 }
 
 /* Popup Container Styling */
 .popup-container {
-  width: 80%; /* Adjust the width as needed */
-  max-width: 600px;
-  margin: auto; /* Center the body horizontally */
-  padding: 50px 50px 50px 60px; /* Adjust padding to move content up */
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-  border-radius: 40px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  position: relative;
+  width: 95%; /* Full width on mobile */
+  max-width: 600px; /* Limit width on larger screens */
+  margin: 20px auto;
+  padding: 20px; /* Reduced padding */
+  background-color: #fff; /* White background */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   display: flex;
-  flex-direction: column; /* Set flex direction to column */
+  flex-direction: column; /* Stack items vertically */
   justify-content: center; /* Center content vertically */
   align-items: center;
 }
 
 .popup-content h2 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Reduced margin */
   color: #000; /* Black text */
 }
 
 .popup-content input,
 .popup-content select {
-  width: calc(100% - 20px); /* Subtract padding from width */
-  padding: 12px;
-  margin-bottom: 20px;
-  border: 2px solid #ccc; /* Light gray border */
-  border-radius: 10px;
-  font-size: 16px; /* Larger font size */
-  transition: border-color 0.3s; /* Smooth border transition */
-  background-color: #f5f5f5; /* Light gray background */
-  color: #000; /* Black text */
-}
-
-.popup-content input:focus {
-  outline: none; /* Remove default focus outline */
-  border-color: #666; /* Medium gray border color on focus */
-}
-
-/* Dropdown styling */
-select {
-  padding: 8px 15px;
-  font-size: 16px;
+  width: 100%;
+  padding: 10px; /* Reduced padding */
+  margin-bottom: 15px; /* Reduced margin */
   border: 1px solid #ccc; /* Light gray border */
   border-radius: 5px;
-  background-color: #fff; /* White background */
-  color: #000; /* Black text */
-  transition: all 0.3s ease;
-  width: 100%;
-  appearance: none; /* Remove default arrow */
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
-  cursor: pointer; /* Add pointer cursor */
-}
-
-/* Dropdown Hover Effect */
-select:hover,
-select:focus {
+  font-size: 14px; /* Smaller font size for mobile */
   background-color: #f5f5f5; /* Light gray background */
-  border-color: #ccc; /* Light gray border */
-}
-
-/* Dropdown Options Styling */
-select option {
-  font-size: 18px; /* Increase font size for options */
-  padding: 10px; /* Add padding for better spacing */
-  background-color: #fff; /* White background */
-  color: #000; /* Black text */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for option hover */
-}
-
-/* Styling for Hovered Options */
-select:hover option {
-  background-color: #eaeaea; /* Light gray background for hovered option */
   color: #000; /* Black text */
 }
 
-/* Styling for Selected Option */
-select option:checked {
-  background-color: #ccc; /* Medium gray for selected option */
-  color: #000; /* Black text */
-  font-weight: bold; /* Make selected option bold */
-}
-
-/* Buttons */
 .popup-content button {
-  padding: 10px 20px;
+  padding: 10px 15px; /* Reduced padding */
   background-color: #333; /* Dark gray buttons */
   color: #fff; /* White text */
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 10px; /* Reduced margin */
 }
 
 .popup-content button:hover {
@@ -149,8 +96,8 @@ select option:checked {
 }
 
 #qr-code img {
-  width: 200px;
-  height: 200px;
+  width: 150px; /* Reduced size for mobile */
+  height: 150px;
   border: 1px solid #ccc; /* Light gray border */
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -164,107 +111,55 @@ select option:checked {
   filter: grayscale(100%); /* Convert icons to grayscale */
 }
 
+.small-share-button {
+  margin: 5px; /* Reduced margin */
+}
+
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
+  /* Adjustments for larger screens */
   .popup-container {
-    padding: 15px;
+    padding: 30px; /* Increase padding for desktop */
   }
 
   .popup-content h2 {
-    font-size: 20px;
+    font-size: 28px; /* Larger font size */
   }
 
   .popup-content input,
   .popup-content select {
-    padding: 8px;
+    font-size: 16px; /* Larger font size */
+    padding: 12px; /* Increase padding */
+  }
+
+  #qr-code img {
+    width: 200px; /* Increase size for desktop */
+    height: 200px;
   }
 }
 
-/* Additional Styles (Unchanged) */
-.additional-logo {
-  display: flex;
-  position: absolute;
-  top: -100px; /* Adjust as needed */
-  right: 150px; /* Adjust as needed */
-  align-items: center;
-  justify-content: flex-start; /* Align content to the start (left) */
-  transform: scale(0.2); /* Maintain the scale */
-  padding: 5px; /* Adjust for desired spacing around the logo */
-  border-radius: 5px; /* Adjust to create rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
-}
-
-/* Dropdown Label Styling */
-.popup-content > div:not(.additional-logo) > label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333; /* Change label color */
-}
-
-/* Next Button Styling */
-.popup-content button {
-  padding: 10px 10px;
-  background-color: #333; /* Dark gray buttons */
-  color: #fff; /* White text */
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.popup-content button:hover {
-  background-color: #666; /* Medium gray on hover */
-}
-
-/* Picture Container Styling */
-#picture-container {
-  margin-top: 20px; /* Adjust spacing */
-  text-align: center; /* Center the image */
-  position: relative;
-}
-
-#picture-container img {
-  width: 200px; /* Set the width to match the QR code size */
-  height: 200px; /* Set the height to match the QR code size */
-  border: 1px solid #ccc; /* Add a border for clarity */
-  border-radius: 5px; /* Add border radius for rounded corners */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  filter: grayscale(100%); /* Convert image to grayscale */
-}
-
-/* Video Container Styling */
-.video-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.video-container iframe {
-  max-width: 100%;
-  border: none;
-}
-
-/* Media Query for Mobile Responsiveness */
-@media screen and (min-width: 768px) {
-  input,
-  select {
-    width: fit-content;
-    margin-right: 20px;
-    font-size: 20px; /* Larger font size */
-    margin-bottom: 20px;
+@media (max-width: 480px) {
+  /* Adjustments for small mobile screens */
+  body {
+    padding: 10px; /* Reduce padding */
   }
 
-  /* Button Styles */
-  #how-to button:hover {
-    background-color: #666; /* Medium gray on hover */
+  .popup-container {
+    padding: 15px; /* Reduce padding further */
   }
 
-  #header {
-    flex-direction: column;
-    align-items: flex-start;
+  .popup-content h2 {
+    font-size: 20px; /* Smaller font size */
   }
 
-  #how-to {
-    margin-top: 0;
+  .popup-content input,
+  .popup-content select {
+    font-size: 14px; /* Smaller font size */
+    padding: 8px; /* Reduce padding */
+  }
+
+  #qr-code img {
+    width: 120px; /* Further reduce size */
+    height: 120px;
   }
 }
