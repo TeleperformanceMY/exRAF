@@ -5,8 +5,11 @@
   box-sizing: border-box;
 }
 
+/* Load Noto Sans Font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Noto Sans', Arial, sans-serif;
   background-color: #fff; /* White background */
   color: #000; /* Black text */
   display: flex;
@@ -159,14 +162,38 @@ select option:checked {
 }
 
 /* Social Media Icons */
-.small-share-button img {
-  width: 20px;
-  height: 20px;
-  filter: grayscale(100%); /* Convert icons to grayscale */
+.social-btn {
+  display: inline-block;
+  width: 40px; /* Fixed width */
+  height: 40px; /* Fixed height */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%; /* Circular buttons */
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.small-share-button {
-  margin: 5px; /* Reduced margin */
+.fb-btn {
+  background-color: #3b5998;
+  background-image: url('fb.png'); /* Add Facebook logo */
+}
+
+.ig-btn {
+  background-color: #e4405f;
+  background-image: url('ig.jpeg'); /* Add Instagram logo */
+}
+
+.yt-btn {
+  background-color: #cd201f;
+  background-image: url('yt.png'); /* Add YouTube logo */
+}
+
+/* Hover effect for social buttons */
+.social-btn:hover,
+.social-btn:focus {
+  opacity: 0.9;
 }
 
 /* Responsive Design */
@@ -216,69 +243,4 @@ select option:checked {
     width: 120px; /* Further reduce size */
     height: 120px;
   }
-
-  /* Fix spacing issues on mobile */
-  .popup-content {
-    gap: 10px; /* Add consistent spacing between elements */
-  }
-
-  .popup-content button {
-    margin-top: 10px; /* Ensure proper spacing above buttons */
-  }
-
-  /* Adjust spacing for long text */
-  #referral-message {
-    font-size: 14px; /* Reduce font size for mobile */
-    line-height: 1.4; /* Improve readability */
-    margin-top: 10px; /* Add spacing above the message */
-  }
-
-  /* Adjust spacing for "Back" button */
-  #back-button {
-    margin-top: 20px; /* Add space above the "Back" button */
-  }
-}
-
-/* Additional Logo Styling */
-.additional-logo {
-  display: flex;
-  position: absolute;
-  top: -50px; /* Adjust as needed */
-  right: 20px; /* Adjust as needed */
-  align-items: center;
-  justify-content: flex-start;
-  transform: scale(0.2); /* Scale down the logo */
-  z-index: 1; /* Ensure it appears above other content */
-}
-
-.additional-logo img {
-  max-width: 80px; /* Ensure the logo doesn't exceed this size */
-  max-height: 80px;
-  height: auto; /* Maintain aspect ratio */
-  filter: grayscale(100%); /* Convert logo to grayscale */
-}
-
-/* Dropdown Label Styling */
-.popup-content > div:not(.additional-logo) > label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333; /* Change label color */
-}
-
-/* How To Button Styling */
-.how-to-button1 {
-  padding: 10px 15px;
-  font-size: 14px;
-  background-color: #333; /* Dark gray buttons */
-  color: #fff; /* White text */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px; /* Add spacing above the "How To" button */
-}
-
-.how-to-button1:hover {
-  background-color: #666; /* Medium gray on hover */
 }
