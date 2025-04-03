@@ -156,17 +156,31 @@ select option:checked {
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   filter: grayscale(100%); /* Convert QR code to grayscale */
+  transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+#qr-code img:hover {
+  transform: scale(1.1); /* Enlarge QR code slightly on hover */
 }
 
 /* Social Media Icons */
-.small-share-button img {
-  width: 20px;
-  height: 20px;
-  filter: grayscale(100%); /* Convert icons to grayscale */
+.small-share-button {
+  display: inline-block;
+  width: 40px; /* Fixed width */
+  height: 40px; /* Fixed height */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%; /* Circular buttons */
+  margin: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth effects */
+  opacity: 0.9; /* Slightly transparent */
 }
 
-.small-share-button {
-  margin: 5px; /* Reduced margin */
+.small-share-button:hover {
+  transform: scale(1.1); /* Enlarge icons slightly on hover */
+  opacity: 1; /* Fully visible on hover */
 }
 
 /* Responsive Design */
@@ -228,6 +242,11 @@ select option:checked {
   justify-content: flex-start;
   transform: scale(0.2); /* Scale down the logo */
   z-index: 1; /* Ensure it appears above other content */
+  transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+.additional-logo:hover {
+  transform: scale(0.22); /* Slightly enlarge on hover */
 }
 
 .additional-logo img {
@@ -235,6 +254,11 @@ select option:checked {
   max-height: 80px;
   height: auto; /* Maintain aspect ratio */
   filter: grayscale(100%); /* Convert logo to grayscale */
+  transition: filter 0.3s ease; /* Smooth grayscale effect */
+}
+
+.additional-logo:hover img {
+  filter: grayscale(0%); /* Remove grayscale on hover */
 }
 
 /* Dropdown Label Styling */
@@ -243,6 +267,11 @@ select option:checked {
   margin-bottom: 5px;
   font-weight: bold;
   color: #333; /* Change label color */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.popup-content > div:not(.additional-logo) > label:hover {
+  color: #666; /* Change color on hover */
 }
 
 /* How-To Button Styling */
@@ -254,9 +283,10 @@ select option:checked {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth effects */
 }
 
 .how-to-button1:hover {
   background-color: #666; /* Medium gray on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
 }
