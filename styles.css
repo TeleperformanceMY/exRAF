@@ -216,6 +216,27 @@ select option:checked {
     width: 120px; /* Further reduce size */
     height: 120px;
   }
+
+  /* Fix spacing issues on mobile */
+  .popup-content {
+    gap: 10px; /* Add consistent spacing between elements */
+  }
+
+  .popup-content button {
+    margin-top: 10px; /* Ensure proper spacing above buttons */
+  }
+
+  /* Adjust spacing for long text */
+  #referral-message {
+    font-size: 14px; /* Reduce font size for mobile */
+    line-height: 1.4; /* Improve readability */
+    margin-top: 10px; /* Add spacing above the message */
+  }
+
+  /* Adjust spacing for "Back" button */
+  #back-button {
+    margin-top: 20px; /* Add space above the "Back" button */
+  }
 }
 
 /* Additional Logo Styling */
@@ -245,7 +266,7 @@ select option:checked {
   color: #333; /* Change label color */
 }
 
-/* How-To Button Styling */
+/* How To Button Styling */
 .how-to-button1 {
   padding: 10px 15px;
   font-size: 14px;
@@ -255,6 +276,7 @@ select option:checked {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 10px; /* Add spacing above the "How To" button */
 }
 
 .how-to-button1:hover {
