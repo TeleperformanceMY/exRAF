@@ -33,7 +33,7 @@ body {
 }
 
 .header img {
-  max-width: 80px; /* Adjusted logo size */
+  max-width: 15vw; /* Flexible width based on viewport */
   height: auto;
   filter: grayscale(100%); /* Convert logo to grayscale */
 }
@@ -50,7 +50,7 @@ body {
   margin: 20px auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-  border-radius: 40px;
+  border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   display: flex;
@@ -100,8 +100,8 @@ body {
 }
 
 #qr-code img {
-  width: 150px; /* Reduced size for mobile */
-  height: 150px;
+  width: 30vw; /* Flexible width based on viewport */
+  height: auto;
   border: 1px solid #ccc; /* Light gray border */
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -111,8 +111,8 @@ body {
 /* Social Media Icons */
 .social-btn {
   display: inline-block;
-  width: 40px; /* Fixed width */
-  height: 40px; /* Fixed height */
+  width: 8vw; /* Flexible width based on viewport */
+  height: 8vw; /* Flexible height based on viewport */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -124,17 +124,17 @@ body {
 
 .fb-btn {
   background-color: #3b5998;
-  background-image: url('fb.png'); /* Add Facebook logo */
+  background-image: url('assets/fb.png'); /* Add Facebook logo */
 }
 
 .ig-btn {
   background-color: #e4405f;
-  background-image: url('ig.jpeg'); /* Add Instagram logo */
+  background-image: url('assets/ig.jpeg'); /* Add Instagram logo */
 }
 
 .yt-btn {
   background-color: #cd201f;
-  background-image: url('yt.png'); /* Add YouTube logo */
+  background-image: url('assets/yt.png'); /* Add YouTube logo */
 }
 
 .social-btn:hover {
@@ -159,8 +159,12 @@ body {
   }
 
   #qr-code img {
-    width: 200px; /* Increase size for desktop */
-    height: 200px;
+    width: 15vw; /* Adjust QR code size for desktop */
+  }
+
+  .social-btn {
+    width: 6vw; /* Adjust social media icon size for desktop */
+    height: 6vw;
   }
 }
 
@@ -185,7 +189,11 @@ body {
   }
 
   #qr-code img {
-    width: 120px; /* Further reduce size */
-    height: 120px;
+    width: 40vw; /* Adjust QR code size for mobile */
+  }
+
+  .social-btn {
+    width: 10vw; /* Adjust social media icon size for mobile */
+    height: 10vw;
   }
 }
