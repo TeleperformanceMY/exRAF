@@ -5,12 +5,8 @@
   box-sizing: border-box;
 }
 
-/* Load Noto Sans Font */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
-
-/* Global Body Styling */
 body {
-  font-family: 'Noto Sans', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   background-color: #fff; /* White background */
   color: #000; /* Black text */
   display: flex;
@@ -18,7 +14,6 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 20px; /* Add padding for mobile responsiveness */
 }
 
 /* Header Styling */
@@ -27,56 +22,111 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   background-color: #fff; /* White header */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.header img {
-  max-width: 15vw; /* Flexible width based on viewport */
+.logo-container img {
+  max-width: 100px;
   height: auto;
   filter: grayscale(100%); /* Convert logo to grayscale */
 }
 
-/* Spacer Replacement */
+/* Spacer Divs */
 .spacer {
-  height: 10px; /* Minimal spacing */
+  height: 20px; /* Adjust spacing as needed */
 }
 
 /* Popup Container Styling */
 .popup-container {
-  width: 95%; /* Full width on mobile */
-  max-width: 600px; /* Limit width on larger screens */
-  margin: 20px auto;
-  padding: 20px;
+  width: 80%; /* Adjust the width as needed */
+  max-width: 600px;
+  margin: auto; /* Center the body horizontally */
+  padding: 50px 50px 50px 60px; /* Adjust padding to move content up */
   background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-  border-radius: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
   text-align: center;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: column; /* Set flex direction to column */
+  justify-content: center; /* Center content vertically */
   align-items: center;
 }
 
 .popup-content h2 {
   font-size: 24px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   color: #000; /* Black text */
 }
 
 .popup-content input,
 .popup-content select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px;
-  font-size: 16px;
+  width: calc(100% - 20px); /* Subtract padding from width */
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 2px solid #ccc; /* Light gray border */
+  border-radius: 10px;
+  font-size: 16px; /* Larger font size */
+  transition: border-color 0.3s; /* Smooth border transition */
   background-color: #f5f5f5; /* Light gray background */
   color: #000; /* Black text */
 }
 
+.popup-content input:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #666; /* Medium gray border color on focus */
+}
+
+/* Dropdown styling */
+select {
+  padding: 8px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px;
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  transition: all 0.3s ease;
+  width: 100%;
+  appearance: none; /* Remove default arrow */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  cursor: pointer; /* Add pointer cursor */
+}
+
+/* Dropdown Hover Effect */
+select:hover,
+select:focus {
+  background-color: #f5f5f5; /* Light gray background */
+  border-color: #ccc; /* Light gray border */
+}
+
+/* Dropdown Options Styling */
+select option {
+  font-size: 18px; /* Increase font size for options */
+  padding: 10px; /* Add padding for better spacing */
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for option hover */
+}
+
+/* Styling for Hovered Options */
+select:hover option {
+  background-color: #eaeaea; /* Light gray background for hovered option */
+  color: #000; /* Black text */
+}
+
+/* Styling for Selected Option */
+select option:checked {
+  background-color: #ccc; /* Medium gray for selected option */
+  color: #000; /* Black text */
+  font-weight: bold; /* Make selected option bold */
+}
+
+/* Buttons */
 .popup-content button {
   padding: 10px 20px;
   background-color: #333; /* Dark gray buttons */
@@ -85,7 +135,6 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 10px;
 }
 
 .popup-content button:hover {
@@ -100,8 +149,8 @@ body {
 }
 
 #qr-code img {
-  width: 30vw; /* Flexible width based on viewport */
-  height: auto;
+  width: 200px;
+  height: 200px;
   border: 1px solid #ccc; /* Light gray border */
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -109,91 +158,28 @@ body {
 }
 
 /* Social Media Icons */
-.social-btn {
-  display: inline-block;
-  width: 8vw; /* Flexible width based on viewport */
-  height: 8vw; /* Flexible height based on viewport */
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 50%; /* Circular buttons */
-  margin: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.small-share-button img {
+  width: 20px;
+  height: 20px;
+  filter: grayscale(100%); /* Convert icons to grayscale */
 }
 
-.fb-btn {
-  background-color: #3b5998;
-  background-image: url('assets/fb.png'); /* Add Facebook logo */
-}
-
-.ig-btn {
-  background-color: #e4405f;
-  background-image: url('assets/ig.jpeg'); /* Add Instagram logo */
-}
-
-.yt-btn {
-  background-color: #cd201f;
-  background-image: url('assets/yt.png'); /* Add YouTube logo */
-}
-
-.social-btn:hover {
-  opacity: 0.9;
+.small-share-button {
+  margin: 5px; /* Reduced margin */
 }
 
 /* Responsive Design */
-@media (min-width: 768px) {
-  /* Adjustments for larger screens */
+@media (max-width: 768px) {
   .popup-container {
-    padding: 30px; /* Increase padding for desktop */
+    padding: 15px;
   }
 
   .popup-content h2 {
-    font-size: 28px; /* Larger font size */
+    font-size: 20px;
   }
 
   .popup-content input,
   .popup-content select {
-    font-size: 16px; /* Larger font size */
-    padding: 12px; /* Increase padding */
-  }
-
-  #qr-code img {
-    width: 15vw; /* Adjust QR code size for desktop */
-  }
-
-  .social-btn {
-    width: 6vw; /* Adjust social media icon size for desktop */
-    height: 6vw;
-  }
-}
-
-@media (max-width: 480px) {
-  /* Adjustments for small mobile screens */
-  body {
-    padding: 10px; /* Reduce padding */
-  }
-
-  .popup-container {
-    padding: 15px; /* Reduce padding further */
-  }
-
-  .popup-content h2 {
-    font-size: 20px; /* Smaller font size */
-  }
-
-  .popup-content input,
-  .popup-content select {
-    font-size: 14px; /* Smaller font size */
-    padding: 8px; /* Reduce padding */
-  }
-
-  #qr-code img {
-    width: 40vw; /* Adjust QR code size for mobile */
-  }
-
-  .social-btn {
-    width: 10vw; /* Adjust social media icon size for mobile */
-    height: 10vw;
+    padding: 8px;
   }
 }
