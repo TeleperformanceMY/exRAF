@@ -30,8 +30,7 @@ body {
 
 .logo-container img {
   max-width: 80px; /* Adjusted logo size */
-  max-height: 80px; /* Ensure the logo doesn't exceed this size */
-  height: auto; /* Maintain aspect ratio */
+  height: auto;
   filter: grayscale(100%); /* Convert logo to grayscale */
 }
 
@@ -46,8 +45,8 @@ body {
   max-width: 600px; /* Limit width on larger screens */
   margin: 20px auto;
   padding: 20px; /* Reduced padding */
-  background-color: #fff; /* White background */
-  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+  border-radius: 40px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   display: flex;
@@ -64,18 +63,72 @@ body {
 
 .popup-content input,
 .popup-content select {
-  width: 100%;
+  width: calc(100% - 20px); /* Subtract padding from width */
   padding: 10px; /* Reduced padding */
   margin-bottom: 15px; /* Reduced margin */
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px;
-  font-size: 14px; /* Smaller font size for mobile */
+  border: 2px solid #ccc; /* Light gray border */
+  border-radius: 10px;
+  font-size: 16px; /* Larger font size */
+  transition: border-color 0.3s; /* Smooth border transition */
   background-color: #f5f5f5; /* Light gray background */
   color: #000; /* Black text */
 }
 
+.popup-content input:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #666; /* Medium gray border color on focus */
+}
+
+/* Dropdown styling */
+select {
+  padding: 8px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px;
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  transition: all 0.3s ease;
+  width: 100%;
+  appearance: none; /* Remove default arrow */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  cursor: pointer; /* Add pointer cursor */
+}
+
+/* Dropdown Hover Effect */
+select:hover,
+select:focus {
+  background-color: #f5f5f5; /* Light gray background */
+  border-color: #ccc; /* Light gray border */
+}
+
+/* Dropdown Options Styling */
+select option {
+  font-size: 18px; /* Increase font size for options */
+  padding: 10px; /* Add padding for better spacing */
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for option hover */
+}
+
+/* Styling for Hovered Options */
+select:hover option {
+  background-color: #eaeaea; /* Light gray background for hovered option */
+  color: #000; /* Black text */
+}
+
+/* Styling for Selected Option */
+select option:checked {
+  background-color: #ccc; /* Medium gray for selected option */
+  color: #000; /* Black text */
+  font-weight: bold; /* Make selected option bold */
+}
+
+/* Buttons */
 .popup-content button {
-  padding: 10px 15px; /* Reduced padding */
+  padding: 10px 20px;
   background-color: #333; /* Dark gray buttons */
   color: #fff; /* White text */
   border: none;
