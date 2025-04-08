@@ -11,14 +11,24 @@ document.addEventListener('DOMContentLoaded', function() {
         step1: document.getElementById('step1'),
         step2: document.getElementById('step2'),
         nextBtn: document.getElementById('next-btn'),
+        backBtn: document.getElementById('back-btn'),
         newReferralBtn: document.getElementById('new-referral-btn'),
-        qrCode: document.getElementById('qr-code')
+        referralLink: document.getElementById('referral-link'),
+        copyBtn: document.getElementById('copy-btn'),
+        qrCode: document.getElementById('qr-code'),
+        shareWhatsapp: document.getElementById('share-whatsapp'),
+        shareLine: document.getElementById('share-line'),
+        socialLinks: {
+            facebook: document.querySelector('.social-icon.facebook'),
+            instagram: document.querySelector('.social-icon.instagram')
+        }
     };
 
     // Application Data
     let jsonData = [];
+    let currentLocation = '';
 
-    // Complete Translations
+    // Translations
     const translations = {
         english: {
             pageLangLabel: "Choose Your Language:",
@@ -34,10 +44,15 @@ document.addEventListener('DOMContentLoaded', function() {
             consentText: "I agree to the terms and conditions of the Refer a Friend program. I confirm that I have obtained my friend's consent to share their information with Teleperformance for recruitment purposes.",
             nextBtn: "Submit Referral",
             thankYouTitle: "Thank you for your referral!",
-            referralMessage: "We've received your referral and will be in touch soon.",
-            scanText: "Scan to visit our careers page",
-            newReferralBtn: "Submit Another Referral",
-            followUs: "Follow Us On:"
+            referralMessage: "Here's the personalized link for your friend to apply:",
+            scanText: "Or scan this QR code to apply",
+            followUs: "Follow Us On:",
+            backText: "Back",
+            copyText: "Copy",
+            whatsappText: "WhatsApp",
+            lineText: "Line",
+            locationSocial: "Location Social Media:",
+            shareMessage: "Check out this job opportunity at Teleperformance: "
         },
         japanese: {
             pageLangLabel: "言語を選択してください:",
@@ -53,10 +68,15 @@ document.addEventListener('DOMContentLoaded', function() {
             consentText: "私はTeleperformanceの「友人を紹介する」プログラムの利用規約に同意します。私は採用目的で友人の情報をTeleperformanceと共有することについて、友人の同意を得たことを確認します。",
             nextBtn: "紹介を送信",
             thankYouTitle: "ご紹介ありがとうございます!",
-            referralMessage: "紹介を受け付けました。追ってご連絡いたします。",
-            scanText: "QRコードをスキャンして採用ページへ",
-            newReferralBtn: "別の紹介を送信",
-            followUs: "フォローしてください:"
+            referralMessage: "友達が応募するためのリンクです:",
+            scanText: "QRコードをスキャンして応募",
+            followUs: "フォローしてください:",
+            backText: "戻る",
+            copyText: "コピー",
+            whatsappText: "WhatsApp",
+            lineText: "Line",
+            locationSocial: "現地のソーシャルメディア:",
+            shareMessage: "Teleperformanceのこの求人情報をチェックしてください: "
         },
         korean: {
             pageLangLabel: "언어 선택:",
@@ -72,10 +92,15 @@ document.addEventListener('DOMContentLoaded', function() {
             consentText: "저는 Teleperformance의 '지인 추천' 프로그램 약관에 동의합니다. 채용 목적으로 지인의 정보를 Teleperformance와 공유하는 것에 대해 지인의 동의를 얻었음을 확인합니다.",
             nextBtn: "추천 제출",
             thankYouTitle: "추천해 주셔서 감사합니다!",
-            referralMessage: "추천을 접수하였으며 곧 연락드리겠습니다.",
-            scanText: "QR 코드를 스캔하여 채용 페이지 방문",
-            newReferralBtn: "다른 추천 제출",
-            followUs: "팔로우 하세요:"
+            referralMessage: "친구가 지원할 수 있는 개인화된 링크입니다:",
+            scanText: "QR 코드를 스캔하여 지원하세요",
+            followUs: "팔로우 하세요:",
+            backText: "뒤로",
+            copyText: "복사",
+            whatsappText: "WhatsApp",
+            lineText: "Line",
+            locationSocial: "현지 소셜 미디어:",
+            shareMessage: "Teleperformance의 이 채용 기회를 확인하세요: "
         },
         mandarin: {
             pageLangLabel: "选择您的语言:",
@@ -91,30 +116,56 @@ document.addEventListener('DOMContentLoaded', function() {
             consentText: "我同意推荐朋友计划的条款和条件。我确认已获得朋友的同意，将其信息分享给Teleperformance用于招聘目的。",
             nextBtn: "提交推荐",
             thankYouTitle: "感谢您的推荐!",
-            referralMessage: "我们已经收到您的推荐，会尽快与您联系。",
+            referralMessage: "这是您朋友申请的个性化链接:",
             scanText: "扫描访问我们的招聘页面",
-            newReferralBtn: "提交另一个推荐",
-            followUs: "关注我们:"
+            followUs: "关注我们:",
+            backText: "返回",
+            copyText: "复制",
+            whatsappText: "WhatsApp",
+            lineText: "Line",
+            locationSocial: "当地社交媒体:",
+            shareMessage: "查看Teleperformance的这个工作机会: "
         },
-    cantonese: {
-        pageLangLabel: "選擇您的語言:",
-        fullNameLabel: "全名:",
-        fullNamePlaceholder: "輸入您的全名",
-        phoneLabel: "電話號碼:",
-        phonePlaceholder: "輸入您的電話號碼",
-        emailLabel: "電子郵件地址:",
-        emailPlaceholder: "輸入您的電子郵件地址",
-        jobSelectionTitle: "您的朋友希望在哪裡工作？",
-        jobLangLabel: "工作語言:",
-        locationLabel: "工作地點:",
-        consentText: "我同意推薦朋友計劃的條款和條件。我確認已獲得朋友的同意，將其信息分享給Teleperformance用於招聘目的。",
-        nextBtn: "提交推薦",
-        thankYouTitle: "感謝您的推薦!",
-        referralMessage: "我們已經收到您的推薦，會盡快與您聯繫。",
-        scanText: "掃描訪問我們的招聘頁面",
-        newReferralBtn: "提交另一個推薦",
-        followUs: "關注我們:"
-    }
+        cantonese: {
+            pageLangLabel: "選擇您的語言:",
+            fullNameLabel: "全名:",
+            fullNamePlaceholder: "輸入您的全名",
+            phoneLabel: "電話號碼:",
+            phonePlaceholder: "輸入您的電話號碼",
+            emailLabel: "電子郵件地址:",
+            emailPlaceholder: "輸入您的電子郵件地址",
+            jobSelectionTitle: "您的朋友希望在哪裡工作？",
+            jobLangLabel: "工作語言:",
+            locationLabel: "工作地點:",
+            consentText: "我同意推薦朋友計劃的條款和條件。我確認已獲得朋友的同意，將其信息分享給Teleperformance用於招聘目的。",
+            nextBtn: "提交推薦",
+            thankYouTitle: "感謝您的推薦!",
+            referralMessage: "這是您朋友申請的個性化鏈接:",
+            scanText: "掃描訪問我們的招聘頁面",
+            followUs: "關注我們:",
+            backText: "返回",
+            copyText: "複製",
+            whatsappText: "WhatsApp",
+            lineText: "Line",
+            locationSocial: "當地社交媒體:",
+            shareMessage: "查看Teleperformance的這個工作機會: "
+        }
+    };
+
+    // Location-specific social media links
+    const locationSocialLinks = {
+        malaysia: {
+            facebook: "https://www.facebook.com/teleperformance.malaysia",
+            instagram: "https://www.instagram.com/teleperformance_malaysia"
+        },
+        thailand: {
+            facebook: "https://www.facebook.com/TeleperformanceTH",
+            instagram: "https://www.instagram.com/teleperformance_thailand"
+        },
+        default: {
+            facebook: "https://www.facebook.com/Teleperformance",
+            instagram: "https://www.instagram.com/teleperformance"
+        }
     };
 
     // Initialize the application
@@ -138,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('Error loading data:', error);
-                showAlert('Failed to load job data. Please try again later.');
+                alert('Failed to load job data. Please try again later.');
             });
     }
 
@@ -150,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Populate dropdown with options
     function populateDropdown(dropdown, options) {
         dropdown.innerHTML = '';
-        const defaultOption = new Option('-- ' + (translations[elements.pageLangSelect.value]?.selectText || 'Select') + ' --', '');
+        const defaultOption = new Option('-- Select --', '');
         defaultOption.disabled = true;
         defaultOption.selected = true;
         dropdown.appendChild(defaultOption);
@@ -175,6 +226,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const key = el.getAttribute('data-translate-placeholder');
             if (translation[key]) el.placeholder = translation[key];
         });
+        
+        // Update social media links based on location
+        updateSocialLinks();
+    }
+
+    // Update social media links based on location
+    function updateSocialLinks() {
+        const links = locationSocialLinks[currentLocation] || locationSocialLinks.default;
+        elements.socialLinks.facebook.href = links.facebook;
+        elements.socialLinks.instagram.href = links.instagram;
     }
 
     // Validate form inputs
@@ -195,67 +256,79 @@ document.addEventListener('DOMContentLoaded', function() {
         return re.test(email);
     }
 
+    // Generate and display referral link
+    function generateReferralLink() {
+        const name = encodeURIComponent(elements.fullName.value.trim());
+        const phone = encodeURIComponent(elements.phoneNumber.value.trim());
+        const email = encodeURIComponent(elements.email.value.trim());
+        const jobLanguage = elements.jobLangSelect.value;
+        const location = elements.locationSelect.value;
+        currentLocation = location.toLowerCase();
+        
+        const jobData = jsonData.find(
+            item => item.Language === jobLanguage && 
+                   item.Location === location
+        );
+        
+        if (jobData) {
+            // Construct the referral URL with all parameters
+            let baseUrl = jobData['Evergreen link'];
+            
+            // Clean existing parameters if needed
+            baseUrl = baseUrl.split('?')[0];
+            
+            // Add the referrer information
+            const referralUrl = `${baseUrl}?raf_name=${name}&raf_email=${email}&raf_phone=${phone}`;
+            
+            elements.referralLink.value = referralUrl;
+            generateQrCode(referralUrl);
+            updateSocialLinks();
+            return true;
+        }
+        return false;
+    }
+
     // Generate QR code
     function generateQrCode(url) {
         elements.qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&format=png&color=000&bgcolor=FFF&data=${encodeURIComponent(url)}`;
     }
 
-    // Show alert message
-    function showAlert(message) {
-        alert(message);
+    // Copy link to clipboard
+    function copyToClipboard() {
+        elements.referralLink.select();
+        document.execCommand('copy');
+        
+        // Show feedback
+        const originalText = elements.copyBtn.innerHTML;
+        elements.copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(() => {
+            elements.copyBtn.innerHTML = originalText;
+        }, 2000);
     }
 
-    // Submit referral form
-    function submitReferral() {
-        const referralData = {
-            name: encodeURIComponent(elements.fullName.value.trim()),
-            phone: encodeURIComponent(elements.phoneNumber.value.trim()),
-            email: encodeURIComponent(elements.email.value.trim()),
-            jobLanguage: elements.jobLangSelect.value,
-            location: elements.locationSelect.value,
-            timestamp: new Date().toISOString()
-        };
+    // Share via WhatsApp
+    function shareWhatsApp() {
+        const message = translations[elements.pageLangSelect.value]?.shareMessage || 
+            'Check out this job opportunity at Teleperformance: ';
+        const url = `https://wa.me/?text=${encodeURIComponent(message + elements.referralLink.value)}`;
+        window.open(url, '_blank');
+    }
 
-        // Find the selected job data
-        const jobData = jsonData.find(
-            item => item.Language === referralData.jobLanguage && 
-                   item.Location === referralData.location
-        );
+    // Share via Line
+    function shareLine() {
+        const message = translations[elements.pageLangSelect.value]?.shareMessage || 
+            'Check out this job opportunity at Teleperformance: ';
+        const url = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(message + elements.referralLink.value)}`;
+        window.open(url, '_blank');
+    }
 
-        if (jobData) {
-            // Construct the referral URL with all parameters
-            const referralUrl = `${jobData['Evergreen link']}?raf_name=${referralData.name}&raf_email=${referralData.email}&raf_phone=${referralData.phone}`;
-            
-            // Display the referral link
-            elements.referralLink.value = referralUrl;
-            generateQrCode(referralUrl);
-            
-            // In a real app, you would send this data to your server
-            console.log('Referral submitted:', {
-                ...referralData,
-                referralUrl: referralUrl
-            });
-            
-            // Show thank you step
+    // Go to next step
+    function nextStep() {
+        if (generateReferralLink()) {
             elements.step1.style.display = 'none';
             elements.step2.style.display = 'block';
-        } else {
-            showAlert('Error generating referral link. Please try again.');
+            window.scrollTo(0, 0);
         }
-    }
-
-    // Reset form for new referral
-    function resetForm() {
-        elements.fullName.value = '';
-        elements.phoneNumber.value = '';
-        elements.email.value = '';
-        elements.jobLangSelect.value = '';
-        elements.locationSelect.value = '';
-        elements.consentCheckbox.checked = false;
-        elements.nextBtn.disabled = true;
-        
-        elements.step2.style.display = 'none';
-        elements.step1.style.display = 'block';
     }
 
     // Setup event listeners
@@ -263,23 +336,40 @@ document.addEventListener('DOMContentLoaded', function() {
         // Page language change
         elements.pageLangSelect.addEventListener('change', function() {
             updatePageContent(this.value);
-            populateDropdown(elements.jobLangSelect, getUniqueValues('Language'));
-            populateDropdown(elements.locationSelect, getUniqueValues('Location'));
         });
         
         // Form input validation
         elements.fullName.addEventListener('input', validateForm);
         elements.phoneNumber.addEventListener('input', validateForm);
         elements.email.addEventListener('input', validateForm);
-        elements.jobLangSelect.addEventListener('change', validateForm);
-        elements.locationSelect.addEventListener('change', validateForm);
+        elements.jobLangSelect.addEventListener('change', function() {
+            validateForm();
+            updateJobsDropdown();
+        });
+        
+        elements.locationSelect.addEventListener('change', function() {
+            validateForm();
+            currentLocation = this.value.toLowerCase();
+            updateSocialLinks();
+        });
+        
         elements.consentCheckbox.addEventListener('change', validateForm);
         
         // Next button
-        elements.nextBtn.addEventListener('click', submitReferral);
+        elements.nextBtn.addEventListener('click', nextStep);
         
-        // New referral button
-        elements.newReferralBtn.addEventListener('click', resetForm);
+        // Back button
+        elements.backBtn.addEventListener('click', function() {
+            elements.step2.style.display = 'none';
+            elements.step1.style.display = 'block';
+        });
+        
+        // Copy button
+        elements.copyBtn.addEventListener('click', copyToClipboard);
+        
+        // Share buttons
+        elements.shareWhatsapp.addEventListener('click', shareWhatsApp);
+        elements.shareLine.addEventListener('click', shareLine);
     }
 
     // Initialize the app
