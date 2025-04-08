@@ -1,292 +1,191 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --dark-color: #1a252f;
+    --light-color: #f8f9fa;
+    --gray-color: #6c757d;
+    --white: #fff;
+    --black: #212529;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #fff; /* White background */
-  color: #000; /* Black text */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 20px; /* Add padding for mobile responsiveness */
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background-color: var(--light-color);
+    color: var(--black);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Header Styling */
-.header {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px; /* Reduced padding */
-  background-color: #fff; /* White header */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.container {
+    max-width: 600px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.logo-container img {
-  max-width: 80px; /* Adjusted logo size */
-  height: auto;
-  filter: grayscale(100%); /* Convert logo to grayscale */
+.logo {
+    max-width: 180px;
+    height: auto;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
 }
 
-/* Spacer Divs */
-.spacer {
-  height: 10px; /* Reduced height for spacers */
+.logo:hover {
+    filter: grayscale(0%);
+    transform: scale(1.05);
 }
 
-/* Popup Container Styling */
-.popup-container {
-  width: 95%; /* Full width on mobile */
-  max-width: 600px; /* Limit width on larger screens */
-  margin: 20px auto;
-  padding: 20px; /* Reduced padding */
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-  border-radius: 40px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  display: flex;
-  flex-direction: column; /* Stack items vertically */
-  justify-content: center; /* Center content vertically */
-  align-items: center;
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.popup-content h2 {
-  font-size: 24px;
-  margin-bottom: 15px; /* Reduced margin */
-  color: #000; /* Black text */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.popup-content input,
-.popup-content select {
-  width: calc(100% - 20px); /* Subtract padding from width */
-  padding: 10px; /* Reduced padding */
-  margin-bottom: 15px; /* Reduced margin */
-  border: 2px solid #ccc; /* Light gray border */
-  border-radius: 10px;
-  font-size: 16px; /* Larger font size */
-  transition: border-color 0.3s; /* Smooth border transition */
-  background-color: #f5f5f5; /* Light gray background */
-  color: #000; /* Black text */
+.form-control, .form-select {
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
-.popup-content input:focus {
-  outline: none; /* Remove default focus outline */
-  border-color: #666; /* Medium gray border color on focus */
+.form-control:focus, .form-select:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
 }
 
-/* Dropdown styling */
-select {
-  padding: 8px 15px;
-  font-size: 16px;
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px;
-  background-color: #fff; /* White background */
-  color: #000; /* Black text */
-  transition: all 0.3s ease;
-  width: 100%;
-  appearance: none; /* Remove default arrow */
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
-  cursor: pointer; /* Add pointer cursor */
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Dropdown Hover Effect */
-select:hover,
-select:focus {
-  background-color: #f5f5f5; /* Light gray background */
-  border-color: #ccc; /* Light gray border */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
-/* Dropdown Options Styling */
-select option {
-  font-size: 18px; /* Increase font size for options */
-  padding: 10px; /* Add padding for better spacing */
-  background-color: #fff; /* White background */
-  color: #000; /* Black text */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for option hover */
+.btn-primary:hover {
+    background-color: var(--dark-color);
+    transform: translateY(-2px);
 }
 
-/* Styling for Hovered Options */
-select:hover option {
-  background-color: #eaeaea; /* Light gray background for hovered option */
-  color: #000; /* Black text */
+.btn-primary:disabled {
+    background-color: var(--gray-color);
+    border-color: var(--gray-color);
+    transform: none;
 }
 
-/* Styling for Selected Option */
-select option:checked {
-  background-color: #ccc; /* Medium gray for selected option */
-  color: #000; /* Black text */
-  font-weight: bold; /* Make selected option bold */
+.consent-box {
+    background-color: rgba(248, 249, 250, 0.5);
+    transition: all 0.3s ease;
 }
 
-/* Buttons */
-.popup-content button {
-  padding: 10px 20px;
-  background-color: #333; /* Dark gray buttons */
-  color: #fff; /* White text */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px; /* Reduced margin */
+.consent-box:hover {
+    background-color: rgba(248, 249, 250, 0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.popup-content button:hover {
-  background-color: #666; /* Medium gray on hover */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--light-color);
+    color: var(--black);
+    font-size: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* QR Code Section */
-#qr-code {
-  margin-top: 20px;
-  text-align: center;
-  position: relative;
+.social-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
 }
 
-#qr-code img {
-  width: 150px; /* Reduced size for mobile */
-  height: 150px;
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  filter: grayscale(100%); /* Convert QR code to grayscale */
-  transition: transform 0.3s ease; /* Smooth scaling effect */
-}
+.facebook { color: #1877F2; }
+.instagram { background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white; }
+.linkedin { color: #0077B5; }
 
-#qr-code img:hover {
-  transform: scale(1.1); /* Enlarge QR code slightly on hover */
-}
-
-/* Social Media Icons */
-.small-share-button {
-  display: inline-block;
-  width: 40px; /* Fixed width */
-  height: 40px; /* Fixed height */
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 50%; /* Circular buttons */
-  margin: 5px;
-  cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth effects */
-  opacity: 0.9; /* Slightly transparent */
-}
-
-.small-share-button:hover {
-  transform: scale(1.1); /* Enlarge icons slightly on hover */
-  opacity: 1; /* Fully visible on hover */
-}
-
-/* Responsive Design */
-@media (min-width: 768px) {
-  /* Adjustments for larger screens */
-  .popup-container {
-    padding: 30px; /* Increase padding for desktop */
-  }
-
-  .popup-content h2 {
-    font-size: 28px; /* Larger font size */
-  }
-
-  .popup-content input,
-  .popup-content select {
-    font-size: 16px; /* Larger font size */
-    padding: 12px; /* Increase padding */
-  }
-
-  #qr-code img {
-    width: 200px; /* Increase size for desktop */
+.qr-code {
+    width: 200px;
     height: 200px;
-  }
+    border: 1px solid #e9ecef;
+    padding: 15px;
+    background-color: var(--white);
+    filter: grayscale(100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
-@media (max-width: 480px) {
-  /* Adjustments for small mobile screens */
-  body {
-    padding: 10px; /* Reduce padding */
-  }
-
-  .popup-container {
-    padding: 15px; /* Reduce padding further */
-  }
-
-  .popup-content h2 {
-    font-size: 20px; /* Smaller font size */
-  }
-
-  .popup-content input,
-  .popup-content select {
-    font-size: 14px; /* Smaller font size */
-    padding: 8px; /* Reduce padding */
-  }
-
-  #qr-code img {
-    width: 120px; /* Further reduce size */
-    height: 120px;
-  }
+.qr-code:hover {
+    filter: grayscale(0%);
+    transform: scale(1.05);
 }
 
-/* Additional Logo Styling */
-.additional-logo {
-  display: flex;
-  position: absolute;
-  top: -50px; /* Adjust as needed */
-  right: 20px; /* Adjust as needed */
-  align-items: center;
-  justify-content: flex-start;
-  transform: scale(0.2); /* Scale down the logo */
-  z-index: 1; /* Ensure it appears above other content */
-  transition: transform 0.3s ease; /* Smooth scaling effect */
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.additional-logo:hover {
-  transform: scale(0.22); /* Slightly enlarge on hover */
+.form-step {
+    animation: fadeIn 0.5s ease-out;
 }
 
-.additional-logo img {
-  max-width: 80px; /* Ensure the logo doesn't exceed this size */
-  max-height: 80px;
-  height: auto; /* Maintain aspect ratio */
-  filter: grayscale(100%); /* Convert logo to grayscale */
-  transition: filter 0.3s ease; /* Smooth grayscale effect */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .logo {
+        max-width: 140px;
+    }
+    
+    .qr-code {
+        width: 180px;
+        height: 180px;
+    }
 }
 
-.additional-logo:hover img {
-  filter: grayscale(0%); /* Remove grayscale on hover */
-}
-
-/* Dropdown Label Styling */
-.popup-content > div:not(.additional-logo) > label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333; /* Change label color */
-  transition: color 0.3s ease; /* Smooth color transition */
-}
-
-.popup-content > div:not(.additional-logo) > label:hover {
-  color: #666; /* Change color on hover */
-}
-
-/* How-To Button Styling */
-.how-to-button1 {
-  padding: 10px 15px;
-  font-size: 14px;
-  background-color: #333; /* Dark gray buttons */
-  color: #fff; /* White text */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth effects */
-}
-
-.how-to-button1:hover {
-  background-color: #666; /* Medium gray on hover */
-  transform: scale(1.05); /* Slightly enlarge on hover */
+@media (max-width: 576px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+    }
+    
+    .qr-code {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .consent-box {
+        font-size: 14px;
+    }
 }
