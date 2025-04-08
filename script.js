@@ -77,25 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
             newReferralBtn: "다른 추천 제출",
             followUs: "팔로우 하세요:"
         },
-        malay: {
-            pageLangLabel: "Pilih Bahasa Anda:",
-            fullNameLabel: "Nama Penuh:",
-            fullNamePlaceholder: "Masukkan nama penuh anda",
-            phoneLabel: "Nombor Telefon:",
-            phonePlaceholder: "Masukkan nombor telefon anda",
-            emailLabel: "Alamat Email:",
-            emailPlaceholder: "Masukkan alamat email anda",
-            jobSelectionTitle: "Di mana rakan anda ingin bekerja?",
-            jobLangLabel: "Bahasa Pekerjaan:",
-            locationLabel: "Lokasi Kerja:",
-            consentText: "Saya bersetuju dengan terma dan syarat program Rujuk Rakan. Saya mengesahkan bahawa saya telah mendapatkan persetujuan rakan saya untuk berkongsi maklumat mereka dengan Teleperformance untuk tujuan pengambilan.",
-            nextBtn: "Hantar Rujukan",
-            thankYouTitle: "Terima kasih atas rujukan anda!",
-            referralMessage: "Kami telah menerima rujukan anda dan akan menghubungi anda tidak lama lagi.",
-            scanText: "Imbas untuk melawat laman kerjaya kami",
-            newReferralBtn: "Hantar Rujukan Lain",
-            followUs: "Ikuti Kami Di:"
-        },
         mandarin: {
             pageLangLabel: "选择您的语言:",
             fullNameLabel: "全名:",
@@ -115,25 +96,25 @@ document.addEventListener('DOMContentLoaded', function() {
             newReferralBtn: "提交另一个推荐",
             followUs: "关注我们:"
         },
-        thai: {
-            pageLangLabel: "เลือกภาษาของคุณ:",
-            fullNameLabel: "ชื่อ-นามสกุล:",
-            fullNamePlaceholder: "กรุณากรอกชื่อ-นามสกุล",
-            phoneLabel: "หมายเลขโทรศัพท์:",
-            phonePlaceholder: "กรุณากรอกหมายเลขโทรศัพท์",
-            emailLabel: "อีเมล:",
-            emailPlaceholder: "กรุณากรอกอีเมล",
-            jobSelectionTitle: "เพื่อนของคุณต้องการทำงานที่ไหน?",
-            jobLangLabel: "ภาษาที่ใช้ในการทำงาน:",
-            locationLabel: "สถานที่ทำงาน:",
-            consentText: "ฉันยอมรับข้อกำหนดและเงื่อนไขของโปรแกรมแนะนำเพื่อน ฉันยืนยันว่าฉันได้รับความยินยอมจากเพื่อนแล้วที่จะแบ่งปันข้อมูลของพวกเขากับ Teleperformance เพื่อวัตถุประสงค์ในการสรรหาบุคลากร",
-            nextBtn: "ส่งรายชื่อ",
-            thankYouTitle: "ขอบคุณสำหรับการแนะนำ!",
-            referralMessage: "เราได้รับรายชื่อของคุณแล้วและจะติดต่อกลับเร็วๆ นี้",
-            scanText: "สแกนเพื่อเยี่ยมชมหน้าทำงานของเรา",
-            newReferralBtn: "ส่งรายชื่ออื่น",
-            followUs: "ติดตามเราได้ที่:"
-        }
+    cantonese: {
+        pageLangLabel: "選擇您的語言:",
+        fullNameLabel: "全名:",
+        fullNamePlaceholder: "輸入您的全名",
+        phoneLabel: "電話號碼:",
+        phonePlaceholder: "輸入您的電話號碼",
+        emailLabel: "電子郵件地址:",
+        emailPlaceholder: "輸入您的電子郵件地址",
+        jobSelectionTitle: "您的朋友希望在哪裡工作？",
+        jobLangLabel: "工作語言:",
+        locationLabel: "工作地點:",
+        consentText: "我同意推薦朋友計劃的條款和條件。我確認已獲得朋友的同意，將其信息分享給Teleperformance用於招聘目的。",
+        nextBtn: "提交推薦",
+        thankYouTitle: "感謝您的推薦!",
+        referralMessage: "我們已經收到您的推薦，會盡快與您聯繫。",
+        scanText: "掃描訪問我們的招聘頁面",
+        newReferralBtn: "提交另一個推薦",
+        followUs: "關注我們:"
+    }
     };
 
     // Initialize the application
