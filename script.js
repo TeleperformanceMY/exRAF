@@ -208,23 +208,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Submit referral form
     function submitReferral() {
         const referralData = {
-            name: elements.fullName.value.trim(),
-            phone: elements.phoneNumber.value.trim(),
-            email: elements.email.value.trim(),
+            name: encodeURIComponent(elements.fullName.value.trim()),
+            phone: encodeURIComponent(elements.phoneNumber.value.trim()),
+            email: encodeURIComponent(elements.email.value.trim()),
             jobLanguage: elements.jobLangSelect.value,
             location: elements.locationSelect.value,
             timestamp: new Date().toISOString()
         };
 
-        // In a real app, you would send this data to your server
-        console.log('Referral submitted:', referralData);
-        
-        // Generate QR code for careers page
-        generateQrCode('https://careers.teleperformance.com');
-        
-        // Show thank you step
-        elements.step1.style.display = 'none';
-        elements.step2.style.display = 'block';
+        // Find the selected job data
+        const jobData = jsonData.find(
+            item => item.Language === referralData.jobLanguage && 
+                   item.Location === referralData.location
+        );
+
+        if (jobData) {
+            // Construct the referral URL with all parameters
+            const referralUrl = `${jobData['Evergreen link']}?raf_name=${referralData.name}&raf_email=${referralData.email}&raf_phone=${referralData.phone}`;
+            
+            // Display the referral link
+            elements.referralLink.value = referralUrl;
+            generateQrCode(referralUrl);
+            
+            // In a real app, you would send this data to your server
+            console.log('Referral submitted:', {
+                ...referralData,
+                referralUrl: referralUrl
+            });
+            
+            // Show thank you step
+            elements.step1.style.display = 'none';
+            elements.step2.style.display = 'block';
+        } else {
+            showAlert('Error generating referral link. Please try again.');
+        }
     }
 
     // Reset form for new referral
