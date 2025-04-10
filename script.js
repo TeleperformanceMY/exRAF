@@ -256,8 +256,7 @@ const translations = {
         `
     }
 };
-
-// Location-specific social media links
+// Update the locationSocialLinks configuration at the top of script.js
 const locationSocialLinks = {
     malaysia: [
         { url: "http://www.facebook.com/TPinMalaysia/", icon: "facebook", name: "Facebook" },
@@ -272,6 +271,7 @@ const locationSocialLinks = {
         { url: "https://www.youtube.com/@TeleperformanceGroup", icon: "youtube", name: "YouTube" }
     ]
 };
+
 
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
