@@ -34,42 +34,46 @@
                         </select>
                     </div>
 
-                    <!-- Personal Information -->
-                    <div class="mb-3">
-                        <label for="full-name" class="form-label" data-translate="fullNameLabel">Full Name:</label>
-                        <input type="text" id="full-name" class="form-control" data-translate-placeholder="fullNamePlaceholder" required>
-                        <div class="invalid-feedback" data-translate="fullNameError">Please provide your full name.</div>
+                    <!-- Your Information Section -->
+                    <div class="section-box mb-4">
+                        <h5 class="section-title" data-translate="yourInfoTitle">Your Information</h5>
+                        <div class="mb-3">
+                            <label for="full-name" class="form-label" data-translate="fullNameLabel">Full Name:</label>
+                            <input type="text" id="full-name" class="form-control" data-translate-placeholder="fullNamePlaceholder" required>
+                            <div class="invalid-feedback" data-translate="fullNameError">Please provide your full name.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone-number" class="form-label" data-translate="phoneLabel">Phone Number:</label>
+                            <input type="tel" id="phone-number" class="form-control" data-translate-placeholder="phonePlaceholder" required>
+                            <div class="invalid-feedback" data-translate="phoneError">Please provide a valid phone number.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label" data-translate="emailLabel">Email Address:</label>
+                            <input type="email" id="email" class="form-control" data-translate-placeholder="emailPlaceholder" required>
+                            <div class="invalid-feedback" data-translate="emailError">Please provide a valid email address.</div>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="phone-number" class="form-label" data-translate="phoneLabel">Phone Number:</label>
-                        <input type="tel" id="phone-number" class="form-control" data-translate-placeholder="phonePlaceholder" required>
-                        <div class="invalid-feedback" data-translate="phoneError">Please provide a valid phone number.</div>
-                    </div>
+                    <!-- Friend's Information Section -->
+                    <div class="section-box mb-4">
+                        <h5 class="section-title" data-translate="friendInfoTitle">Friend's Information</h5>
+                        <div class="mb-3">
+                            <label for="job-lang-select" class="form-label" data-translate="jobLangLabel">Job Language:</label>
+                            <select id="job-lang-select" class="form-select" required>
+                                <option value="" selected disabled data-translate="selectOption">Select an option</option>
+                            </select>
+                            <div class="invalid-feedback" data-translate="jobLangError">Please select a job language.</div>
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="email" class="form-label" data-translate="emailLabel">Email Address:</label>
-                        <input type="email" id="email" class="form-control" data-translate-placeholder="emailPlaceholder" required>
-                        <div class="invalid-feedback" data-translate="emailError">Please provide a valid email address.</div>
-                    </div>
-
-                    <!-- Job Selection -->
-                    <h4 class="mb-3" data-translate="jobSelectionTitle">Where would your friend like to work?</h4>
-                    
-                    <div class="mb-3">
-                        <label for="job-lang-select" class="form-label" data-translate="jobLangLabel">Job Language:</label>
-                        <select id="job-lang-select" class="form-select" required>
-                            <option value="" selected disabled data-translate="selectOption">Select an option</option>
-                        </select>
-                        <div class="invalid-feedback" data-translate="jobLangError">Please select a job language.</div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="location-select" class="form-label" data-translate="locationLabel">Working Location:</label>
-                        <select id="location-select" class="form-select" required>
-                            <option value="" selected disabled data-translate="selectOption">Select an option</option>
-                        </select>
-                        <div class="invalid-feedback" data-translate="locationError">Please select a location.</div>
+                        <div class="mb-3">
+                            <label for="location-select" class="form-label" data-translate="locationLabel">Working Location:</label>
+                            <select id="location-select" class="form-select" required>
+                                <option value="" selected disabled data-translate="selectOption">Select an option</option>
+                            </select>
+                            <div class="invalid-feedback" data-translate="locationError">Please select a location.</div>
+                        </div>
                     </div>
 
                     <!-- Consent Form -->
@@ -87,31 +91,14 @@
 
                     <button id="next-btn" class="btn btn-primary w-100" data-translate="nextBtn" disabled>Submit Referral</button>
 
-                    <!-- Global Social Media -->
+                    <!-- Social Media - Global -->
                     <div class="mt-4 text-center">
-                        <h5 data-translate="tpGlobal">TP Global</h5>
+                        <h5 data-translate="followUs">Follow Us On:</h5>
                         <div class="d-flex justify-content-center gap-3 mt-2">
-                            <a href="https://www.linkedin.com/company/teleperformance" class="social-icon linkedin"><i class="fab fa-linkedin"></i></a>
                             <a href="https://www.youtube.com/@TeleperformanceGroup" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.linkedin.com/company/teleperformance" class="social-icon linkedin"><i class="fab fa-linkedin"></i></a>
                         </div>
                     </div>
-                    
-                    <!-- Malaysia Social Media -->
-                    <div class="mt-4 text-center">
-                        <h5 data-translate="tpMalaysia">TP Malaysia</h5>
-                        <div class="d-flex justify-content-center gap-3 mt-2">
-                            <a href="http://www.facebook.com/TPinMalaysia/" class="social-icon facebook-malaysia"><i class="fab fa-facebook-f"></i></a>
-                            <a href="http://www.instagram.com/tp_malaysia/" class="social-icon instagram-malaysia"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    
-                    <!-- Thailand Social Media -->
-                    <div class="mt-4 text-center">
-                        <h5 data-translate="tpThailand">TP Thailand</h5>
-                        <div class="d-flex justify-content-center gap-3 mt-2">
-                            <a href="http://www.facebook.com/TPinThailand/" class="social-icon facebook-thailand"><i class="fab fa-facebook-f"></i></a>
-                            <a href="http://www.instagram.com/tpinthailand/" class="social-icon instagram-thailand"><i class="fab fa-instagram"></i></a>
-                        </div>
                 </div>
 
                 <!-- Step 2: Thank You -->
@@ -167,9 +154,8 @@
                     <h5 class="modal-title" id="termsModalLabel" data-translate="termsTitle">Terms and Conditions</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" data-translate="termsContent">
-                    <!-- Terms content will be loaded here based on language -->
-                    <p>Loading terms and conditions...</p>
+                <div class="modal-body" id="termsContent">
+                    <!-- Terms content will be loaded here from translations -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-translate="closeBtn">Close</button>
