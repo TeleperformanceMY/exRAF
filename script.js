@@ -505,22 +505,69 @@ document.addEventListener('DOMContentLoaded', function() {
             if (error) console.error('QR Code generation error:', error);
         });
     }
+// Update the updateSocialLinks function in script.js
+function updateSocialLinks() {
+    // Clear existing links
+    elements.locationSocialLinks.innerHTML = '';
 
-    // Update social media links based on location
-    function updateSocialLinks() {
-        // Clear existing links
-        elements.locationSocialLinks.innerHTML = '';
-        
-        // Add location-specific links
-        const links = locationSocialLinks[currentLocation] || [];
-        links.forEach(link => {
-            const anchor = document.createElement('a');
-            anchor.href = link.url;
-            anchor.className = `social-icon ${link.icon}`;
-            anchor.target = "_blank";
-            anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
-            anchor.title = link.name;
-            elements.locationSocialLinks.appendChild(anchor);
+    // Create container div
+    const container = document.createElement('div');
+    container.className = 'social-media-container';
+
+    // Add TP Global section
+    const globalSection = createSocialMediaSection(
+        'TP Global', 
+        locationSocialLinks.global
+    );
+    container.appendChild(globalSection);
+
+    // Add TP Malaysia section if location is Malaysia
+    if (currentLocation === 'malaysia') {
+        const malaysiaSection = createSocialMediaSection(
+            'TP Malaysia', 
+            locationSocialLinks.malaysia
+        );
+        container.appendChild(malaysiaSection);
+    }
+    // Add TP Thailand section if location is Thailand
+    if (currentLocation === 'thailand') {
+        const thailandSection = createSocialMediaSection(
+            'TP Thailand', 
+            locationSocialLinks.thailand
+        );
+        container.appendChild(thailandSection);
+    }
+
+    // Add the container to the DOM
+    elements.locationSocialLinks.appendChild(container);
+}
+    / Helper function to create social media sections
+function createSocialMediaSection(title, links) {
+    const section = document.createElement('div');
+    section.className = 'social-media-section';
+
+    const titleElement = document.createElement('h6');
+    titleElement.textContent = title;
+    titleElement.className = 'social-media-title';
+    section.appendChild(titleElement);
+
+    const linksContainer = document.createElement('div');
+    linksContainer.className = 'social-media-links';
+
+    links.forEach(link => {
+        const anchor = document.createElement('a');
+        anchor.href = link.url;
+        anchor.className = `social-icon ${link.icon}`;
+        anchor.target = "_blank";
+        anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
+        anchor.title = link.name;
+        linksContainer.appendChild(anchor);
+    });
+
+    section.appendChild(linksContainer);
+    return section;
+}
+
         });
         
         // Add global links
