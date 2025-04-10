@@ -567,7 +567,16 @@ function createSocialMediaSection(title, links) {
     section.appendChild(linksContainer);
     return section;
 }
-
+        // Add location-specific links
+        const links = locationSocialLinks[currentLocation] || [];
+        links.forEach(link => {
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.className = `social-icon ${link.icon}`;
+            anchor.target = "_blank";
+            anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
+            anchor.title = link.name;
+            elements.locationSocialLinks.appendChild(anchor);
         });
         
         // Add global links
