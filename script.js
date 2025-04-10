@@ -396,4 +396,226 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Validate form in real-time
-   
+    function validateForm() {
+        let isValid = true;
+        
+        // Validate name
+        if (!elements.fullName.value.trim()) {
+            elements.fullName.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.fullName.classList.remove('is-invalid');
+        }
+        
+        // Validate phone (basic validation)
+        if (!elements.phoneNumber.value.trim() || elements.phoneNumber.value.trim().length < 8) {
+            elements.phoneNumber.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.phoneNumber.classList.remove('is-invalid');
+        }
+        
+        // Validate email
+        if (!validateEmail(elements.email.value)) {
+            elements.email.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.email.classList.remove('is-invalid');
+        }
+        
+        // Validate job language
+        if (!elements.jobLangSelect.value) {
+            elements.jobLangSelect.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.jobLangSelect.classList.remove('is-invalid');
+        }
+        
+        // Validate location
+        if (!elements.locationSelect.value) {
+            elements.locationSelect.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.locationSelect.classList.remove('is-invalid');
+        }
+        
+        // Validate consent
+        if (!elements.consentCheckbox.checked) {
+            elements.consentCheckbox.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.consentCheckbox.classList.remove('is-invalid');
+        }
+        
+        elements.nextBtn.disabled = !isValid;
+        return isValid;
+    }
+
+    // Email validation helper
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
+    // Generate referral link and QR code
+    function generateReferral() {
+        if (!validateForm()) return false;
+        
+        const name = encodeURIComponent(elements.fullName.value.trim());
+        const phone = encodeURIComponent(elements.phoneNumber.value.trim());
+        const email = encodeURIComponent(elements.email.value.trim());
+        const jobLanguage = elements.jobLangSelect.value;
+        const location = elements.locationSelect.value;
+        
+        // Determine location for social media links
+        currentLocation = location.toLowerCase().includes('malaysia') ? 'malaysia' : 
+                         location.toLowerCase().includes('thailand') ? 'thailand' : 'global';
+        
+        // Find matching job
+        const job = jobData.find(
+            item => item.Language === jobLanguage && 
+                   item.Location === location
+        );
+        
+        if (job) {
+            // Construct the referral URL with parameters separated by %7C
+            const baseUrl = job['Evergreen link'].split('?')[0];
+            const referralUrl = `${baseUrl}?ref=friend&name=${name}%7Cphone=${phone}%7Cemail=${email}`;
+            
+            elements.referralLink.value = referralUrl;
+            generateQRCode(referralUrl);
+            updateSocialLinks();
+            return true;
+        }
+        
+        alert(translations[currentLanguage].noJobError || "No job found for the selected criteria");
+        return false;
+    }
+
+    // Generate QR code
+    function generateQRCode(url) {
+        QRCode.toCanvas(elements.qrCodeCanvas, url, {
+            width: 200,
+            margin: 2,
+            color: {
+                dark: '#000000',
+                light: '#ffffff'
+            }
+        }, function(error) {
+            if (error) console.error('QR Code generation error:', error);
+        });
+    }
+
+    // Update social media links based on location
+    function updateSocialLinks() {
+        // Clear existing links
+        elements.locationSocialLinks.innerHTML = '';
+        
+        // Add location-specific links
+        const links = locationSocialLinks[currentLocation] || [];
+        links.forEach(link => {
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.className = `social-icon ${link.icon}`;
+            anchor.target = "_blank";
+            anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
+            anchor.title = link.name;
+            elements.locationSocialLinks.appendChild(anchor);
+        });
+        
+        // Add global links
+        locationSocialLinks.global.forEach(link => {
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.className = `social-icon ${link.icon}`;
+            anchor.target = "_blank";
+            anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
+            anchor.title = link.name;
+            elements.locationSocialLinks.appendChild(anchor);
+        });
+        
+        // Update share buttons
+        updateShareButtons();
+    }
+
+    // Update share buttons with current referral link
+    function updateShareButtons() {
+        const shareUrl = encodeURIComponent(elements.referralLink.value);
+        const shareText = translations[currentLanguage]?.shareMessage || translations.en.shareMessage;
+        const encodedShareText = encodeURIComponent(shareText);
+        
+        // WhatsApp
+        elements.shareWhatsapp.onclick = () => {
+            window.open(`https://wa.me/?text=${encodedShareText}${shareUrl}`, '_blank');
+        };
+        
+        // Line
+        elements.shareLine.onclick = () => {
+            window.open(`https://social-plugins.line.me/lineit/share?url=${encodedShareText}${shareUrl}`, '_blank');
+        };
+        
+        // WeChat
+        elements.shareWechat.onclick = () => {
+            alert(translations[currentLanguage]?.wechatAlert || "For WeChat, please copy the link and share it manually within the WeChat app.");
+        };
+    }
+
+    // Copy referral link to clipboard
+    function copyToClipboard() {
+        elements.referralLink.select();
+        document.execCommand('copy');
+        
+        // Visual feedback
+        const originalText = elements.copyBtn.innerHTML;
+        elements.copyBtn.innerHTML = `<i class="fas fa-check"></i> ${translations[currentLanguage]?.copiedText || 'Copied!'}`;
+        setTimeout(() => {
+            elements.copyBtn.innerHTML = originalText;
+        }, 2000);
+    }
+
+    // Show step 2 (thank you page)
+    function showStep2() {
+        if (generateReferral()) {
+            elements.step1.style.display = 'none';
+            elements.step2.style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    }
+
+    // Show step 1 (form page)
+    function showStep1() {
+        elements.step2.style.display = 'none';
+        elements.step1.style.display = 'block';
+    }
+
+    // Setup all event listeners
+    function setupEventListeners() {
+        // Language change
+        elements.pageLangSelect.addEventListener('change', changeLanguage);
+        
+        // Form validation
+        elements.fullName.addEventListener('input', validateForm);
+        elements.phoneNumber.addEventListener('input', validateForm);
+        elements.email.addEventListener('input', validateForm);
+        elements.jobLangSelect.addEventListener('change', validateForm);
+        elements.locationSelect.addEventListener('change', validateForm);
+        elements.consentCheckbox.addEventListener('change', validateForm);
+        
+        // Form submission
+        elements.nextBtn.addEventListener('click', showStep2);
+        elements.backBtn.addEventListener('click', showStep1);
+        
+        // Copy button
+        elements.copyBtn.addEventListener('click', copyToClipboard);
+        
+        // Initialize Bootstrap modal for terms
+        const termsModal = new bootstrap.Modal(elements.termsModal);
+        document.querySelector('[data-bs-target="#termsModal"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            termsModal.show();
+        });
+    }
+
+    // Initialize the app
+    init();
+});
