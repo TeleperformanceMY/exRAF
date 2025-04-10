@@ -113,39 +113,6 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.social-media-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.social-media-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.social-media-title {
-    color: var(--primary-color);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    text-align: center;
-    width: 100%;
-    padding-bottom: 0.25rem;
-    border-bottom: 1px solid #e9ecef;
-}
-
-.social-media-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
 .social-icon {
     display: inline-flex;
     align-items: center;
@@ -158,7 +125,6 @@ body {
     font-size: 20px;
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 0.25rem;
 }
 
 .social-icon:hover {
@@ -196,6 +162,7 @@ body {
     border-left: none;
 }
 
+/* Form validation styles */
 .is-invalid {
     border-color: #dc3545 !important;
 }
@@ -220,6 +187,7 @@ body {
     color: #dc3545;
 }
 
+/* Share buttons */
 .btn-success {
     background-color: #28a745;
 }
@@ -229,6 +197,7 @@ body {
     border-color: #2c3e50;
 }
 
+/* Modal styling */
 .modal-content {
     border-radius: 12px;
 }
@@ -244,6 +213,7 @@ body {
     overflow-y: auto;
 }
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
