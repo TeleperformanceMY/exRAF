@@ -1,3 +1,132 @@
+// Translation dictionary
+const translations = {
+    en: {
+        pageLangLabel: "Choose Your Language:",
+        fullNameLabel: "Full Name:",
+        fullNamePlaceholder: "Enter your full name",
+        fullNameError: "Please provide your full name.",
+        phoneLabel: "Phone Number:",
+        phonePlaceholder: "Enter your phone number",
+        phoneError: "Please provide a valid phone number.",
+        emailLabel: "Email Address:",
+        emailPlaceholder: "Enter your email address",
+        emailError: "Please provide a valid email address.",
+        jobSelectionTitle: "Where would your friend like to work?",
+        jobLangLabel: "Job Language:",
+        jobLangError: "Please select a job language.",
+        locationLabel: "Working Location:",
+        locationError: "Please select a location.",
+        selectOption: "Select an option",
+        consentText1: "I agree to the",
+        termsLink: "terms and conditions",
+        consentText2: "of the Refer a Friend program. I confirm that I have obtained my friend's consent to share their information with Teleperformance for recruitment purposes.",
+        consentError: "You must agree to the terms and conditions.",
+        nextBtn: "Submit Referral",
+        thankYouTitle: "Thank you for your referral!",
+        referralMessage: "Here's the personalized link for your friend to apply:",
+        scanText: "Or scan this QR code to apply",
+        followUs: "Follow Us On:",
+        backText: "Back",
+        copyText: "Copy",
+        whatsappText: "WhatsApp",
+        lineText: "Line",
+        wechatText: "WeChat",
+        locationSocial: "Location Social Media:",
+        shareMessage: "Check out this job opportunity at Teleperformance: ",
+        termsTitle: "Terms and Conditions",
+        closeBtn: "Close",
+        copiedText: "Copied!",
+        termsContent: `
+            <h4>Refer a Friend Program Terms</h4>
+            <p>By participating in the Teleperformance Refer a Friend program, you agree to the following terms:</p>
+            <ol>
+                <li>You must be a current employee or authorized representative to refer candidates.</li>
+                <li>All referred candidates must meet the minimum qualifications for the position.</li>
+                <li>You must obtain consent from the referred individual before submitting their information.</li>
+                <li>Referral bonuses (if applicable) will be paid according to company policy.</li>
+                <li>Teleperformance reserves the right to modify or terminate this program at any time.</li>
+                <li>All hiring decisions are made at the sole discretion of Teleperformance.</li>
+            </ol>
+            <p>Last updated: ${new Date().toLocaleDateString()}</p>
+        `
+    },
+    ja: {
+        pageLangLabel: "言語を選択してください:",
+        fullNameLabel: "氏名:",
+        fullNamePlaceholder: "氏名を入力してください",
+        fullNameError: "氏名を入力してください。",
+        phoneLabel: "電話番号:",
+        phonePlaceholder: "電話番号を入力してください",
+        phoneError: "有効な電話番号を入力してください。",
+        emailLabel: "メールアドレス:",
+        emailPlaceholder: "メールアドレスを入力してください",
+        emailError: "有効なメールアドレスを入力してください。",
+        jobSelectionTitle: "ご友人の希望勤務地はどこですか？",
+        jobLangLabel: "職務言語:",
+        jobLangError: "職務言語を選択してください。",
+        locationLabel: "勤務地:",
+        locationError: "勤務地を選択してください。",
+        selectOption: "選択してください",
+        consentText1: "私はTeleperformanceの",
+        termsLink: "利用規約",
+        consentText2: "「友人を紹介する」プログラムに同意します。私は採用目的で友人の情報をTeleperformanceと共有することについて、友人の同意を得たことを確認します。",
+        consentError: "利用規約に同意する必要があります。",
+        nextBtn: "紹介を送信",
+        thankYouTitle: "ご紹介ありがとうございます!",
+        referralMessage: "友達が応募するためのリンクです:",
+        scanText: "QRコードをスキャンして応募",
+        followUs: "フォローしてください:",
+        backText: "戻る",
+        copyText: "コピー",
+        whatsappText: "WhatsApp",
+        lineText: "Line",
+        wechatText: "WeChat",
+        locationSocial: "現地のソーシャルメディア:",
+        shareMessage: "Teleperformanceのこの求人情報をチェックしてください: ",
+        termsTitle: "利用規約",
+        closeBtn: "閉じる",
+        copiedText: "コピーしました!",
+        termsContent: `
+            <h4>友人紹介プログラム利用規約</h4>
+            <p>Teleperformanceの「友人を紹介する」プログラムに参加することで、以下の規約に同意したものとみなされます:</p>
+            <ol>
+                <li>候補者を紹介するには、現在の従業員または承認された代表者である必要があります。</li>
+                <li>紹介されたすべての候補者は、ポジションの最低資格を満たしている必要があります。</li>
+                <li>紹介する個人の情報を送信する前に、その個人の同意を得る必要があります。</li>
+                <li>紹介ボーナス（該当する場合）は、会社のポリシーに従って支払われます。</li>
+                <li>Teleperformanceは、いつでもこのプログラムを変更または終了する権利を留保します。</li>
+                <li>すべての採用決定は、Teleperformanceの単独の裁量で行われます。</li>
+            </ol>
+            <p>最終更新日: ${new Date().toLocaleDateString()}</p>
+        `
+    },
+    ko: {
+        // Korean translations would go here
+    },
+    "zh-CN": {
+        // Mandarin translations would go here
+    },
+    "zh-HK": {
+        // Cantonese translations would go here
+    }
+};
+
+// Location-specific social media links
+const locationSocialLinks = {
+    malaysia: [
+        { url: "http://www.facebook.com/TPinMalaysia/", icon: "facebook", name: "Facebook" },
+        { url: "http://www.instagram.com/tp_malaysia/", icon: "instagram", name: "Instagram" }
+    ],
+    thailand: [
+        { url: "http://www.facebook.com/TPinThailand/", icon: "facebook", name: "Facebook" },
+        { url: "http://www.instagram.com/tpinthailand/", icon: "instagram", name: "Instagram" }
+    ],
+    global: [
+        { url: "https://www.linkedin.com/company/teleperformance", icon: "linkedin", name: "LinkedIn" },
+        { url: "https://www.youtube.com/@TeleperformanceGroup", icon: "youtube", name: "YouTube" }
+    ]
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const elements = {
@@ -12,213 +141,90 @@ document.addEventListener('DOMContentLoaded', function() {
         step2: document.getElementById('step2'),
         nextBtn: document.getElementById('next-btn'),
         backBtn: document.getElementById('back-btn'),
-        newReferralBtn: document.getElementById('new-referral-btn'),
         referralLink: document.getElementById('referral-link'),
         copyBtn: document.getElementById('copy-btn'),
-        qrCode: document.getElementById('qr-code'),
+        qrCodeCanvas: document.getElementById('qr-code-canvas'),
         shareWhatsapp: document.getElementById('share-whatsapp'),
         shareLine: document.getElementById('share-line'),
-        socialLinks: {
-            facebook: document.querySelector('.social-icon.facebook'),
-            instagram: document.querySelector('.social-icon.instagram')
-        }
+        shareWechat: document.getElementById('share-wechat'),
+        locationSocialLinks: document.getElementById('location-social-links'),
+        termsModal: document.getElementById('termsModal')
     };
 
     // Application Data
-    let jsonData = [];
+    let currentLanguage = 'en';
     let currentLocation = '';
-
-    // Translations
-    const translations = {
-        english: {
-            pageLangLabel: "Choose Your Language:",
-            fullNameLabel: "Full Name:",
-            fullNamePlaceholder: "Enter your full name",
-            phoneLabel: "Phone Number:",
-            phonePlaceholder: "Enter your phone number",
-            emailLabel: "Email Address:",
-            emailPlaceholder: "Enter your email address",
-            jobSelectionTitle: "Where would your friend like to work?",
-            jobLangLabel: "Job Language:",
-            locationLabel: "Working Location:",
-            consentText: "I agree to the terms and conditions of the Refer a Friend program. I confirm that I have obtained my friend's consent to share their information with Teleperformance for recruitment purposes.",
-            nextBtn: "Submit Referral",
-            thankYouTitle: "Thank you for your referral!",
-            referralMessage: "Here's the personalized link for your friend to apply:",
-            scanText: "Or scan this QR code to apply",
-            followUs: "Follow Us On:",
-            backText: "Back",
-            copyText: "Copy",
-            whatsappText: "WhatsApp",
-            lineText: "Line",
-            locationSocial: "Location Social Media:",
-            shareMessage: "Check out this job opportunity at Teleperformance: "
-        },
-        japanese: {
-            pageLangLabel: "言語を選択してください:",
-            fullNameLabel: "氏名:",
-            fullNamePlaceholder: "氏名を入力してください",
-            phoneLabel: "電話番号:",
-            phonePlaceholder: "電話番号を入力してください",
-            emailLabel: "メールアドレス:",
-            emailPlaceholder: "メールアドレスを入力してください",
-            jobSelectionTitle: "ご友人の希望勤務地はどこですか？",
-            jobLangLabel: "職務言語:",
-            locationLabel: "勤務地:",
-            consentText: "私はTeleperformanceの「友人を紹介する」プログラムの利用規約に同意します。私は採用目的で友人の情報をTeleperformanceと共有することについて、友人の同意を得たことを確認します。",
-            nextBtn: "紹介を送信",
-            thankYouTitle: "ご紹介ありがとうございます!",
-            referralMessage: "友達が応募するためのリンクです:",
-            scanText: "QRコードをスキャンして応募",
-            followUs: "フォローしてください:",
-            backText: "戻る",
-            copyText: "コピー",
-            whatsappText: "WhatsApp",
-            lineText: "Line",
-            locationSocial: "現地のソーシャルメディア:",
-            shareMessage: "Teleperformanceのこの求人情報をチェックしてください: "
-        },
-        korean: {
-            pageLangLabel: "언어 선택:",
-            fullNameLabel: "성명:",
-            fullNamePlaceholder: "성명을 입력하세요",
-            phoneLabel: "전화번호:",
-            phonePlaceholder: "전화번호를 입력하세요",
-            emailLabel: "이메일 주소:",
-            emailPlaceholder: "이메일 주소를 입력하세요",
-            jobSelectionTitle: "친구가 근무를 원하는 지역은 어디인가요?",
-            jobLangLabel: "직무 언어:",
-            locationLabel: "근무 위치:",
-            consentText: "저는 Teleperformance의 '지인 추천' 프로그램 약관에 동의합니다. 채용 목적으로 지인의 정보를 Teleperformance와 공유하는 것에 대해 지인의 동의를 얻었음을 확인합니다.",
-            nextBtn: "추천 제출",
-            thankYouTitle: "추천해 주셔서 감사합니다!",
-            referralMessage: "친구가 지원할 수 있는 개인화된 링크입니다:",
-            scanText: "QR 코드를 스캔하여 지원하세요",
-            followUs: "팔로우 하세요:",
-            backText: "뒤로",
-            copyText: "복사",
-            whatsappText: "WhatsApp",
-            lineText: "Line",
-            locationSocial: "현지 소셜 미디어:",
-            shareMessage: "Teleperformance의 이 채용 기회를 확인하세요: "
-        },
-        mandarin: {
-            pageLangLabel: "选择您的语言:",
-            fullNameLabel: "全名:",
-            fullNamePlaceholder: "输入您的全名",
-            phoneLabel: "电话号码:",
-            phonePlaceholder: "输入您的电话号码",
-            emailLabel: "电子邮件地址:",
-            emailPlaceholder: "输入您的电子邮件地址",
-            jobSelectionTitle: "您的朋友希望在哪里工作？",
-            jobLangLabel: "工作语言:",
-            locationLabel: "工作地点:",
-            consentText: "我同意推荐朋友计划的条款和条件。我确认已获得朋友的同意，将其信息分享给Teleperformance用于招聘目的。",
-            nextBtn: "提交推荐",
-            thankYouTitle: "感谢您的推荐!",
-            referralMessage: "这是您朋友申请的个性化链接:",
-            scanText: "扫描访问我们的招聘页面",
-            followUs: "关注我们:",
-            backText: "返回",
-            copyText: "复制",
-            whatsappText: "WhatsApp",
-            lineText: "Line",
-            locationSocial: "当地社交媒体:",
-            shareMessage: "查看Teleperformance的这个工作机会: "
-        },
-        cantonese: {
-            pageLangLabel: "選擇您的語言:",
-            fullNameLabel: "全名:",
-            fullNamePlaceholder: "輸入您的全名",
-            phoneLabel: "電話號碼:",
-            phonePlaceholder: "輸入您的電話號碼",
-            emailLabel: "電子郵件地址:",
-            emailPlaceholder: "輸入您的電子郵件地址",
-            jobSelectionTitle: "您的朋友希望在哪裡工作？",
-            jobLangLabel: "工作語言:",
-            locationLabel: "工作地點:",
-            consentText: "我同意推薦朋友計劃的條款和條件。我確認已獲得朋友的同意，將其信息分享給Teleperformance用於招聘目的。",
-            nextBtn: "提交推薦",
-            thankYouTitle: "感謝您的推薦!",
-            referralMessage: "這是您朋友申請的個性化鏈接:",
-            scanText: "掃描訪問我們的招聘頁面",
-            followUs: "關注我們:",
-            backText: "返回",
-            copyText: "複製",
-            whatsappText: "WhatsApp",
-            lineText: "Line",
-            locationSocial: "當地社交媒體:",
-            shareMessage: "查看Teleperformance的這個工作機會: "
-        }
-    };
-
-    // Location-specific social media links
-    const locationSocialLinks = {
-        malaysia: {
-            facebook: "https://www.facebook.com/teleperformance.malaysia",
-            instagram: "https://www.instagram.com/teleperformance_malaysia"
-        },
-        thailand: {
-            facebook: "https://www.facebook.com/TeleperformanceTH",
-            instagram: "https://www.instagram.com/teleperformance_thailand"
-        },
-        default: {
-            facebook: "https://www.facebook.com/Teleperformance",
-            instagram: "https://www.instagram.com/teleperformance"
-        }
-    };
+    let jobData = [];
 
     // Initialize the application
     function init() {
-        loadData();
+        loadJobData();
         setupEventListeners();
-        updatePageContent('english');
+        updatePageContent();
     }
 
-    // Load JSON data
-    function loadData() {
+    // Load job data from JSON file
+    function loadJobData() {
         fetch('data.json')
             .then(response => {
                 if (!response.ok) throw new Error('Network response was not ok');
                 return response.json();
             })
             .then(data => {
-                jsonData = data;
-                populateDropdown(elements.jobLangSelect, getUniqueValues('Language'));
-                populateDropdown(elements.locationSelect, getUniqueValues('Location'));
+                jobData = data;
+                populateJobDropdowns();
             })
             .catch(error => {
-                console.error('Error loading data:', error);
+                console.error('Error loading job data:', error);
                 alert('Failed to load job data. Please try again later.');
             });
     }
 
-    // Get unique values from a specific field
-    function getUniqueValues(field) {
-        return [...new Set(jsonData.map(item => item[field]))];
-    }
+    // Populate job language and location dropdowns
+    function populateJobDropdowns() {
+        // Get unique languages and locations
+        const languages = [...new Set(jobData.map(job => job.Language))];
+        const locations = [...new Set(jobData.map(job => job.Location))];
 
-    // Populate dropdown with options
-    function populateDropdown(dropdown, options) {
-        dropdown.innerHTML = '';
-        const defaultOption = new Option('-- Select --', '');
-        defaultOption.disabled = true;
-        defaultOption.selected = true;
-        dropdown.appendChild(defaultOption);
-        
-        options.forEach(option => {
-            dropdown.appendChild(new Option(option, option));
+        // Populate language dropdown
+        elements.jobLangSelect.innerHTML = '';
+        addOption(elements.jobLangSelect, '', translations[currentLanguage].selectOption, true, true);
+        languages.forEach(lang => {
+            addOption(elements.jobLangSelect, lang, lang);
+        });
+
+        // Populate location dropdown
+        elements.locationSelect.innerHTML = '';
+        addOption(elements.locationSelect, '', translations[currentLanguage].selectOption, true, true);
+        locations.forEach(loc => {
+            addOption(elements.locationSelect, loc, loc);
         });
     }
 
+    // Helper function to add options to select elements
+    function addOption(select, value, text, disabled = false, selected = false) {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = text;
+        option.disabled = disabled;
+        option.selected = selected;
+        select.appendChild(option);
+    }
+
     // Update page content based on selected language
-    function updatePageContent(language) {
-        const translation = translations[language] || translations.english;
+    function updatePageContent() {
+        const translation = translations[currentLanguage] || translations.en;
         
         // Update all elements with data-translate attribute
         document.querySelectorAll('[data-translate]').forEach(el => {
             const key = el.getAttribute('data-translate');
-            if (translation[key]) el.textContent = translation[key];
+            if (translation[key]) {
+                if (el.tagName === 'INPUT' && el.type === 'button') {
+                    el.value = translation[key];
+                } else {
+                    el.textContent = translation[key];
+                }
+            }
         });
         
         // Update placeholders
@@ -227,149 +233,239 @@ document.addEventListener('DOMContentLoaded', function() {
             if (translation[key]) el.placeholder = translation[key];
         });
         
-        // Update social media links based on location
-        updateSocialLinks();
+        // Update terms modal content if open
+        const termsModal = bootstrap.Modal.getInstance(elements.termsModal);
+        if (termsModal) {
+            document.querySelector('#termsModal .modal-title').textContent = translation.termsTitle;
+            document.querySelector('#termsModal .modal-body').innerHTML = translation.termsContent;
+            document.querySelector('#termsModal [data-translate="closeBtn"]').textContent = translation.closeBtn;
+        }
     }
 
-    // Update social media links based on location
-    function updateSocialLinks() {
-        const links = locationSocialLinks[currentLocation] || locationSocialLinks.default;
-        elements.socialLinks.facebook.href = links.facebook;
-        elements.socialLinks.instagram.href = links.instagram;
+    // Change language
+    function changeLanguage() {
+        currentLanguage = elements.pageLangSelect.value;
+        updatePageContent();
+        populateJobDropdowns();
     }
 
-    // Validate form inputs
+    // Validate form in real-time
     function validateForm() {
-        const isConsentChecked = elements.consentCheckbox.checked;
-        const isNameValid = elements.fullName.value.trim().length > 0;
-        const isPhoneValid = elements.phoneNumber.value.trim().length > 0;
-        const isEmailValid = validateEmail(elements.email.value);
-        const isJobLangSelected = elements.jobLangSelect.value !== '';
-        const isLocationSelected = elements.locationSelect.value !== '';
+        let isValid = true;
         
-        elements.nextBtn.disabled = !(isConsentChecked && isNameValid && isPhoneValid && isEmailValid && isJobLangSelected && isLocationSelected);
+        // Validate name
+        if (!elements.fullName.value.trim()) {
+            elements.fullName.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.fullName.classList.remove('is-invalid');
+        }
+        
+        // Validate phone (basic validation)
+        if (!elements.phoneNumber.value.trim() || elements.phoneNumber.value.trim().length < 8) {
+            elements.phoneNumber.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.phoneNumber.classList.remove('is-invalid');
+        }
+        
+        // Validate email
+        if (!validateEmail(elements.email.value)) {
+            elements.email.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.email.classList.remove('is-invalid');
+        }
+        
+        // Validate job language
+        if (!elements.jobLangSelect.value) {
+            elements.jobLangSelect.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.jobLangSelect.classList.remove('is-invalid');
+        }
+        
+        // Validate location
+        if (!elements.locationSelect.value) {
+            elements.locationSelect.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.locationSelect.classList.remove('is-invalid');
+        }
+        
+        // Validate consent
+        if (!elements.consentCheckbox.checked) {
+            elements.consentCheckbox.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            elements.consentCheckbox.classList.remove('is-invalid');
+        }
+        
+        elements.nextBtn.disabled = !isValid;
+        return isValid;
     }
 
-    // Validate email format
+    // Email validation helper
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
 
-    // Generate and display referral link
-    function generateReferralLink() {
+    // Generate referral link and QR code
+    function generateReferral() {
+        if (!validateForm()) return false;
+        
         const name = encodeURIComponent(elements.fullName.value.trim());
         const phone = encodeURIComponent(elements.phoneNumber.value.trim());
         const email = encodeURIComponent(elements.email.value.trim());
         const jobLanguage = elements.jobLangSelect.value;
         const location = elements.locationSelect.value;
-        currentLocation = location.toLowerCase();
+        currentLocation = location.toLowerCase().includes('malaysia') ? 'malaysia' : 
+                         location.toLowerCase().includes('thailand') ? 'thailand' : 'global';
         
-        const jobData = jsonData.find(
+        // Find matching job
+        const job = jobData.find(
             item => item.Language === jobLanguage && 
                    item.Location === location
         );
         
-        if (jobData) {
-            // Construct the referral URL with all parameters
-            let baseUrl = jobData['Evergreen link'];
-            
-            // Clean existing parameters if needed
-            baseUrl = baseUrl.split('?')[0];
-            
-            // Add the referrer information
-            const referralUrl = `${baseUrl}?raf_name=${name}&raf_email=${email}&raf_phone=${phone}`;
+        if (job) {
+            // Construct the referral URL with parameters separated by %7C
+            const baseUrl = job['Evergreen link'].split('?')[0];
+            const referralUrl = `${baseUrl}?ref=friend&name=${name}%7Cphone=${phone}%7Cemail=${email}`;
             
             elements.referralLink.value = referralUrl;
-            generateQrCode(referralUrl);
+            generateQRCode(referralUrl);
             updateSocialLinks();
             return true;
         }
+        
+        alert("No job found for the selected criteria");
         return false;
     }
 
     // Generate QR code
-    function generateQrCode(url) {
-        elements.qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&format=png&color=000&bgcolor=FFF&data=${encodeURIComponent(url)}`;
+    function generateQRCode(url) {
+        QRCode.toCanvas(elements.qrCodeCanvas, url, {
+            width: 200,
+            margin: 2,
+            color: {
+                dark: '#000000',
+                light: '#ffffff'
+            }
+        }, function(error) {
+            if (error) console.error('QR Code generation error:', error);
+        });
     }
 
-    // Copy link to clipboard
+    // Update social media links based on location
+    function updateSocialLinks() {
+        // Clear existing links
+        elements.locationSocialLinks.innerHTML = '';
+        
+        // Add location-specific links
+        const links = locationSocialLinks[currentLocation] || locationSocialLinks.global;
+        links.forEach(link => {
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.className = `social-icon ${link.icon}`;
+            anchor.target = "_blank";
+            anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
+            anchor.title = link.name;
+            elements.locationSocialLinks.appendChild(anchor);
+        });
+        
+        // Add global links
+        locationSocialLinks.global.forEach(link => {
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.className = `social-icon ${link.icon}`;
+            anchor.target = "_blank";
+            anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
+            anchor.title = link.name;
+            elements.locationSocialLinks.appendChild(anchor);
+        });
+        
+        // Update share buttons
+        updateShareButtons();
+    }
+
+    // Update share buttons with current referral link
+    function updateShareButtons() {
+        const shareUrl = encodeURIComponent(elements.referralLink.value);
+        const shareText = translations[currentLanguage]?.shareMessage || translations.en.shareMessage;
+        const encodedShareText = encodeURIComponent(shareText);
+        
+        // WhatsApp
+        elements.shareWhatsapp.onclick = () => {
+            window.open(`https://wa.me/?text=${encodedShareText}${shareUrl}`, '_blank');
+        };
+        
+        // Line
+        elements.shareLine.onclick = () => {
+            window.open(`https://social-plugins.line.me/lineit/share?url=${encodedShareText}${shareUrl}`, '_blank');
+        };
+        
+        // WeChat (note: WeChat sharing is more complex in reality)
+        elements.shareWechat.onclick = () => {
+            alert("For WeChat, please copy the link and share it manually within the WeChat app.");
+        };
+    }
+
+    // Copy referral link to clipboard
     function copyToClipboard() {
         elements.referralLink.select();
         document.execCommand('copy');
         
-        // Show feedback
+        // Visual feedback
         const originalText = elements.copyBtn.innerHTML;
-        elements.copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        elements.copyBtn.innerHTML = `<i class="fas fa-check"></i> ${translations[currentLanguage]?.copiedText || 'Copied!'}`;
         setTimeout(() => {
             elements.copyBtn.innerHTML = originalText;
         }, 2000);
     }
 
-    // Share via WhatsApp
-    function shareWhatsApp() {
-        const message = translations[elements.pageLangSelect.value]?.shareMessage || 
-            'Check out this job opportunity at Teleperformance: ';
-        const url = `https://wa.me/?text=${encodeURIComponent(message + elements.referralLink.value)}`;
-        window.open(url, '_blank');
-    }
-
-    // Share via Line
-    function shareLine() {
-        const message = translations[elements.pageLangSelect.value]?.shareMessage || 
-            'Check out this job opportunity at Teleperformance: ';
-        const url = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(message + elements.referralLink.value)}`;
-        window.open(url, '_blank');
-    }
-
-    // Go to next step
-    function nextStep() {
-        if (generateReferralLink()) {
+    // Show step 2 (thank you page)
+    function showStep2() {
+        if (generateReferral()) {
             elements.step1.style.display = 'none';
             elements.step2.style.display = 'block';
             window.scrollTo(0, 0);
         }
     }
 
-    // Setup event listeners
+    // Show step 1 (form page)
+    function showStep1() {
+        elements.step2.style.display = 'none';
+        elements.step1.style.display = 'block';
+    }
+
+    // Setup all event listeners
     function setupEventListeners() {
-        // Page language change
-        elements.pageLangSelect.addEventListener('change', function() {
-            updatePageContent(this.value);
-        });
+        // Language change
+        elements.pageLangSelect.addEventListener('change', changeLanguage);
         
-        // Form input validation
+        // Form validation
         elements.fullName.addEventListener('input', validateForm);
         elements.phoneNumber.addEventListener('input', validateForm);
         elements.email.addEventListener('input', validateForm);
-        elements.jobLangSelect.addEventListener('change', function() {
-            validateForm();
-            updateJobsDropdown();
-        });
-        
-        elements.locationSelect.addEventListener('change', function() {
-            validateForm();
-            currentLocation = this.value.toLowerCase();
-            updateSocialLinks();
-        });
-        
+        elements.jobLangSelect.addEventListener('change', validateForm);
+        elements.locationSelect.addEventListener('change', validateForm);
         elements.consentCheckbox.addEventListener('change', validateForm);
         
-        // Next button
-        elements.nextBtn.addEventListener('click', nextStep);
-        
-        // Back button
-        elements.backBtn.addEventListener('click', function() {
-            elements.step2.style.display = 'none';
-            elements.step1.style.display = 'block';
-        });
+        // Form submission
+        elements.nextBtn.addEventListener('click', showStep2);
+        elements.backBtn.addEventListener('click', showStep1);
         
         // Copy button
         elements.copyBtn.addEventListener('click', copyToClipboard);
         
-        // Share buttons
-        elements.shareWhatsapp.addEventListener('click', shareWhatsApp);
-        elements.shareLine.addEventListener('click', shareLine);
+        // Initialize Bootstrap modal for terms
+        const termsModal = new bootstrap.Modal(elements.termsModal);
+        document.querySelector('[data-bs-target="#termsModal"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            termsModal.show();
+        });
     }
 
     // Initialize the app
