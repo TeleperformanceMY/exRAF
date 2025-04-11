@@ -1,4 +1,3 @@
-// Complete Translation Dictionary
 const translations = {
     en: {
         pageLangLabel: "Choose Your Language:",
@@ -32,7 +31,7 @@ const translations = {
         whatsappText: "WhatsApp",
         lineText: "Line",
         wechatText: "WeChat",
-        locationSocial: "Location Social Media:",
+        locationSocial: "Our Social Media:",
         shareMessage: "Check out this job opportunity at Teleperformance: ",
         termsTitle: "Terms and Conditions",
         closeBtn: "Close",
@@ -49,7 +48,10 @@ const translations = {
                 <li>All hiring decisions are made at the sole discretion of Teleperformance.</li>
             </ol>
             <p>Last updated: ${new Date().toLocaleDateString('en-US')}</p>
-        `
+        `,
+        noJobError: "No job found for the selected criteria",
+        wechatAlert: "For WeChat, please copy the link and share it manually within the WeChat app.",
+        loadError: "Failed to load job data. Please try again later."
     },
     ja: {
         pageLangLabel: "言語を選択してください:",
@@ -83,7 +85,7 @@ const translations = {
         whatsappText: "WhatsApp",
         lineText: "Line",
         wechatText: "WeChat",
-        locationSocial: "現地のソーシャルメディア:",
+        locationSocial: "ソーシャルメディア:",
         shareMessage: "Teleperformanceのこの求人情報をチェックしてください: ",
         termsTitle: "利用規約",
         closeBtn: "閉じる",
@@ -100,7 +102,10 @@ const translations = {
                 <li>すべての採用決定は、Teleperformanceの単独の裁量で行われます。</li>
             </ol>
             <p>最終更新日: ${new Date().toLocaleDateString('ja-JP')}</p>
-        `
+        `,
+        noJobError: "選択した条件に該当する仕事が見つかりません",
+        wechatAlert: "WeChatで共有するには、リンクをコピーしてWeChatアプリ内で手動で共有してください。",
+        loadError: "仕事のデータの読み込みに失敗しました。後ほど再度お試しください。"
     },
     ko: {
         pageLangLabel: "언어 선택:",
@@ -134,7 +139,7 @@ const translations = {
         whatsappText: "WhatsApp",
         lineText: "Line",
         wechatText: "WeChat",
-        locationSocial: "현지 소셜 미디어:",
+        locationSocial: "소셜 미디어:",
         shareMessage: "Teleperformance의 이 채용 기회를 확인하세요: ",
         termsTitle: "이용 약관",
         closeBtn: "닫기",
@@ -151,7 +156,10 @@ const translations = {
                 <li>모든 채용 결정은 Teleperformance의 단독 재량에 따라 이루어집니다.</li>
             </ol>
             <p>최종 업데이트: ${new Date().toLocaleDateString('ko-KR')}</p>
-        `
+        `,
+        noJobError: "선택한 기준에 맞는 직업을 찾을 수 없습니다",
+        wechatAlert: "WeChat에서 공유하려면 링크를 복사하여 WeChat 앱 내에서 수동으로 공유하십시오.",
+        loadError: "작업 데이터를 로드하지 못했습니다. 나중에 다시 시도하십시오."
     },
     "zh-CN": {
         pageLangLabel: "选择您的语言:",
@@ -185,7 +193,7 @@ const translations = {
         whatsappText: "WhatsApp",
         lineText: "Line",
         wechatText: "微信",
-        locationSocial: "当地社交媒体:",
+        locationSocial: "社交媒体:",
         shareMessage: "查看Teleperformance的这个工作机会: ",
         termsTitle: "条款和条件",
         closeBtn: "关闭",
@@ -202,7 +210,10 @@ const translations = {
                 <li>所有聘用决定均由Teleperformance全权决定。</li>
             </ol>
             <p>最后更新: ${new Date().toLocaleDateString('zh-CN')}</p>
-        `
+        `,
+        noJobError: "找不到符合所选条件的工作",
+        wechatAlert: "要在微信上分享，请复制链接并在微信应用中手动分享。",
+        loadError: "无法加载工作数据。请稍后再试。"
     },
     "zh-HK": {
         pageLangLabel: "選擇您的語言:",
@@ -236,7 +247,7 @@ const translations = {
         whatsappText: "WhatsApp",
         lineText: "Line",
         wechatText: "微信",
-        locationSocial: "當地社交媒體:",
+        locationSocial: "社交媒體:",
         shareMessage: "查看Teleperformance的這個工作機會: ",
         termsTitle: "條款和條件",
         closeBtn: "關閉",
@@ -253,11 +264,13 @@ const translations = {
                 <li>所有聘用決定均由Teleperformance全權決定。</li>
             </ol>
             <p>最後更新: ${new Date().toLocaleDateString('zh-HK')}</p>
-        `
+        `,
+        noJobError: "找不到符合所選條件的工作",
+        wechatAlert: "要在微信上分享，請復制鏈接並在微信應用中手動分享。",
+        loadError: "無法加載工作數據。請稍後再試。"
     }
 };
 
-// Location-specific social media links
 const locationSocialLinks = {
     malaysia: [
         { url: "http://www.facebook.com/TPinMalaysia/", icon: "facebook", name: "Facebook" },
@@ -274,7 +287,6 @@ const locationSocialLinks = {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
     const elements = {
         pageLangSelect: document.getElementById('page-lang-select'),
         fullName: document.getElementById('full-name'),
@@ -298,19 +310,16 @@ document.addEventListener('DOMContentLoaded', function() {
         termsContent: document.getElementById('termsContent')
     };
 
-    // Application Data
     let currentLanguage = 'en';
     let currentLocation = '';
     let jobData = [];
 
-    // Initialize the application
     function init() {
         loadJobData();
         setupEventListeners();
         updatePageContent();
     }
 
-    // Load job data from JSON file
     function loadJobData() {
         fetch('data.json')
             .then(response => {
@@ -323,24 +332,20 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('Error loading job data:', error);
-                alert(translations[currentLanguage].loadError || 'Failed to load job data. Please try again later.');
+                alert(translations[currentLanguage].loadError);
             });
     }
 
-    // Populate job language and location dropdowns
     function populateJobDropdowns() {
-        // Get unique languages and locations
         const languages = [...new Set(jobData.map(job => job.Language))];
         const locations = [...new Set(jobData.map(job => job.Location))];
 
-        // Clear and populate language dropdown
         elements.jobLangSelect.innerHTML = '';
         addOption(elements.jobLangSelect, '', translations[currentLanguage].selectOption, true, true);
         languages.forEach(lang => {
             addOption(elements.jobLangSelect, lang, lang);
         });
 
-        // Clear and populate location dropdown
         elements.locationSelect.innerHTML = '';
         addOption(elements.locationSelect, '', translations[currentLanguage].selectOption, true, true);
         locations.forEach(loc => {
@@ -348,7 +353,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Helper function to add options to select elements
     function addOption(select, value, text, disabled = false, selected = false) {
         const option = document.createElement('option');
         option.value = value;
@@ -358,11 +362,9 @@ document.addEventListener('DOMContentLoaded', function() {
         select.appendChild(option);
     }
 
-    // Update page content based on selected language
     function updatePageContent() {
         const translation = translations[currentLanguage] || translations.en;
         
-        // Update all elements with data-translate attribute
         document.querySelectorAll('[data-translate]').forEach(el => {
             const key = el.getAttribute('data-translate');
             if (translation[key]) {
@@ -374,32 +376,26 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Update placeholders
         document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
             const key = el.getAttribute('data-translate-placeholder');
             if (translation[key]) el.placeholder = translation[key];
         });
         
-        // Update terms modal content
         if (elements.termsContent) {
             elements.termsContent.innerHTML = translation.termsContent;
         }
         
-        // Re-populate dropdowns with translated placeholder
         populateJobDropdowns();
     }
 
-    // Change language
     function changeLanguage() {
         currentLanguage = elements.pageLangSelect.value;
         updatePageContent();
     }
 
-    // Validate form in real-time
     function validateForm() {
         let isValid = true;
         
-        // Validate name
         if (!elements.fullName.value.trim()) {
             elements.fullName.classList.add('is-invalid');
             isValid = false;
@@ -407,7 +403,6 @@ document.addEventListener('DOMContentLoaded', function() {
             elements.fullName.classList.remove('is-invalid');
         }
         
-        // Validate phone (basic validation)
         if (!elements.phoneNumber.value.trim() || elements.phoneNumber.value.trim().length < 8) {
             elements.phoneNumber.classList.add('is-invalid');
             isValid = false;
@@ -415,7 +410,6 @@ document.addEventListener('DOMContentLoaded', function() {
             elements.phoneNumber.classList.remove('is-invalid');
         }
         
-        // Validate email
         if (!validateEmail(elements.email.value)) {
             elements.email.classList.add('is-invalid');
             isValid = false;
@@ -423,7 +417,6 @@ document.addEventListener('DOMContentLoaded', function() {
             elements.email.classList.remove('is-invalid');
         }
         
-        // Validate job language
         if (!elements.jobLangSelect.value) {
             elements.jobLangSelect.classList.add('is-invalid');
             isValid = false;
@@ -431,7 +424,6 @@ document.addEventListener('DOMContentLoaded', function() {
             elements.jobLangSelect.classList.remove('is-invalid');
         }
         
-        // Validate location
         if (!elements.locationSelect.value) {
             elements.locationSelect.classList.add('is-invalid');
             isValid = false;
@@ -439,7 +431,6 @@ document.addEventListener('DOMContentLoaded', function() {
             elements.locationSelect.classList.remove('is-invalid');
         }
         
-        // Validate consent
         if (!elements.consentCheckbox.checked) {
             elements.consentCheckbox.classList.add('is-invalid');
             isValid = false;
@@ -451,13 +442,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return isValid;
     }
 
-    // Email validation helper
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
 
-    // Generate referral link and QR code
     function generateReferral() {
         if (!validateForm()) return false;
         
@@ -467,18 +456,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const jobLanguage = elements.jobLangSelect.value;
         const location = elements.locationSelect.value;
         
-        // Determine location for social media links
         currentLocation = location.toLowerCase().includes('malaysia') ? 'malaysia' : 
                          location.toLowerCase().includes('thailand') ? 'thailand' : 'global';
         
-        // Find matching job
         const job = jobData.find(
             item => item.Language === jobLanguage && 
                    item.Location === location
         );
         
         if (job) {
-            // Construct the referral URL with parameters separated by %7C
             const baseUrl = job['Evergreen link'].split('?')[0];
             const referralUrl = `${baseUrl}?ref=friend&name=${name}%7Cphone=${phone}%7Cemail=${email}`;
             
@@ -488,11 +474,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return true;
         }
         
-        alert(translations[currentLanguage].noJobError || "No job found for the selected criteria");
+        alert(translations[currentLanguage].noJobError);
         return false;
     }
 
-    // Generate QR code
     function generateQRCode(url) {
         QRCode.toCanvas(elements.qrCodeCanvas, url, {
             width: 200,
@@ -506,24 +491,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Update social media links based on location
     function updateSocialLinks() {
-        // Clear existing links
         elements.locationSocialLinks.innerHTML = '';
+
+        const container = document.createElement('div');
+        container.className = 'social-media-container';
+
+        // Add TP Global section
+        const globalSection = document.createElement('div');
+        globalSection.className = 'social-media-section';
         
-        // Add location-specific links
-        const links = locationSocialLinks[currentLocation] || [];
-        links.forEach(link => {
-            const anchor = document.createElement('a');
-            anchor.href = link.url;
-            anchor.className = `social-icon ${link.icon}`;
-            anchor.target = "_blank";
-            anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
-            anchor.title = link.name;
-            elements.locationSocialLinks.appendChild(anchor);
-        });
+        const globalTitle = document.createElement('h6');
+        globalTitle.textContent = 'TP Global';
+        globalTitle.className = 'social-media-title';
+        globalSection.appendChild(globalTitle);
         
-        // Add global links
+        const globalLinks = document.createElement('div');
+        globalLinks.className = 'social-media-links';
+        
         locationSocialLinks.global.forEach(link => {
             const anchor = document.createElement('a');
             anchor.href = link.url;
@@ -531,41 +516,92 @@ document.addEventListener('DOMContentLoaded', function() {
             anchor.target = "_blank";
             anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
             anchor.title = link.name;
-            elements.locationSocialLinks.appendChild(anchor);
+            globalLinks.appendChild(anchor);
         });
         
-        // Update share buttons
+        globalSection.appendChild(globalLinks);
+        container.appendChild(globalSection);
+
+        // Add TP Malaysia section if location is Malaysia
+        if (currentLocation === 'malaysia') {
+            const malaysiaSection = document.createElement('div');
+            malaysiaSection.className = 'social-media-section';
+            
+            const malaysiaTitle = document.createElement('h6');
+            malaysiaTitle.textContent = 'TP Malaysia';
+            malaysiaTitle.className = 'social-media-title';
+            malaysiaSection.appendChild(malaysiaTitle);
+            
+            const malaysiaLinks = document.createElement('div');
+            malaysiaLinks.className = 'social-media-links';
+            
+            locationSocialLinks.malaysia.forEach(link => {
+                const anchor = document.createElement('a');
+                anchor.href = link.url;
+                anchor.className = `social-icon ${link.icon}`;
+                anchor.target = "_blank";
+                anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
+                anchor.title = link.name;
+                malaysiaLinks.appendChild(anchor);
+            });
+            
+            malaysiaSection.appendChild(malaysiaLinks);
+            container.appendChild(malaysiaSection);
+        }
+
+        // Add TP Thailand section if location is Thailand
+        if (currentLocation === 'thailand') {
+            const thailandSection = document.createElement('div');
+            thailandSection.className = 'social-media-section';
+            
+            const thailandTitle = document.createElement('h6');
+            thailandTitle.textContent = 'TP Thailand';
+            thailandTitle.className = 'social-media-title';
+            thailandSection.appendChild(thailandTitle);
+            
+            const thailandLinks = document.createElement('div');
+            thailandLinks.className = 'social-media-links';
+            
+            locationSocialLinks.thailand.forEach(link => {
+                const anchor = document.createElement('a');
+                anchor.href = link.url;
+                anchor.className = `social-icon ${link.icon}`;
+                anchor.target = "_blank";
+                anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
+                anchor.title = link.name;
+                thailandLinks.appendChild(anchor);
+            });
+            
+            thailandSection.appendChild(thailandLinks);
+            container.appendChild(thailandSection);
+        }
+
+        elements.locationSocialLinks.appendChild(container);
         updateShareButtons();
     }
 
-    // Update share buttons with current referral link
     function updateShareButtons() {
         const shareUrl = encodeURIComponent(elements.referralLink.value);
         const shareText = translations[currentLanguage]?.shareMessage || translations.en.shareMessage;
         const encodedShareText = encodeURIComponent(shareText);
         
-        // WhatsApp
         elements.shareWhatsapp.onclick = () => {
             window.open(`https://wa.me/?text=${encodedShareText}${shareUrl}`, '_blank');
         };
         
-        // Line
         elements.shareLine.onclick = () => {
             window.open(`https://social-plugins.line.me/lineit/share?url=${encodedShareText}${shareUrl}`, '_blank');
         };
         
-        // WeChat
         elements.shareWechat.onclick = () => {
-            alert(translations[currentLanguage]?.wechatAlert || "For WeChat, please copy the link and share it manually within the WeChat app.");
+            alert(translations[currentLanguage]?.wechatAlert);
         };
     }
 
-    // Copy referral link to clipboard
     function copyToClipboard() {
         elements.referralLink.select();
         document.execCommand('copy');
         
-        // Visual feedback
         const originalText = elements.copyBtn.innerHTML;
         elements.copyBtn.innerHTML = `<i class="fas fa-check"></i> ${translations[currentLanguage]?.copiedText || 'Copied!'}`;
         setTimeout(() => {
@@ -573,7 +609,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
 
-    // Show step 2 (thank you page)
     function showStep2() {
         if (generateReferral()) {
             elements.step1.style.display = 'none';
@@ -582,18 +617,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Show step 1 (form page)
     function showStep1() {
         elements.step2.style.display = 'none';
         elements.step1.style.display = 'block';
     }
 
-    // Setup all event listeners
     function setupEventListeners() {
-        // Language change
         elements.pageLangSelect.addEventListener('change', changeLanguage);
         
-        // Form validation
         elements.fullName.addEventListener('input', validateForm);
         elements.phoneNumber.addEventListener('input', validateForm);
         elements.email.addEventListener('input', validateForm);
@@ -601,14 +632,11 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.locationSelect.addEventListener('change', validateForm);
         elements.consentCheckbox.addEventListener('change', validateForm);
         
-        // Form submission
         elements.nextBtn.addEventListener('click', showStep2);
         elements.backBtn.addEventListener('click', showStep1);
         
-        // Copy button
         elements.copyBtn.addEventListener('click', copyToClipboard);
         
-        // Initialize Bootstrap modal for terms
         const termsModal = new bootstrap.Modal(elements.termsModal);
         document.querySelector('[data-bs-target="#termsModal"]').addEventListener('click', function(e) {
             e.preventDefault();
@@ -616,6 +644,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize the app
     init();
 });
