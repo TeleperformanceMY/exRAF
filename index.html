@@ -1,152 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WBWBNFGJ32"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WBWBNFGJ32');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refer A Friend - Teleperformance</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Teleperformance Landing Page</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrious@latest/dist/qrious.min.js"></script>
 </head>
+
 <body>
-    <div class="container py-4">
-        <div class="text-center mb-4">
-            <img src="TPLogo11.png" alt="Teleperformance Logo" class="logo img-fluid" style="max-height: 80px;">
+    <header>
+        <div class="logo">
+            <img src="teleperformance-logo.png" alt="Teleperformance Logo">
         </div>
+       
+        <nav>
+            <button class="menu-toggle">☰</button>
 
-        <div class="card shadow-sm">
-            <div class="card-body p-4">
-                <div id="step1">
-                    <div class="mb-3">
-                        <label for="page-lang-select" class="form-label" data-translate="pageLangLabel">Choose Your Language:</label>
-                        <select id="page-lang-select" class="form-select">
-                            <option value="en">English</option>
-                            <option value="ja">Japanese</option>
-                            <option value="ko">Korean</option>
-                            <option value="zh-CN">Mandarin</option>
-                            <option value="zh-HK">Cantonese</option>
+            <!-- Menu Wrapper for Mobile View -->
+            <div class="menu-wrapper">
+                <!-- Desktop menu -->
+                <ul class="desktop-menu">
+                    <!-- Existing individual items -->
+                    <li><a href="#">About Us</a>
+                        <ul class="dropdown">
+                            <li><a href="https://www.teleperformance.com/en-us/locations/malaysia-site/malaysia/">TP Malaysia</a></li>
+                            <li><a href="https://www.teleperformance.com/en-us/locations/thailand-site/thailand/">TP Thailand</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="careers">Careers</a>
+                        <ul class="dropdown">
+                            <li><a href="#" id="hot-job">Hot Job 🔥</a></li>
+                            <li><a href="oppor.html">Job Opportunities 🌟</a></li>
+                            <li><a href="https://teleperformancemy.github.io/RAF_multilingual/">Refer A Friend</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="stay">Stay Connected</a>
+                        <ul class="dropdown">
+                            <li><a href="https://www.instagram.com/teleperformance_malaysia/"><img src="instagram-icon.png" alt="Instagram Logo" class="logo-icon"> TPMY Instagram</a></li>
+                            <li><a href="https://www.instagram.com/teleperformance_thailand/"><img src="instagram-icon.png" alt="Instagram Logo" class="logo-icon"> TPTH Instagram</a></li>
+                            <li><a href="https://www.facebook.com/teleperformance.malaysia/"><img src="facebook-icon.png" alt="Facebook Logo" class="logo-icon"> TPMY Facebook</a></li>
+                            <li><a href="https://www.facebook.com/p/Teleperformance-Thailand-100076709572409/"><img src="facebook-icon.png" alt="Facebook Logo" class="logo-icon"> TPTH Facebook</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="https://www.teleperformance.com/en-us/contact-us/" class="contact-us">Contact Us</a></li>
+                    <li class="language-dropdown">
+                        <a href="#">Language</a>
+                        <ul class="dropdown">
+                        <li><a href="#" data-lang="en">English</a></li>
+                            <li><a href="#" data-lang="zh">Mandarin</a></li>
+                            <li><a href="#" data-lang="jp">Japanese</a></li>
+                            <li><a href="#" data-lang="TH">Thai</a></li>
+                            <li><a href="#" data-lang="my">Malay</a></li>
+                            <li><a href="#" data-lang="kr">Korean</a></li>
+                       </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="intro-text">
+                <h1>We are on the hunt for the <span class="highlight">One</span></h1>
+            </div>
+            <div class="intro-video">
+                <video width="100%" controls autoplay controls loop>
+                    <source src="teleperformance-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <section class="job-section">
+            <div class="background-image"></div>
+            <div class="hot-job">
+                <h2>Hot Job Of The Week!</h2>
+                <p>Check out our <strong>"Hot Job of the Week"</strong> and join our award-winning team! This role offers fantastic growth opportunities, competitive benefits, and the chance to work with cutting-edge AI technology. Apply now and be part of our journey to excellence!</p>
+                <button id="apply-btn" href="https://careerseng-teleperformance.icims.com/jobs/49438/customer-success-specialist---mandarin----penang/job?mode=view" class="apply-btn">Apply Now!</button>
+            </div>
+            <div class="find-job">
+                <h2>Find your perfect job!</h2>
+                <div class="dropdowns">
+                    <label class="langlabel" for="language-select">
+                        Preferred Language
+                        <select id="language-select" class="footer-select">
+                            <option value="" disabled selected>Choose your language</option>
                         </select>
-                    </div>
-
-                    <div class="section-box mb-4">
-                        <h5 class="section-title" data-translate="yourInfoTitle">Your Information</h5>
-                        <div class="mb-3">
-                            <label for="full-name" class="form-label" data-translate="fullNameLabel">Full Name:</label>
-                            <input type="text" id="full-name" class="form-control" data-translate-placeholder="fullNamePlaceholder" required>
-                            <div class="invalid-feedback" data-translate="fullNameError">Please provide your full name.</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="phone-number" class="form-label" data-translate="phoneLabel">Phone Number:</label>
-                            <input type="tel" id="phone-number" class="form-control" data-translate-placeholder="phonePlaceholder" required>
-                            <div class="invalid-feedback" data-translate="phoneError">Please provide a valid phone number.</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label" data-translate="emailLabel">Email Address:</label>
-                            <input type="email" id="email" class="form-control" data-translate-placeholder="emailPlaceholder" required>
-                            <div class="invalid-feedback" data-translate="emailError">Please provide a valid email address.</div>
-                        </div>
-                    </div>
-
-                    <div class="section-box mb-4">
-                        <h5 class="section-title" data-translate="friendInfoTitle">Friend's Information</h5>
-                        <div class="mb-3">
-                            <label for="job-lang-select" class="form-label" data-translate="jobLangLabel">Job Language:</label>
-                            <select id="job-lang-select" class="form-select" required>
-                                <option value="" selected disabled data-translate="selectOption">Select an option</option>
-                            </select>
-                            <div class="invalid-feedback" data-translate="jobLangError">Please select a job language.</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="location-select" class="form-label" data-translate="locationLabel">Working Location:</label>
-                            <select id="location-select" class="form-select" required>
-                                <option value="" selected disabled data-translate="selectOption">Select an option</option>
-                            </select>
-                            <div class="invalid-feedback" data-translate="locationError">Please select a location.</div>
-                        </div>
-                    </div>
-
-                    <div class="consent-box mb-4 p-3 border rounded">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="consent-checkbox" required>
-                            <label class="form-check-label" for="consent-checkbox">
-                                <span data-translate="consentText1">I agree to the</span> 
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" data-translate="termsLink">terms and conditions</a> 
-                                <span data-translate="consentText2">of the Refer a Friend program. I confirm that I have obtained my friend's consent to share their information with Teleperformance for recruitment purposes.</span>
-                            </label>
-                            <div class="invalid-feedback" data-translate="consentError">You must agree to the terms and conditions.</div>
-                        </div>
-                    </div>
-
-                    <button id="next-btn" class="btn btn-primary w-100" data-translate="nextBtn" disabled>Submit Referral</button>
-
-                    <div class="mt-4 text-center">
-                        <h5 data-translate="followUs">Follow Us On:</h5>
-                        <div class="d-flex justify-content-center gap-3 mt-2">
-                            <a href="https://www.youtube.com/@TeleperformanceGroup" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
-                            <a href="https://www.linkedin.com/company/teleperformance" class="social-icon linkedin"><i class="fab fa-linkedin"></i></a>
-                        </div>
-                    </div>
+                    </label>
+                    <hr>
+                    <label class="loclabel" for="location-select">
+                        Choose Your Location
+                        <select id="location-select" class="footer-select">
+                            <option value="" disabled selected>Choose your location</option>
+                        </select>
+                    </label>
+                    <hr>
+                    <label class="jobt" for="job-type-select">
+                        Choose Your Job Type
+                        <select id="job-type-select" class="footer-select">
+                            <option value="" disabled selected>Choose your job type</option>
+                        </select>
+                    </label>
                 </div>
-
-                <div id="step2" style="display:none;">
-                    <button id="back-btn" class="btn btn-outline-secondary mb-3">
-                        <i class="fas fa-arrow-left me-2"></i> <span data-translate="backText">Back</span>
-                    </button>
-
-                    <h4 class="mb-3" data-translate="thankYouTitle">Thank you for your referral!</h4>
-                    <p data-translate="referralMessage">Here's the personalized link for your friend to apply:</p>
-                    
-                    <div class="input-group mb-3">
-                        <input type="text" id="referral-link" class="form-control" readonly>
-                        <button id="copy-btn" class="btn btn-secondary" type="button" data-translate="copyText">Copy</button>
-                    </div>
-
-                    <div class="text-center my-4">
-                        <canvas id="qr-code-canvas" class="qr-code"></canvas>
-                        <p class="mt-2" data-translate="scanText">Or scan this QR code to apply</p>
-                    </div>
-
-                    <div class="d-flex justify-content-center gap-2 mb-4 flex-wrap">
-                        <button id="share-whatsapp" class="btn btn-success mb-2">
-                            <i class="fab fa-whatsapp me-2"></i> <span data-translate="whatsappText">WhatsApp</span>
-                        </button>
-                        <button id="share-line" class="btn btn-success mb-2" style="background-color: #00B900;">
-                            <i class="fab fa-line me-2"></i> <span data-translate="lineText">Line</span>
-                        </button>
-                        <button id="share-wechat" class="btn btn-success mb-2" style="background-color: #07C160;">
-                            <i class="fab fa-weixin me-2"></i> <span data-translate="wechatText">WeChat</span>
-                        </button>
-                    </div>
-
-                    <div class="mt-4 text-center">
-                        <h5 data-translate="locationSocial">Our Social Media:</h5>
-                        <div class="social-media-container" id="location-social-links"></div>
-                    </div>
+             
+                <div class="container">
+                    <button id="generate-btn" class="generate-btn">Generate QR Code & Apply Now!</button>
+                    <h1>Our team will respond within  <span class="highlighted-word">48 hours!</span></h1>          
+                </div>                    
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p class="footer-left">© 2024 Teleperformance. All rights reserved.</p>
+        <p class="footer-right">#ElevateAsia #MoreTogether</p>
+    </footer>
+    
+    <div id="qr-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <canvas id="qr-code"></canvas>
+            <p><a id="job-url" href="#" target="_blank"></a></p>
+            <div class="share-buttons">
+                <h2> Share Via</h2>
+                <div>
+                    <button id="share-button-whatsapp"></button>
+                    <button id="share-button-line"></button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="termsModalLabel" data-translate="termsTitle">Terms and Conditions</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="termsContent"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-translate="closeBtn">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
