@@ -37,33 +37,31 @@ const translations = {
         closeBtn: "Close",
         copiedText: "Copied!",
         termsContent: `
-            <h4>Refer a Friend Program Terms</h4>
-            <p>By participating in the Teleperformance Refer a Friend program, you agree to the following terms:</p>
-<h4>Refer a Friend Program Terms</h4>
-<p>By participating in the Teleperformance Refer a Friend program, you agree to the following terms:</p>
-<ol>
-    <li>All referred candidates must meet the minimum qualifications for the position.</li>
-    <li>You must obtain consent from the referred individual before submitting their information.</li>
-    <li>Referral bonuses will be paid according to the following schedule:
-        <table border="1" style="margin: 10px 0; border-collapse: collapse;">
-            <tr>
-                <th style="padding: 5px 10px;">Milestone</th>
-                <th style="padding: 5px 10px;">Bonus Amount</th>
-            </tr>
-            <tr>
-                <td style="padding: 5px 10px;">Candidate passes assessment</td>
-                <td style="padding: 5px 10px;">RM50</td>
-            </tr>
-            <tr>
-                <td style="padding: 5px 10px;">Candidate is hired</td>
-                <td style="padding: 5px 10px;">RM500</td>
-            </tr>
-        </table>
-    </li>
-    <li>Teleperformance reserves the right to modify or terminate this program at any time.</li>
-    <li>All hiring decisions are made at the sole discretion of Teleperformance.</li>
-</ol>
-<p>Last updated: ${new Date().toLocaleDateString('en-US')}</p>
+        <h4>Refer a Friend Program Terms</h4>
+        <p>By participating in the Teleperformance Refer a Friend program, you agree to the following terms:</p>
+        <ol>
+            <li>All referred candidates must meet the minimum qualifications for the position.</li>
+            <li>You must obtain consent from the referred individual before submitting their information.</li>
+            <li>Referral bonuses will be paid according to the following schedule:
+                <table border="1" style="margin: 10px 0; border-collapse: collapse;">
+                    <tr>
+                        <th style="padding: 5px 10px;">Milestone</th>
+                        <th style="padding: 5px 10px;">Bonus Amount</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 10px;">Candidate passes assessment</td>
+                        <td style="padding: 5px 10px;">RM50</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 10px;">Candidate is hired</td>
+                        <td style="padding: 5px 10px;">RM500</td>
+                    </tr>
+                </table>
+            </li>
+            <li>Teleperformance reserves the right to modify or terminate this program at any time.</li>
+            <li>All hiring decisions are made at the sole discretion of Teleperformance.</li>
+        </ol>
+        <p>Last updated: ${new Date().toLocaleDateString('en-US')}</p>
         `,
         noJobError: "No job found for the selected criteria",
         wechatAlert: "For WeChat, please copy the link and share it manually within the WeChat app.",
@@ -107,33 +105,31 @@ const translations = {
         closeBtn: "閉じる",
         copiedText: "コピーしました!",
         termsContent: `
-            <h4>友人紹介プログラム利用規約</h4>
-            <p>Teleperformanceの「友人を紹介する」プログラムに参加することで、以下の規約に同意したものとみなされます:</p>
-<h4>友人紹介プログラムの利用規約</h4>
-<p>Teleperformanceの友人紹介プログラムに参加することで、以下の規約に同意したものとみなされます：</p>
-<ol>
-    <li>紹介された候補者は、ポジションの最低要件を満たしている必要があります。</li>
-    <li>候補者の情報を提出する前に、その本人から同意を得る必要があります。</li>
-    <li>紹介ボーナスは以下のスケジュールに従って支払われます：
-        <table border="1" style="margin: 10px 0; border-collapse: collapse;">
-            <tr>
-                <th style="padding: 5px 10px;">達成項目</th>
-                <th style="padding: 5px 10px;">ボーナス金額</th>
-            </tr>
-            <tr>
-                <td style="padding: 5px 10px;">候補者が審査を通過</td>
-                <td style="padding: 5px 10px;">RM50</td>
-            </tr>
-            <tr>
-                <td style="padding: 5px 10px;">候補者が採用</td>
-                <td style="padding: 5px 10px;">RM500</td>
-            </tr>
-        </table>
-    </li>
-    <li>Teleperformanceは本プログラムを随時変更または終了する権利を有します。</li>
-    <li>採用に関するすべての決定は、Teleperformanceの裁量に委ねられています。</li>
-</ol>
-<p>最終更新日: ${new Date().toLocaleDateString('ja-JP')}</p>
+        <h4>友人紹介プログラムの利用規約</h4>
+        <p>Teleperformanceの友人紹介プログラムに参加することで、以下の規約に同意したものとみなされます：</p>
+        <ol>
+            <li>紹介された候補者は、ポジションの最低要件を満たしている必要があります。</li>
+            <li>候補者の情報を提出する前に、その本人から同意を得る必要があります。</li>
+            <li>紹介ボーナスは以下のスケジュールに従って支払われます：
+                <table border="1" style="margin: 10px 0; border-collapse: collapse;">
+                    <tr>
+                        <th style="padding: 5px 10px;">達成項目</th>
+                        <th style="padding: 5px 10px;">ボーナス金額</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 10px;">候補者が審査を通過</td>
+                        <td style="padding: 5px 10px;">RM50</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 10px;">候補者が採用</td>
+                        <td style="padding: 5px 10px;">RM500</td>
+                    </tr>
+                </table>
+            </li>
+            <li>Teleperformanceは本プログラムを随時変更または終了する権利を有します。</li>
+            <li>採用に関するすべての決定は、Teleperformanceの裁量に委ねられています。</li>
+        </ol>
+        <p>最終更新日: ${new Date().toLocaleDateString('ja-JP')}</p>
         `,
         noJobError: "選択した条件に該当する仕事が見つかりません",
         wechatAlert: "WeChatで共有するには、リンクをコピーしてWeChatアプリ内で手動で共有してください。",
@@ -177,33 +173,31 @@ const translations = {
         closeBtn: "닫기",
         copiedText: "복사되었습니다!",
         termsContent: `
-            <h4>친구 추천 프로그램 약관</h4>
-            <p>Teleperformance의 친구 추천 프로그램에 참여함으로써 다음 약관에 동의하는 것으로 간주됩니다:</p>
-<h4>친구 추천 프로그램 약관</h4>
-<p>Teleperformance 친구 추천 프로그램에 참여함으로써 귀하는 다음 약관에 동의하는 것으로 간주됩니다:</p>
-<ol>
-    <li>추천된 모든 후보자는 해당 직위의 최소 자격 요건을 충족해야 합니다.</li>
-    <li>후보자 정보를 제출하기 전에 반드시 해당 개인으로부터 동의를 받아야 합니다.</li>
-    <li>추천 보너스는 다음 기준에 따라 지급됩니다:
-        <table border="1" style="margin: 10px 0; border-collapse: collapse;">
-            <tr>
-                <th style="padding: 5px 10px;">단계</th>
-                <th style="padding: 5px 10px;">보너스 금액</th>
-            </tr>
-            <tr>
-                <td style="padding: 5px 10px;">후보자 평가 통과</td>
-                <td style="padding: 5px 10px;">RM50</td>
-            </tr>
-            <tr>
-                <td style="padding: 5px 10px;">후보자 채용</td>
-                <td style="padding: 5px 10px;">RM500</td>
-            </tr>
-        </table>
-    </li>
-    <li>Teleperformance는 본 프로그램을 언제든지 수정하거나 종료할 권리를 보유합니다.</li>
-    <li>모든 채용 결정은 Teleperformance의 단독 재량에 따릅니다.</li>
-</ol>
-<p>마지막 업데이트: ${new Date().toLocaleDateString('ko-KR')}</p>
+        <h4>친구 추천 프로그램 약관</h4>
+        <p>Teleperformance 친구 추천 프로그램에 참여함으로써 귀하는 다음 약관에 동의하는 것으로 간주됩니다:</p>
+        <ol>
+            <li>추천된 모든 후보자는 해당 직위의 최소 자격 요건을 충족해야 합니다.</li>
+            <li>후보자 정보를 제출하기 전에 반드시 해당 개인으로부터 동의를 받아야 합니다.</li>
+            <li>추천 보너스는 다음 기준에 따라 지급됩니다:
+                <table border="1" style="margin: 10px 0; border-collapse: collapse;">
+                    <tr>
+                        <th style="padding: 5px 10px;">단계</th>
+                        <th style="padding: 5px 10px;">보너스 금액</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 10px;">후보자 평가 통과</td>
+                        <td style="padding: 5px 10px;">RM50</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 10px;">후보자 채용</td>
+                        <td style="padding: 5px 10px;">RM500</td>
+                    </tr>
+                </table>
+            </li>
+            <li>Teleperformance는 본 프로그램을 언제든지 수정하거나 종료할 권리를 보유합니다.</li>
+            <li>모든 채용 결정은 Teleperformance의 단독 재량에 따릅니다.</li>
+        </ol>
+        <p>마지막 업데이트: ${new Date().toLocaleDateString('ko-KR')}</p>
         `,
         noJobError: "선택한 기준에 맞는 직업을 찾을 수 없습니다",
         wechatAlert: "WeChat에서 공유하려면 링크를 복사하여 WeChat 앱 내에서 수동으로 공유하십시오.",
@@ -247,33 +241,31 @@ const translations = {
         closeBtn: "关闭",
         copiedText: "已复制!",
         termsContent: `
-            <h4>推荐朋友计划条款</h4>
-            <p>通过参与Teleperformance推荐朋友计划，您同意以下条款:</p>
-<h4>推荐好友计划条款</h4>
-<p>参与Teleperformance推荐好友计划，即表示您同意以下条款：</p>
-<ol>
-    <li>所有被推荐候选人必须满足该职位的最低要求。</li>
-    <li>在提交被推荐人信息前，您必须获得其同意。</li>
-    <li>推荐奖金将按以下标准发放：
-        <table border="1" style="margin: 10px 0; border-collapse: collapse;">
-            <tr>
-                <th style="padding: 5px 10px;">阶段</th>
-                <th style="padding: 5px 10px;">奖金金额</th>
-            </tr>
-            <tr>
-                <td style="padding: 5px 10px;">候选人通过评估</td>
-                <td style="padding: 5px 10px;">50马币</td>
-            </tr>
-            <tr>
-                <td style="padding: 5px 10px;">候选人被录用</td>
-                <td style="padding: 5px 10px;">500马币</td>
-            </tr>
-        </table>
-    </li>
-    <li>Teleperformance保留随时修改或终止本计划的权利。</li>
-    <li>所有聘用决定均由Teleperformance全权决定。</li>
-</ol>
-<p>最后更新日期: ${new Date().toLocaleDateString('zh-CN')}</p>
+        <h4>推荐好友计划条款</h4>
+        <p>参与Teleperformance推荐好友计划，即表示您同意以下条款：</p>
+        <ol>
+            <li>所有被推荐候选人必须满足该职位的最低要求。</li>
+            <li>在提交被推荐人信息前，您必须获得其同意。</li>
+            <li>推荐奖金将按以下标准发放：
+                <table border="1" style="margin: 10px 0; border-collapse: collapse;">
+                    <tr>
+                        <th style="padding: 5px 10px;">阶段</th>
+                        <th style="padding: 5px 10px;">奖金金额</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 10px;">候选人通过评估</td>
+                        <td style="padding: 5px 10px;">50马币</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 10px;">候选人被录用</td>
+                        <td style="padding: 5px 10px;">500马币</td>
+                    </tr>
+                </table>
+            </li>
+            <li>Teleperformance保留随时修改或终止本计划的权利。</li>
+            <li>所有聘用决定均由Teleperformance全权决定。</li>
+        </ol>
+        <p>最后更新日期: ${new Date().toLocaleDateString('zh-CN')}</p>
         `,
         noJobError: "找不到符合所选条件的工作",
         wechatAlert: "要在微信上分享，请复制链接并在微信应用中手动分享。",
@@ -317,33 +309,31 @@ const translations = {
         closeBtn: "關閉",
         copiedText: "已複製!",
         termsContent: `
-            <h4>推薦朋友計劃條款</h4>
-            <p>通過參與Teleperformance推薦朋友計劃，您同意以下條款:</p>
-<h4>推薦朋友計劃條款</h4>
-<p>參與Teleperformance推薦朋友計劃，即表示你同意以下條款：</p>
-<ol>
-    <li>所有被推薦候選人必須符合該職位嘅最低要求。</li>
-    <li>提交被推薦人資料前，你必須取得佢哋嘅同意。</li>
-    <li>推薦獎金會按以下標準發放：
-        <table border="1" style="margin: 10px 0; border-collapse: collapse;">
-            <tr>
-                <th style="padding: 5px 10px;">階段</th>
-                <th style="padding: 5px 10px;">獎金金額</th>
-            </tr>
-            <tr>
-                <td style="padding: 5px 10px;">候選人通過評估</td>
-                <td style="padding: 5px 10px;">50馬幣</td>
-            </tr>
-            <tr>
-                <td style="padding: 5px 10px;">候選人被錄用</td>
-                <td style="padding: 5px 10px;">500馬幣</td>
-            </tr>
-        </table>
-    </li>
-    <li>Teleperformance保留隨時修改或終止呢個計劃嘅權利。</li>
-    <li>所有聘用決定都由Teleperformance全權決定。</li>
-</ol>
-<p>最後更新日期: ${new Date().toLocaleDateString('zh-HK')}</p>
+        <h4>推薦朋友計劃條款</h4>
+        <p>參與Teleperformance推薦朋友計劃，即表示你同意以下條款：</p>
+        <ol>
+            <li>所有被推薦候選人必須符合該職位嘅最低要求。</li>
+            <li>提交被推薦人資料前，你必須取得佢哋嘅同意。</li>
+            <li>推薦獎金會按以下標準發放：
+                <table border="1" style="margin: 10px 0; border-collapse: collapse;">
+                    <tr>
+                        <th style="padding: 5px 10px;">階段</th>
+                        <th style="padding: 5px 10px;">獎金金額</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 10px;">候選人通過評估</td>
+                        <td style="padding: 5px 10px;">50馬幣</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 10px;">候選人被錄用</td>
+                        <td style="padding: 5px 10px;">500馬幣</td>
+                    </tr>
+                </table>
+            </li>
+            <li>Teleperformance保留隨時修改或終止呢個計劃嘅權利。</li>
+            <li>所有聘用決定都由Teleperformance全權決定。</li>
+        </ol>
+        <p>最後更新日期: ${new Date().toLocaleDateString('zh-HK')}</p>
         `,
         noJobError: "找不到符合所選條件的工作",
         wechatAlert: "要在微信上分享，請復制鏈接並在微信應用中手動分享。",
