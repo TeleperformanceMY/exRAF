@@ -85,9 +85,6 @@
 
                     <!-- Social Media - Global -->
                     <div class="mt-4 text-center">
-                        <div class="d-flex justify-content-center gap-3 mt-2">
-                                                                <!-- Global Social Media -->
-                    <div class="mt-4 text-center">
                         <h5 data-translate="tpGlobal">TP Global</h5>
                         <div class="d-flex justify-content-center gap-3 mt-2">
                             <a href="https://www.linkedin.com/company/teleperformance" class="social-icon linkedin"><i class="fab fa-linkedin"></i></a>
@@ -112,73 +109,64 @@
                             <a href="http://www.instagram.com/tpinthailand/" class="social-icon instagram-thailand"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
-                            </a>
-                        </div>
-                    </div>
                 </div> 
+            </div>
+        </div>
+    </div>
 
-                <div id="step2" style="display:none;">
-                    <button id="back-btn" class="btn btn-outline-secondary mb-3">
-                        <i class="fas fa-arrow-left me-2"></i> <span data-translate="backText">Back</span>
-                    </button>
+    <div id="step2" style="display:none;">
+        <button id="back-btn" class="btn btn-outline-secondary mb-3">
+            <i class="fas fa-arrow-left me-2"></i> <span data-translate="backText">Back</span>
+        </button>
 
-                    <h4 class="mb-3" data-translate="thankYouTitle">Thank you for your referral!</h4>
-                    <p data-translate="referralMessage">Here's the personalized link for your friend to apply:</p>
-                    
-                    <div class="input-group mb-3">
-                        <input type="text" id="referral-link" class="form-control" readonly>
-                        <button id="copy-btn" class="btn btn-secondary" type="button" data-translate="copyText">Copy</button>
+        <h4 class="mb-3" data-translate="thankYouTitle">Thank you for your referral!</h4>
+        <p data-translate="referralMessage">Here's the personalized link for your friend to apply:</p>
+        
+        <div class="input-group mb-3">
+            <input type="text" id="referral-link" class="form-control" readonly>
+            <button id="copy-btn" class="btn btn-secondary" type="button" data-translate="copyText">Copy</button>
+        </div>
+
+        <div class="text-center my-4">
+            <canvas id="qr-code-canvas" class="qr-code"></canvas>
+            <p class="mt-2" data-translate="scanText">Or scan this QR code to apply</p>
+        </div>
+
+        <div class="d-flex justify-content-center gap-2 mb-4 flex-wrap">
+            <button id="share-whatsapp" class="btn btn-success mb-2">
+                <i class="fab fa-whatsapp me-2"></i> <span data-translate="whatsappText">WhatsApp</span>
+            </button>
+            <button id="share-line" class="btn btn-success mb-2" style="background-color: #00B900;">
+                <i class="fab fa-line me-2"></i> <span data-translate="lineText">Line</span>
+            </button>
+            <button id="share-wechat" class="btn btn-success mb-2" style="background-color: #07C160;">
+                <i class="fab fa-weixin me-2"></i> <span data-translate="wechatText">WeChat</span>
+            </button>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="mt-4">
+            <div class="row text-center">
+                <div class="col-md-4 mb-3">
+                    <h5>TP Global</h5>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="https://www.linkedin.com/company/teleperformance" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.youtube.com/@TeleperformanceGroup" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@teleperformance" class="social-icon"><i class="fab fa-tiktok"></i></a>
                     </div>
-
-                    <div class="text-center my-4">
-                        <canvas id="qr-code-canvas" class="qr-code"></canvas>
-                        <p class="mt-2" data-translate="scanText">Or scan this QR code to apply</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>TP Malaysia</h5>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="http://www.facebook.com/TPinMalaysia/" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="http://www.instagram.com/tp_malaysia/" class="social-icon"><i class="fab fa-instagram"></i></a>
                     </div>
-
-                    <div class="d-flex justify-content-center gap-2 mb-4 flex-wrap">
-                        <button id="share-whatsapp" class="btn btn-success mb-2">
-                            <i class="fab fa-whatsapp me-2"></i> <span data-translate="whatsappText">WhatsApp</span>
-                        </button>
-                        <button id="share-line" class="btn btn-success mb-2" style="background-color: #00B900;">
-                            <i class="fab fa-line me-2"></i> <span data-translate="lineText">Line</span>
-                        </button>
-                        <button id="share-wechat" class="btn btn-success mb-2" style="background-color: #07C160;">
-                            <i class="fab fa-weixin me-2"></i> <span data-translate="wechatText">WeChat</span>
-                        </button>
-                    </div>
-                        <!-- Social Media Links -->
-                        <div class="mt-4">
-                            <div class="row text-center">
-                                <div class="col-md-4 mb-3">
-                                    <h5>TP Global</h5>
-                                    <div class="d-flex justify-content-center gap-3">
-                                        <a href="https://www.linkedin.com/company/teleperformance" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                                        <a href="https://www.youtube.com/@TeleperformanceGroup" class="social-icon"><i class="fab fa-youtube"></i></a>
-                                        <a href="https://www.tiktok.com/@teleperformance" class="social-icon"><i class="fab fa-tiktok"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <h5>TP Malaysia</h5>
-                                    <div class="d-flex justify-content-center gap-3">
-                                        <a href="http://www.facebook.com/TPinMalaysia/" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="http://www.instagram.com/tp_malaysia/" class="social-icon"><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <h5>TP Thailand</h5>
-                                    <div class="d-flex justify-content-center gap-3">
-                                        <a href="http://www.facebook.com/TPinThailand/" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="http://www.instagram.com/tpinthailand/" class="social-icon"><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            </a>
-                        </div>
-                    </div>
-                </div> 
-
-                    <!--    <h5 data-translate="locationSocial">Our Social Media:</h5>
-                        <div class="social-media-container" id="location-social-links"></div> -->
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>TP Thailand</h5>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="http://www.facebook.com/TPinThailand/" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="http://www.instagram.com/tpinthailand/" class="social-icon"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
