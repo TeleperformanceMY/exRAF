@@ -55,7 +55,7 @@ const translations = {
                         <td style="padding: 5px 10px;">RM50</td>
                     </tr>
                     <tr>
-                        <td style="padding: 5px 10px;">Candidate is hired</td>
+                        <td style="padding: 5px 10px;">Candidate is hired and passed the probation</td>
                         <td style="padding: 5px 10px;">RM750</td>
                     </tr>
                 </table>
@@ -125,7 +125,7 @@ const translations = {
                         <td style="padding: 5px 10px;">RM50</td>
                     </tr>
                     <tr>
-                        <td style="padding: 5px 10px;">候補者が採用</td>
+                        <td style="padding: 5px 10px;">候補者が採用され、試用期間を通過しました</td>
                         <td style="padding: 5px 10px;">RM750</td>
                     </tr>
                 </table>
@@ -195,7 +195,7 @@ const translations = {
                         <td style="padding: 5px 10px;">RM50</td>
                     </tr>
                     <tr>
-                        <td style="padding: 5px 10px;">후보자 채용</td>
+                        <td style="padding: 5px 10px;">후보자가 채용되어 수습 기간을 통과했습니다</td>
                         <td style="padding: 5px 10px;">RM750</td>
                     </tr>
                 </table>
@@ -265,7 +265,7 @@ const translations = {
                         <td style="padding: 5px 10px;">50马币</td>
                     </tr>
                     <tr>
-                        <td style="padding: 5px 10px;">候选人被录用</td>
+                        <td style="padding: 5px 10px;">候选人已被录用并通过试用期</td>
                         <td style="padding: 5px 10px;">750马币</td>
                     </tr>
                 </table>
@@ -335,7 +335,7 @@ const translations = {
                         <td style="padding: 5px 10px;">50馬幣</td>
                     </tr>
                     <tr>
-                        <td style="padding: 5px 10px;">候選人被錄用</td>
+                        <td style="padding: 5px 10px;">候選人已被錄用並通過試用期</td>
                         <td style="padding: 5px 10px;">750馬幣</td>
                     </tr>
                 </table>
