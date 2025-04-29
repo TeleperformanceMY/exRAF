@@ -22,8 +22,22 @@
   },
   {
     "Positions": "Customer Success Specialist",
+    "Language": "Korean",
+    "Location": "Kuala Lumpur",
+    "Evergreen title": "Customer Success Specialist - Korean - Penang",
+    "Evergreen link": "https://careers.teleperformance.com/jobs/korean-cs-penang"
+  },
+  {
+    "Positions": "Customer Success Specialist",
     "Language": "Mandarin",
     "Location": "Penang",
+    "Evergreen title": "Customer Success Specialist - Mandarin - Penang",
+    "Evergreen link": "https://careers.teleperformance.com/jobs/mandarin-cs-penang"
+  },  
+  {
+    "Positions": "Customer Success Specialist",
+    "Language": "Mandarin",
+    "Location": "Kuala Lumpur",
     "Evergreen title": "Customer Success Specialist - Mandarin - Penang",
     "Evergreen link": "https://careers.teleperformance.com/jobs/mandarin-cs-penang"
   },
@@ -32,6 +46,13 @@
     "Language": "Cantonese",
     "Location": "Penang",
     "Evergreen title": "Customer Success Specialist - Cantonese - Penang",
-    "Evergreen link": "https://careers.teleperformance.com/jobs/cantonese-cs-penang"
+    "Evergreen link": "https://careerseng-teleperformance.icims.com/jobs/49440/customer-success-specialist---cantonese---penang/job?mode=view"
+  },  
+  {
+    "Positions": "Customer Success Specialist",
+    "Language": "Cantonese",
+    "Location": "Kuala Lumpur",
+    "Evergreen title": "Customer Success Specialist - Cantonese - Penang",
+    "Evergreen link": "https://careerseng-teleperformance.icims.com/jobs/49437/customer-success-specialist---cantonese---kl/job?mode=view"
   }
 ]
