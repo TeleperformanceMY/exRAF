@@ -56,7 +56,7 @@ const translations = {
                     </tr>
                     <tr>
                         <td style="padding: 5px 10px;">Candidate is hired</td>
-                        <td style="padding: 5px 10px;">RM500</td>
+                        <td style="padding: 5px 10px;">RM750</td>
                     </tr>
                 </table>
             </li>
@@ -126,7 +126,7 @@ const translations = {
                     </tr>
                     <tr>
                         <td style="padding: 5px 10px;">候補者が採用</td>
-                        <td style="padding: 5px 10px;">RM500</td>
+                        <td style="padding: 5px 10px;">RM750</td>
                     </tr>
                 </table>
             </li>
@@ -196,7 +196,7 @@ const translations = {
                     </tr>
                     <tr>
                         <td style="padding: 5px 10px;">후보자 채용</td>
-                        <td style="padding: 5px 10px;">RM500</td>
+                        <td style="padding: 5px 10px;">RM750</td>
                     </tr>
                 </table>
             </li>
@@ -266,7 +266,7 @@ const translations = {
                     </tr>
                     <tr>
                         <td style="padding: 5px 10px;">候选人被录用</td>
-                        <td style="padding: 5px 10px;">500马币</td>
+                        <td style="padding: 5px 10px;">750马币</td>
                     </tr>
                 </table>
             </li>
@@ -336,7 +336,7 @@ const translations = {
                     </tr>
                     <tr>
                         <td style="padding: 5px 10px;">候選人被錄用</td>
-                        <td style="padding: 5px 10px;">500馬幣</td>
+                        <td style="padding: 5px 10px;">750馬幣</td>
                     </tr>
                 </table>
             </li>
