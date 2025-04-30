@@ -262,11 +262,11 @@ const translations = {
                     </tr>
                     <tr>
                         <td style="padding: 5px 10px;">候选人通过评估</td>
-                        <td style="padding: 5px 10px;">50马币</td>
+                        <td style="padding: 5px 10px;">RM50</td>
                     </tr>
                     <tr>
                         <td style="padding: 5px 10px;">候选人已被录用并通过试用期</td>
-                        <td style="padding: 5px 10px;">750马币</td>
+                        <td style="padding: 5px 10px;">RM750</td>
                     </tr>
                 </table>
             </li>
@@ -332,11 +332,11 @@ const translations = {
                     </tr>
                     <tr>
                         <td style="padding: 5px 10px;">候選人通過評估</td>
-                        <td style="padding: 5px 10px;">50馬幣</td>
+                        <td style="padding: 5px 10px;">RM50</td>
                     </tr>
                     <tr>
                         <td style="padding: 5px 10px;">候選人已被錄用並通過試用期</td>
-                        <td style="padding: 5px 10px;">750馬幣</td>
+                        <td style="padding: 5px 10px;">RM750</td>
                     </tr>
                 </table>
             </li>
