@@ -243,6 +243,42 @@ body {
     max-height: 60vh;
     overflow-y: auto;
 }
+/* Employee Login Button Styles */
+.employee-login-container {
+    text-align: right;
+    margin-bottom: 1rem;
+}
+
+.employee-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.employee-btn i {
+    margin-right: 6px;
+    font-size: 0.9em;
+}
+
+.employee-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjust container positioning */
+.container {
+    position: relative;
+    padding-top: 20px;
+}
 
 @media (max-width: 768px) {
     .container {
