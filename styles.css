@@ -25,6 +25,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    padding-top: 20px;
 }
 
 .logo {
@@ -32,6 +34,7 @@ body {
     height: auto;
     filter: grayscale(100%);
     transition: all 0.3s ease;
+    margin-top: 10px;
 }
 
 .logo:hover {
