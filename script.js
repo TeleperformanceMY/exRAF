@@ -530,7 +530,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function generateReferral() {
         if (!validateForm()) return false;
         
-        const name = encodeURIComponent(elements.fullName.value.trim());
+        const name = elements.fullName.value.trim().replace(/\s+/g, '+');
         const phone = encodeURIComponent(elements.phoneNumber.value.trim());
         const email = encodeURIComponent(elements.email.value.trim());
         const jobLanguage = elements.jobLangSelect.value;
