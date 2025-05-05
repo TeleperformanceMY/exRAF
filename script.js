@@ -546,7 +546,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (job) {
             const baseUrl = job['Evergreen link'].split('?')[0];
-            const referralUrl = `${baseUrl}?ref=friend&name=${name}%7Cphone=${phone}%7Cemail=${email}`;
+            const referralUrl = `${baseUrl}?exref=friend&name=${name}%7Cphone=${phone}%7Cemail=${email}`;
             
             elements.referralLink.value = referralUrl;
             generateQRCode(referralUrl);
