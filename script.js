@@ -38,13 +38,12 @@ const translations = {
         termsTitle: "Terms and Conditions",
         closeBtn: "Close",
         copiedText: "Copied!",
-
         termsContent: `
         <h4>Refer a Friend Program Terms</h4>
         <p>By participating in the Teleperformance Refer a Friend program, you agree to the following terms:</p>
         <ol>
             <li>All referred candidates must meet the minimum qualifications for the position.</li>
-            <li>You confirm that your referred friend is aware their information will be shared with Teleperformance for recruitment purposes.</li>
+            <li>You must obtain consent from the referred individual before submitting their information.</li>
             <li>Referral bonuses will be paid according to the following schedule:
                 <table border="1" style="margin: 10px 0; border-collapse: collapse;">
                     <tr>
@@ -56,20 +55,16 @@ const translations = {
                         <td style="padding: 5px 10px;">RM50</td>
                     </tr>
                     <tr>
-                        <td style="padding: 5px 10px;">Candidate completes probation (90 days)</td>
+                        <td style="padding: 5px 10px;">Candidate is hired and passed the probation</td>
                         <td style="padding: 5px 10px;">RM750</td>
                     </tr>
                 </table>
             </li>
-            <li>By participating, you consent to Teleperformance collecting and using your personal data for program administration.</li>
             <li>Teleperformance reserves the right to modify or terminate this program at any time.</li>
             <li>All hiring decisions are made at the sole discretion of Teleperformance.</li>
         </ol>
         <p>Last updated: ${new Date().toLocaleDateString('en-US')}</p>
         `,
-        dashboardLink: "Referral Dashboard",
-        colleagueLink: "Already a TP colleague? Click here!",
-        
         noJobError: "No job found for the selected criteria",
         wechatAlert: "For WeChat, please copy the link and share it manually within the WeChat app.",
         loadError: "Failed to load job data. Please try again later."
@@ -356,19 +351,6 @@ const translations = {
     }
 };
 
-// Add favicon
-function addFavicon() {
-    const link = document.createElement('link');
-    link.rel = 'icon';
-    link.type = 'image/png';
-    link.href = 'https://www.teleperformance.com/wp-content/uploads/2020/07/favicon.png';
-    document.head.appendChild(link);
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    addFavicon();
-
-
 const locationSocialLinks = {
     malaysia: [
         { url: "http://www.facebook.com/TPinMalaysia/", icon: "facebook", name: "Facebook" },
@@ -460,7 +442,6 @@ document.addEventListener('DOMContentLoaded', function() {
         select.appendChild(option);
     }
 
-    
     function updatePageContent() {
         const translation = translations[currentLanguage] || translations.en;
         
