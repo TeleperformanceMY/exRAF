@@ -44,18 +44,18 @@ const translations = {
         <ol>
             <li>All referred candidates must meet the minimum qualifications for the position.</li>
             <li>You confirm that your referred friend is aware their information will be shared with TP (Teleperformance Malaysia Sdn Bhd.) for recruitment purposes.</li>
-            <li>Referral bonuses will be paid according to the following schedule:
+            <li>Referral bonuses (RM800) will be paid according to the following schedule:
                 <table border="1" style="margin: 10px 0; border-collapse: collapse;">
                     <tr>
                         <th style="padding: 5px 10px;">Milestone</th>
                         <th style="padding: 5px 10px;">Bonus Amount</th>
                     </tr>
                     <tr>
-                        <td style="padding: 5px 10px;">Candidate passes assessment</td>
+                        <td style="padding: 5px 10px;">Candidate passes the assessment</td>
                         <td style="padding: 5px 10px;">RM50</td>
                     </tr>
                     <tr>
-                        <td style="padding: 5px 10px;">Candidate completes probation (90 days)</td>
+                        <td style="padding: 5px 10px;">Candidate completed the probation period (90 days)</td>
                         <td style="padding: 5px 10px;">RM750</td>
                     </tr>
                 </table>
