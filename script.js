@@ -19,7 +19,7 @@ const translations = {
         selectOption: "Select an option",
         consentText1: "I agree to the",
         termsLink: "terms and conditions",
-        consentText2: "of the Refer a Friend program. I confirm that I have obtained my friend's consent to share their information with TP (TP (Teleperformance Malaysia Sdn Bhd.) Malaysia Sdn Bhd.) for recruitment purposes.",
+        consentText2: "of the Refer a Friend program. I confirm that I have obtained my friend's consent to share their information with TP (Teleperformance Malaysia Sdn Bhd.) for recruitment purposes.",
         consentError: "You must agree to the terms and conditions.",
         nextBtn: "Submit Referral",
         thankYouTitle: "Thank you for your referral!",
