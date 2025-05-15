@@ -19,7 +19,7 @@ const translations = {
         selectOption: "Select an option",
         consentText1: "I agree to the",
         termsLink: "terms and conditions",
-        consentText2: "of the Refer a Friend program. I confirm that I have obtained my friend's consent to share their information with Teleperformance for recruitment purposes.",
+        consentText2: "of the Refer a Friend program. I confirm that I have obtained my friend's consent to share their information with TP (TP (Teleperformance Malaysia Sdn Bhd.) Malaysia Sdn Bhd.) for recruitment purposes.",
         consentError: "You must agree to the terms and conditions.",
         nextBtn: "Submit Referral",
         thankYouTitle: "Thank you for your referral!",
@@ -34,16 +34,16 @@ const translations = {
         lineText: "Line",
         wechatText: "WeChat",
         locationSocial: "Our Social Media:",
-        shareMessage: "Check out this job opportunity at Teleperformance: ",
+        shareMessage: "Check out this job opportunity at TP (Teleperformance Malaysia Sdn Bhd.): ",
         termsTitle: "Terms and Conditions",
         closeBtn: "Close",
         copiedText: "Copied!",
         termsContent: `
         <h4>Refer a Friend Program Terms</h4>
-        <p>By participating in the Teleperformance Refer a Friend program, you agree to the following terms:</p>
+        <p>By participating in the TP (Teleperformance Malaysia Sdn Bhd.) Refer a Friend program, you agree to the following terms:</p>
         <ol>
             <li>All referred candidates must meet the minimum qualifications for the position.</li>
-            <li>You confirm that your referred friend is aware their information will be shared with Teleperformance for recruitment purposes.</li>
+            <li>You confirm that your referred friend is aware their information will be shared with TP (Teleperformance Malaysia Sdn Bhd.) for recruitment purposes.</li>
             <li>Referral bonuses will be paid according to the following schedule:
                 <table border="1" style="margin: 10px 0; border-collapse: collapse;">
                     <tr>
@@ -60,9 +60,9 @@ const translations = {
                     </tr>
                 </table>
             </li>
-            <li>By participating, you consent to Teleperformance collecting and using your personal data for program administration.</li>
-            <li>Teleperformance reserves the right to modify or terminate this program at any time.</li>
-            <li>All hiring decisions are made at the sole discretion of Teleperformance.</li>
+            <li>By participating, you consent to TP (Teleperformance Malaysia Sdn Bhd.) collecting and using your personal data for program administration.</li>
+            <li>TP (Teleperformance Malaysia Sdn Bhd.) reserves the right to modify or terminate this program at any time.</li>
+            <li>All hiring decisions are made at the sole discretion of TP (Teleperformance Malaysia Sdn Bhd.).</li>
         </ol>
         <p>Last updated: ${new Date().toLocaleDateString('en-US')}</p>
         `,
@@ -91,9 +91,9 @@ const translations = {
         locationLabel: "勤務地:",
         locationError: "勤務地を選択してください。",
         selectOption: "選択してください",
-        consentText1: "私はTeleperformanceの",
+        consentText1: "私はTP (Teleperformance Malaysia Sdn Bhd.)の",
         termsLink: "利用規約",
-        consentText2: "「友人を紹介する」プログラムに同意します。私は採用目的で友人の情報をTeleperformanceと共有することについて、友人の同意を得たことを確認します。",
+        consentText2: "「友人を紹介する」プログラムに同意します。私は採用目的で友人の情報をTP (Teleperformance Malaysia Sdn Bhd.)と共有することについて、友人の同意を得たことを確認します。",
         consentError: "利用規約に同意する必要があります。",
         nextBtn: "紹介を送信",
         thankYouTitle: "ご紹介ありがとうございます!",
@@ -108,13 +108,13 @@ const translations = {
         lineText: "Line",
         wechatText: "WeChat",
         locationSocial: "ソーシャルメディア:",
-        shareMessage: "Teleperformanceのこの求人情報をチェックしてください: ",
+        shareMessage: "TP (Teleperformance Malaysia Sdn Bhd.)のこの求人情報をチェックしてください: ",
         termsTitle: "利用規約",
         closeBtn: "閉じる",
         copiedText: "コピーしました!",
         termsContent: `
         <h4>友人紹介プログラムの利用規約</h4>
-        <p>Teleperformanceの友人紹介プログラムに参加することで、以下の規約に同意したものとみなされます：</p>
+        <p>TP (Teleperformance Malaysia Sdn Bhd.)の友人紹介プログラムに参加することで、以下の規約に同意したものとみなされます：</p>
         <ol>
             <li>紹介された候補者は、ポジションの最低要件を満たしている必要があります。</li>
             <li>候補者の情報を提出する前に、その本人から同意を得る必要があります。</li>
@@ -134,8 +134,8 @@ const translations = {
                     </tr>
                 </table>
             </li>
-            <li>Teleperformanceは本プログラムを随時変更または終了する権利を有します。</li>
-            <li>採用に関するすべての決定は、Teleperformanceの裁量に委ねられています。</li>
+            <li>TP (Teleperformance Malaysia Sdn Bhd.)は本プログラムを随時変更または終了する権利を有します。</li>
+            <li>採用に関するすべての決定は、TP (Teleperformance Malaysia Sdn Bhd.)の裁量に委ねられています。</li>
         </ol>
         <p>最終更新日: ${new Date().toLocaleDateString('ja-JP')}</p>
         `,
@@ -161,9 +161,9 @@ const translations = {
         locationLabel: "근무 위치:",
         locationError: "근무 위치를 선택해 주세요.",
         selectOption: "선택하세요",
-        consentText1: "나는 Teleperformance의",
+        consentText1: "나는 TP (Teleperformance Malaysia Sdn Bhd.)의",
         termsLink: "이용 약관",
-        consentText2: "에 동의합니다. 채용 목적으로 친구의 정보를 Teleperformance와 공유하는 것에 대해 친구의 동의를 얻었음을 확인합니다.",
+        consentText2: "에 동의합니다. 채용 목적으로 친구의 정보를 TP (Teleperformance Malaysia Sdn Bhd.)와 공유하는 것에 대해 친구의 동의를 얻었음을 확인합니다.",
         consentError: "이용 약관에 동의해야 합니다.",
         nextBtn: "추천 제출",
         thankYouTitle: "추천해 주셔서 감사합니다!",
@@ -178,13 +178,13 @@ const translations = {
         lineText: "Line",
         wechatText: "WeChat",
         locationSocial: "소셜 미디어:",
-        shareMessage: "Teleperformance의 이 채용 기회를 확인하세요: ",
+        shareMessage: "TP (Teleperformance Malaysia Sdn Bhd.)의 이 채용 기회를 확인하세요: ",
         termsTitle: "이용 약관",
         closeBtn: "닫기",
         copiedText: "복사되었습니다!",
         termsContent: `
         <h4>친구 추천 프로그램 약관</h4>
-        <p>Teleperformance 친구 추천 프로그램에 참여함으로써 귀하는 다음 약관에 동의하는 것으로 간주됩니다:</p>
+        <p>TP (Teleperformance Malaysia Sdn Bhd.) 친구 추천 프로그램에 참여함으로써 귀하는 다음 약관에 동의하는 것으로 간주됩니다:</p>
         <ol>
             <li>추천된 모든 후보자는 해당 직위의 최소 자격 요건을 충족해야 합니다.</li>
             <li>후보자 정보를 제출하기 전에 반드시 해당 개인으로부터 동의를 받아야 합니다.</li>
@@ -204,8 +204,8 @@ const translations = {
                     </tr>
                 </table>
             </li>
-            <li>Teleperformance는 본 프로그램을 언제든지 수정하거나 종료할 권리를 보유합니다.</li>
-            <li>모든 채용 결정은 Teleperformance의 단독 재량에 따릅니다.</li>
+            <li>TP (Teleperformance Malaysia Sdn Bhd.)는 본 프로그램을 언제든지 수정하거나 종료할 권리를 보유합니다.</li>
+            <li>모든 채용 결정은 TP (Teleperformance Malaysia Sdn Bhd.)의 단독 재량에 따릅니다.</li>
         </ol>
         <p>마지막 업데이트: ${new Date().toLocaleDateString('ko-KR')}</p>
         `,
@@ -233,7 +233,7 @@ const translations = {
         selectOption: "选择选项",
         consentText1: "我同意",
         termsLink: "条款和条件",
-        consentText2: "的推荐朋友计划。我确认已获得朋友的同意，将其信息分享给Teleperformance用于招聘目的。",
+        consentText2: "的推荐朋友计划。我确认已获得朋友的同意，将其信息分享给TP (Teleperformance Malaysia Sdn Bhd.)用于招聘目的。",
         consentError: "您必须同意条款和条件。",
         nextBtn: "提交推荐",
         thankYouTitle: "感谢您的推荐!",
@@ -248,13 +248,13 @@ const translations = {
         lineText: "Line",
         wechatText: "微信",
         locationSocial: "社交媒体:",
-        shareMessage: "查看Teleperformance的这个工作机会: ",
+        shareMessage: "查看TP (Teleperformance Malaysia Sdn Bhd.)的这个工作机会: ",
         termsTitle: "条款和条件",
         closeBtn: "关闭",
         copiedText: "已复制!",
         termsContent: `
         <h4>推荐好友计划条款</h4>
-        <p>参与Teleperformance推荐好友计划，即表示您同意以下条款：</p>
+        <p>参与TP (Teleperformance Malaysia Sdn Bhd.)推荐好友计划，即表示您同意以下条款：</p>
         <ol>
             <li>所有被推荐候选人必须满足该职位的最低要求。</li>
             <li>在提交被推荐人信息前，您必须获得其同意。</li>
@@ -274,8 +274,8 @@ const translations = {
                     </tr>
                 </table>
             </li>
-            <li>Teleperformance保留随时修改或终止本计划的权利。</li>
-            <li>所有聘用决定均由Teleperformance全权决定。</li>
+            <li>TP (Teleperformance Malaysia Sdn Bhd.)保留随时修改或终止本计划的权利。</li>
+            <li>所有聘用决定均由TP (Teleperformance Malaysia Sdn Bhd.)全权决定。</li>
         </ol>
         <p>最后更新日期: ${new Date().toLocaleDateString('zh-CN')}</p>
         `,
@@ -303,7 +303,7 @@ const translations = {
         selectOption: "選擇選項",
         consentText1: "我同意",
         termsLink: "條款和條件",
-        consentText2: "的推薦朋友計劃。我確認已獲得朋友的同意，將其信息分享給Teleperformance用於招聘目的。",
+        consentText2: "的推薦朋友計劃。我確認已獲得朋友的同意，將其信息分享給TP (Teleperformance Malaysia Sdn Bhd.)用於招聘目的。",
         consentError: "您必須同意條款和條件。",
         nextBtn: "提交推薦",
         thankYouTitle: "感謝您的推薦!",
@@ -318,13 +318,13 @@ const translations = {
         lineText: "Line",
         wechatText: "微信",
         locationSocial: "社交媒體:",
-        shareMessage: "查看Teleperformance的這個工作機會: ",
+        shareMessage: "查看TP (Teleperformance Malaysia Sdn Bhd.)的這個工作機會: ",
         termsTitle: "條款和條件",
         closeBtn: "關閉",
         copiedText: "已複製!",
         termsContent: `
         <h4>推薦朋友計劃條款</h4>
-        <p>參與Teleperformance推薦朋友計劃，即表示你同意以下條款：</p>
+        <p>參與TP (Teleperformance Malaysia Sdn Bhd.)推薦朋友計劃，即表示你同意以下條款：</p>
         <ol>
             <li>所有被推薦候選人必須符合該職位嘅最低要求。</li>
             <li>提交被推薦人資料前，你必須取得佢哋嘅同意。</li>
@@ -344,8 +344,8 @@ const translations = {
                     </tr>
                 </table>
             </li>
-            <li>Teleperformance保留隨時修改或終止呢個計劃嘅權利。</li>
-            <li>所有聘用決定都由Teleperformance全權決定。</li>
+            <li>TP (Teleperformance Malaysia Sdn Bhd.)保留隨時修改或終止呢個計劃嘅權利。</li>
+            <li>所有聘用決定都由TP (Teleperformance Malaysia Sdn Bhd.)全權決定。</li>
         </ol>
         <p>最後更新日期: ${new Date().toLocaleDateString('zh-HK')}</p>
         `,
@@ -365,8 +365,8 @@ const locationSocialLinks = {
         { url: "http://www.instagram.com/tpinthailand/", icon: "instagram", name: "Instagram" }
     ],
     global: [
-        { url: "https://www.linkedin.com/company/teleperformance", icon: "linkedin", name: "LinkedIn" },
-        { url: "https://www.youtube.com/@TeleperformanceGroup", icon: "youtube", name: "YouTube" }
+        { url: "https://www.linkedin.com/company/TP (Teleperformance Malaysia Sdn Bhd.)", icon: "linkedin", name: "LinkedIn" },
+        { url: "https://www.youtube.com/@TP (Teleperformance Malaysia Sdn Bhd.)Group", icon: "youtube", name: "YouTube" }
     ]
 };
 
