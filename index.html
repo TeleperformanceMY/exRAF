@@ -37,94 +37,45 @@
                          </select>
                      </div>
  
-<div class="landing-page mb-4 p-4 bg-light rounded">
-    <h3 class="text-center mb-4" data-translate="welcomeTitle">Welcome to Teleperformance's Referral Program</h3>
-    <div class="mb-4">
-        <p data-translate="welcomeText1">Earn RM800 for every successful referral! The payout will be split into two stages:</p>
-        <ul class="payout-stages">
-            <li data-translate="payoutStage1">RM400 when your referred friend completes 30 days of employment</li>
-            <li data-translate="payoutStage2">RM400 when your referred friend completes 90 days of employment</li>
-        </ul>
-    </div>
-    
-    <div class="mb-4">
-        <h5 data-translate="eligibilityTitle">Eligibility Criteria:</h5>
-        <ul class="eligibility-list">
-            <li data-translate="eligibility1">Referrer must be a Malaysian resident</li>
-            <li data-translate="eligibility2">Referred candidate must not be a current TP employee</li>
-            <li data-translate="eligibility3">Referred candidate must complete all hiring stages</li>
-            <li data-translate="eligibility4">Referred candidate must maintain employment for minimum 90 days</li>
-            <li data-translate="eligibility5">Each referrer can submit up to 5 referrals per month</li>
-        </ul>
-    </div>
-    
-    <div class="form-check mb-4">
-        <input class="form-check-input" type="checkbox" id="tng-checkbox" required>
-        <label class="form-check-label" for="tng-checkbox" data-translate="tngConsent">
-            Does your referred friend have a local mobile number linked to TnG eWallet for incentive payout?
-        </label>
-    </div>
-    
-    <button id="proceed-btn" class="btn btn-primary w-100" data-translate="proceedBtn">Proceed to Referral Form</button>
-</div>
-
-<!-- Main Form (initially hidden) -->
-<div class="referral-form" style="display:none;">
-    <div class="section-box mb-4">
-        <h5 class="section-title" data-translate="yourInfoTitle">Your Information</h5>
-        <div class="mb-3">
-            <label for="full-name" class="form-label" data-translate="fullNameLabel">Full Name:</label>
-            <input type="text" id="full-name" class="form-control" data-translate-placeholder="fullNamePlaceholder" required>
-            <div class="invalid-feedback" data-translate="fullNameError">Please provide your full name.</div>
-        </div>
-
-        <div class="mb-3">
-            <label for="phone-number" class="form-label" data-translate="phoneLabel">Phone Number:</label>
-            <input type="tel" id="phone-number" class="form-control" data-translate-placeholder="phonePlaceholder" required>
-            <div class="invalid-feedback" data-translate="phoneError">Please provide a valid phone number.</div>
-        </div>
-
-        <div class="mb-3">
-            <label for="email" class="form-label" data-translate="emailLabel">Email Address:</label>
-            <input type="email" id="email" class="form-control" data-translate-placeholder="emailPlaceholder" required>
-            <div class="invalid-feedback" data-translate="emailError">Please provide a valid email address.</div>
-        </div>
-    </div>
-
-    <div class="section-box mb-4">
-        <h5 class="section-title" data-translate="friendInfoTitle">Friend's Information</h5>
-        <div class="mb-3">
-            <label for="job-lang-select" class="form-label" data-translate="jobLangLabel">Job Language:</label>
-            <select id="job-lang-select" class="form-select" required>
-                <option value="" selected disabled data-translate="selectOption">Select an option</option>
-            </select>
-            <div class="invalid-feedback" data-translate="jobLangError">Please select a job language.</div>
-        </div>
-
-        <div class="mb-3">
-            <label for="location-select" class="form-label" data-translate="locationLabel">Working Location:</label>
-            <select id="location-select" class="form-select" required>
-                <option value="" selected disabled data-translate="selectOption">Select an option</option>
-            </select>
-            <div class="invalid-feedback" data-translate="locationError">Please select a location.</div>
-        </div>
-    </div>
-
-    <div class="consent-box mb-4 p-3 border rounded">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="consent-checkbox" required>
-            <label class="form-check-label" for="consent-checkbox">
-                <span data-translate="consentText1">I agree to the</span> 
-                <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" data-translate="termsLink">terms and conditions</a> 
-                <span data-translate="consentText2">of the Refer a Friend program. I confirm that:</span>
-                <ul class="mt-2">
-                    <li data-translate="consentPoint1">I consent to Teleperformance collecting and using my personal data for this program</li>
-                    <li data-translate="consentPoint2">I have made my referred friend aware that their information will be shared with Teleperformance</li>
-                </ul>
-            </label>
-            <div class="invalid-feedback" data-translate="consentError">You must agree to the terms and conditions.</div>
-        </div>
-    </div>
+                     <div class="section-box mb-4">
+                         <h5 class="section-title" data-translate="yourInfoTitle">Your Information</h5>
+                         <div class="mb-3">
+                             <label for="full-name" class="form-label" data-translate="fullNameLabel">Full Name:</label>
+                             <input type="text" id="full-name" class="form-control" data-translate-placeholder="fullNamePlaceholder" required>
+                             <div class="invalid-feedback" data-translate="fullNameError">Please provide your full name.</div>
+                         </div>
+ 
+                         <div class="mb-3">
+                             <label for="phone-number" class="form-label" data-translate="phoneLabel">Phone Number:</label>
+                             <input type="tel" id="phone-number" class="form-control" data-translate-placeholder="phonePlaceholder" required>
+                             <div class="invalid-feedback" data-translate="phoneError">Please provide a valid phone number.</div>
+                         </div>
+ 
+                         <div class="mb-3">
+                             <label for="email" class="form-label" data-translate="emailLabel">Email Address:</label>
+                             <input type="email" id="email" class="form-control" data-translate-placeholder="emailPlaceholder" required>
+                             <div class="invalid-feedback" data-translate="emailError">Please provide a valid email address.</div>
+                         </div>
+                     </div>
+ 
+                     <div class="section-box mb-4">
+                         <h5 class="section-title" data-translate="friendInfoTitle">Friend's Information</h5>
+                         <div class="mb-3">
+                             <label for="job-lang-select" class="form-label" data-translate="jobLangLabel">Job Language:</label>
+                             <select id="job-lang-select" class="form-select" required>
+                                 <option value="" selected disabled data-translate="selectOption">Select an option</option>
+                             </select>
+                             <div class="invalid-feedback" data-translate="jobLangError">Please select a job language.</div>
+                         </div>
+ 
+                         <div class="mb-3">
+                             <label for="location-select" class="form-label" data-translate="locationLabel">Working Location:</label>
+                             <select id="location-select" class="form-select" required>
+                                 <option value="" selected disabled data-translate="selectOption">Select an option</option>
+                             </select>
+                             <div class="invalid-feedback" data-translate="locationError">Please select a location.</div>
+                         </div>
+                     </div>
  
                      <div class="consent-box mb-4 p-3 border rounded">
                          <div class="form-check">
