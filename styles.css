@@ -329,4 +329,77 @@ body {
     .section-box {
         padding: 1rem;
     }
+    /* Welcome Popup */
+.welcome-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    animation: fadeOut 5s forwards;
+    animation-delay: 3s;
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* Phone Number Validation Message */
+.phone-hint {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Modern Footer */
+.modern-footer {
+    background-color: #000;
+    color: #fff;
+    padding: 30px 0;
+    margin-top: 50px;
+    font-size: 14px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+.footer-section h4 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.footer-section a {
+    color: #ccc;
+    display: block;
+    margin-bottom: 8px;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    margin-top: 20px;
+}
 }
