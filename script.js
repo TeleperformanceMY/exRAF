@@ -68,7 +68,6 @@ const translations = {
         `,
         dashboardLink: "Referral Dashboard",
         colleagueLink: "Already a TP colleague? Click here!",
-        
         noJobError: "No job found for the selected criteria",
         wechatAlert: "For WeChat, please copy the link and share it manually within the WeChat app.",
         loadError: "Failed to load job data. Please try again later."
@@ -398,10 +397,39 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentLocation = '';
     let jobData = [];
 
+    function showWelcomePopup() {
+        const popup = document.createElement('div');
+        popup.className = 'welcome-popup';
+        
+        const logo = document.createElement('img');
+        logo.src = 'TPLogo11.png';
+        logo.alt = 'Teleperformance Logo';
+        logo.className = 'welcome-logo';
+        
+        const message = document.createElement('div');
+        message.className = 'welcome-message';
+        message.textContent = 'Welcome to TP External Refer A Friend Page';
+        
+        popup.appendChild(logo);
+        popup.appendChild(message);
+        document.body.appendChild(popup);
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+            popup.classList.add('hidden');
+            // Remove after animation completes
+            setTimeout(() => {
+                popup.remove();
+            }, 1000);
+        }, 5000);
+    }
+
     function init() {
+        showWelcomePopup();
         loadJobData();
         setupEventListeners();
         updatePageContent();
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     }
 
     function loadJobData() {
@@ -705,46 +733,7 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.step2.style.display = 'none';
         elements.step1.style.display = 'block';
     }
-// Show welcome popup
-function showWelcomePopup() {
-    const popup = document.createElement('div');
-    popup.className = 'welcome-popup';
-    popup.innerHTML = 'Welcome to Teleperformance Referral Program!';
-    document.body.appendChild(popup);
-    
-    // Remove after animation completes
-    setTimeout(() => {
-        popup.remove();
-    }, 8000);
-}
 
-// Phone number validation
-function validatePhoneNumber(phone) {
-    const regex = /^\+601\d{8,9}$/;
-    return regex.test(phone);
-}
-
-// Update your existing phone number event listener
-elements.phoneNumber.addEventListener('input', function() {
-    const hint = this.nextElementSibling;
-    if (this.value && !validatePhoneNumber(this.value)) {
-        hint.style.display = 'block';
-        hint.textContent = 'Please use Malaysian format: +601XXXXXXXX (must be linked to TnG eWallet)';
-        this.classList.add('is-invalid');
-    } else {
-        hint.style.display = 'none';
-        this.classList.remove('is-invalid');
-    }
-    validateForm();
-});
-
-// Add phone number hint element after the phone input (do this in your form setup)
-const phoneHint = document.createElement('div');
-phoneHint.className = 'phone-hint';
-elements.phoneNumber.parentNode.appendChild(phoneHint);
-
-// Call this when DOM is loaded
-showWelcomePopup();
     function setupEventListeners() {
         elements.pageLangSelect.addEventListener('change', changeLanguage);
         
