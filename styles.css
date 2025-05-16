@@ -411,6 +411,25 @@ body {
     }
 }
 
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 2rem 0;
+    margin-top: auto;
+}
+
+.footer-link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: all var(--transition-speed) ease;
+}
+
+.footer-link:hover {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
+}
+
 @media (max-width: 576px) {
     .container {
         padding: 15px;
