@@ -246,6 +246,7 @@ body {
     max-height: 60vh;
     overflow-y: auto;
 }
+
 /* Employee Login Button Styles */
 .employee-login-container {
     text-align: right;
@@ -283,69 +284,52 @@ body {
     padding-top: 20px;
 }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-    }
-    
-    .logo {
-        max-width: 140px;
-    }
-    
-    #qr-code-canvas {
-        width: 180px;
-        height: 180px;
-    }
-}
-
-@media (max-width: 576px) {
-    .container {
-        padding: 15px;
-    }
-    
-    .social-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-    }
-    
-    .btn {
-        padding: 10px 20px;
-    }
-    
-    #qr-code-canvas {
-        width: 160px;
-        height: 160px;
-    }
-    
-    .consent-box {
-        font-size: 14px;
-    }
-    
-    .modal-dialog {
-        margin: 0.5rem;
-    }
-    
-    .section-box {
-        padding: 1rem;
-    }
-    /* Welcome Popup */
+/* Welcome Popup Styles */
 .welcome-popup {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #4CAF50;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 1000;
-    animation: fadeOut 5s forwards;
-    animation-delay: 3s;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease-out;
 }
 
-@keyframes fadeOut {
-    to { opacity: 0; visibility: hidden; }
+.welcome-popup.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.welcome-logo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+    animation: flip 2s ease-in-out;
+}
+
+.welcome-message {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes flip {
+    0% { transform: rotateY(0); }
+    50% { transform: rotateY(180deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Phone Number Validation Message */
@@ -402,4 +386,69 @@ body {
     border-top: 1px solid #333;
     margin-top: 20px;
 }
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .logo {
+        max-width: 140px;
+    }
+    
+    #qr-code-canvas {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .welcome-logo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .welcome-message {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+    }
+    
+    #qr-code-canvas {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .consent-box {
+        font-size: 14px;
+    }
+    
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+    
+    .section-box {
+        padding: 1rem;
+    }
+    
+    .welcome-logo {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .welcome-message {
+        font-size: 1.5rem;
+    }
 }
