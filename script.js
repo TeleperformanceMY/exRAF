@@ -504,7 +504,34 @@ document.addEventListener('DOMContentLoaded', function() {
         currentLanguage = elements.pageLangSelect.value;
         updatePageContent();
     }
+// Phone number validation
+function validatePhoneNumber(phone) {
+    const regex = /^\+601\d{8,9}$/;
+    return regex.test(phone);
+}
 
+// Update your existing phone number event listener
+elements.phoneNumber.addEventListener('input', function() {
+    const hint = this.nextElementSibling;
+    if (this.value && !validatePhoneNumber(this.value)) {
+        hint.style.display = 'block';
+        hint.textContent = 'Please use Malaysian format: +601XXXXXXXX (must be linked to TnG eWallet)';
+        this.classList.add('is-invalid');
+    } else {
+        hint.style.display = 'none';
+        this.classList.remove('is-invalid');
+    }
+    validateForm();
+});
+
+// Add phone number hint element after the phone input (do this in your form setup)
+const phoneHint = document.createElement('div');
+phoneHint.className = 'phone-hint';
+elements.phoneNumber.parentNode.appendChild(phoneHint);
+
+// Call this when DOM is loaded
+showWelcomePopup();
+    
     function validateForm() {
         let isValid = true;
         
