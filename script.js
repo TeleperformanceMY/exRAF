@@ -1,5 +1,7 @@
+// Updated script.js
 const translations = {
     en: {
+        welcomeMessage: "Welcome to TP External Refer A Friend Program",
         pageLangLabel: "Choose Your Language:",
         yourInfoTitle: "Your Information",
         friendInfoTitle: "Friend's Information",
@@ -32,7 +34,7 @@ const translations = {
         copyText: "Copy",
         whatsappText: "WhatsApp",
         lineText: "Line",
-        wechatText: "WeChat",
+        facebookText: "Facebook",
         locationSocial: "Our Social Media:",
         shareMessage: "Check out this job opportunity at TP (Teleperformance Malaysia Sdn Bhd.): ",
         termsTitle: "Terms and Conditions",
@@ -69,10 +71,11 @@ const translations = {
         dashboardLink: "Referral Dashboard",
         colleagueLink: "Already a TP colleague? Click here!",
         noJobError: "No job found for the selected criteria",
-        wechatAlert: "For WeChat, please copy the link and share it manually within the WeChat app.",
+        facebookAlert: "For Facebook, please copy the link and share it manually on your Facebook.",
         loadError: "Failed to load job data. Please try again later."
     },
     ja: {
+        welcomeMessage: "TP外部友人紹介プログラムへようこそ",
         pageLangLabel: "言語を選択してください:",
         yourInfoTitle: "あなたの情報",
         friendInfoTitle: "友人情報",
@@ -105,7 +108,7 @@ const translations = {
         copyText: "コピー",
         whatsappText: "WhatsApp",
         lineText: "Line",
-        wechatText: "WeChat",
+        facebookText: "Facebook",
         locationSocial: "ソーシャルメディア:",
         shareMessage: "TP (Teleperformance Malaysia Sdn Bhd.)のこの求人情報をチェックしてください: ",
         termsTitle: "利用規約",
@@ -139,10 +142,11 @@ const translations = {
         <p>最終更新日: ${new Date().toLocaleDateString('ja-JP')}</p>
         `,
         noJobError: "選択した条件に該当する仕事が見つかりません",
-        wechatAlert: "WeChatで共有するには、リンクをコピーしてWeChatアプリ内で手動で共有してください。",
+        facebookAlert: "Facebookで共有するには、リンクをコピーしてFacebookで手動で共有してください。",
         loadError: "仕事のデータの読み込みに失敗しました。後ほど再度お試しください。"
     },
     ko: {
+        welcomeMessage: "TP 외부 친구 추천 프로그램에 오신 것을 환영합니다",
         pageLangLabel: "언어 선택:",
         yourInfoTitle: "귀하의 정보",
         friendInfoTitle: "친구 정보",
@@ -175,7 +179,7 @@ const translations = {
         copyText: "복사",
         whatsappText: "WhatsApp",
         lineText: "Line",
-        wechatText: "WeChat",
+        facebookText: "Facebook",
         locationSocial: "소셜 미디어:",
         shareMessage: "TP (Teleperformance Malaysia Sdn Bhd.)의 이 채용 기회를 확인하세요: ",
         termsTitle: "이용 약관",
@@ -209,10 +213,11 @@ const translations = {
         <p>마지막 업데이트: ${new Date().toLocaleDateString('ko-KR')}</p>
         `,
         noJobError: "선택한 기준에 맞는 직업을 찾을 수 없습니다",
-        wechatAlert: "WeChat에서 공유하려면 링크를 복사하여 WeChat 앱 내에서 수동으로 공유하십시오.",
+        facebookAlert: "Facebook에서 공유하려면 링크를 복사하여 Facebook에서 수동으로 공유하십시오.",
         loadError: "작업 데이터를 로드하지 못했습니다. 나중에 다시 시도하십시오."
     },
     "zh-CN": {
+        welcomeMessage: "欢迎来到TP外部推荐朋友计划",
         pageLangLabel: "选择您的语言:",
         yourInfoTitle: "您的信息",
         friendInfoTitle: "朋友信息",
@@ -245,7 +250,7 @@ const translations = {
         copyText: "复制",
         whatsappText: "WhatsApp",
         lineText: "Line",
-        wechatText: "微信",
+        facebookText: "Facebook",
         locationSocial: "社交媒体:",
         shareMessage: "查看TP (Teleperformance Malaysia Sdn Bhd.)的这个工作机会: ",
         termsTitle: "条款和条件",
@@ -279,10 +284,11 @@ const translations = {
         <p>最后更新日期: ${new Date().toLocaleDateString('zh-CN')}</p>
         `,
         noJobError: "找不到符合所选条件的工作",
-        wechatAlert: "要在微信上分享，请复制链接并在微信应用中手动分享。",
+        facebookAlert: "要在Facebook上分享，请复制链接并在Facebook应用中手动分享。",
         loadError: "无法加载工作数据。请稍后再试。"
     },
     "zh-HK": {
+        welcomeMessage: "歡迎來到TP外部推薦朋友計劃",
         pageLangLabel: "選擇您的語言:",
         yourInfoTitle: "您的信息",
         friendInfoTitle: "朋友信息",
@@ -315,7 +321,7 @@ const translations = {
         copyText: "複製",
         whatsappText: "WhatsApp",
         lineText: "Line",
-        wechatText: "微信",
+        facebookText: "Facebook",
         locationSocial: "社交媒體:",
         shareMessage: "查看TP (Teleperformance Malaysia Sdn Bhd.)的這個工作機會: ",
         termsTitle: "條款和條件",
@@ -349,7 +355,7 @@ const translations = {
         <p>最後更新日期: ${new Date().toLocaleDateString('zh-HK')}</p>
         `,
         noJobError: "找不到符合所選條件的工作",
-        wechatAlert: "要在微信上分享，請復制鏈接並在微信應用中手動分享。",
+        facebookAlert: "要在Facebook上分享，請復制鏈接並在Facebook應用中手動分享。",
         loadError: "無法加載工作數據。請稍後再試。"
     }
 };
@@ -387,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
         qrCodeCanvas: document.getElementById('qr-code-canvas'),
         shareWhatsapp: document.getElementById('share-whatsapp'),
         shareLine: document.getElementById('share-line'),
-        shareWechat: document.getElementById('share-wechat'),
+        shareFacebook: document.getElementById('share-facebook'),
         locationSocialLinks: document.getElementById('location-social-links'),
         termsModal: document.getElementById('termsModal'),
         termsContent: document.getElementById('termsContent')
@@ -406,15 +412,32 @@ document.addEventListener('DOMContentLoaded', function() {
         logo.alt = 'Teleperformance Logo';
         logo.className = 'welcome-logo';
         
-        const message = document.createElement('div');
-        message.className = 'welcome-message';
-        message.textContent = 'Welcome to TP External Refer A Friend Program';
+        const messageContainer = document.createElement('div');
+        messageContainer.className = 'welcome-message-container';
+        
+        // Get welcome message in all languages
+        const welcomeMessages = [
+            translations.en.welcomeMessage,
+            translations.ja.welcomeMessage,
+            translations.ko.welcomeMessage,
+            translations['zh-CN'].welcomeMessage,
+            translations['zh-HK'].welcomeMessage
+        ];
+        
+        // Create a div for each language's welcome message
+        welcomeMessages.forEach((msg, index) => {
+            const message = document.createElement('div');
+            message.className = 'welcome-message-line';
+            message.textContent = msg;
+            message.style.animationDelay = `${index * 0.5}s`; // Stagger the animations
+            messageContainer.appendChild(message);
+        });
         
         popup.appendChild(logo);
-        popup.appendChild(message);
+        popup.appendChild(messageContainer);
         document.body.appendChild(popup);
         
-        // Hide after 5 seconds
+        // Hide after 5 seconds (after all animations complete)
         setTimeout(() => {
             popup.classList.add('hidden');
             // Remove after animation completes
@@ -504,34 +527,14 @@ document.addEventListener('DOMContentLoaded', function() {
         currentLanguage = elements.pageLangSelect.value;
         updatePageContent();
     }
-// Phone number validation
-function validatePhoneNumber(phone) {
-    const regex = /^\+601\d{8,9}$/;
-    return regex.test(phone);
-}
 
-// Update your existing phone number event listener
-elements.phoneNumber.addEventListener('input', function() {
-    const hint = this.nextElementSibling;
-    if (this.value && !validatePhoneNumber(this.value)) {
-        hint.style.display = 'block';
-        hint.textContent = 'Please use Malaysian format: +601XXXXXXXX (must be linked to TnG eWallet)';
-        this.classList.add('is-invalid');
-    } else {
-        hint.style.display = 'none';
-        this.classList.remove('is-invalid');
-    }
-    validateForm();
-});
+    // Phone number validation - only allow numbers
+    elements.phoneNumber.addEventListener('input', function() {
+        // Remove any non-digit characters
+        this.value = this.value.replace(/[^\d]/g, '');
+        validateForm();
+    });
 
-// Add phone number hint element after the phone input (do this in your form setup)
-const phoneHint = document.createElement('div');
-phoneHint.className = 'phone-hint';
-elements.phoneNumber.parentNode.appendChild(phoneHint);
-
-// Call this when DOM is loaded
-showWelcomePopup();
-    
     function validateForm() {
         let isValid = true;
         
@@ -732,8 +735,9 @@ showWelcomePopup();
             window.open(`https://social-plugins.line.me/lineit/share?url=${encodedShareText}${shareUrl}`, '_blank');
         };
         
-        elements.shareWechat.onclick = () => {
-            alert(translations[currentLanguage]?.wechatAlert);
+        elements.shareFacebook.onclick = () => {
+            alert(translations[currentLanguage]?.facebookAlert || translations.en.facebookAlert);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, '_blank');
         };
     }
 
