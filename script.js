@@ -408,7 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const message = document.createElement('div');
         message.className = 'welcome-message';
-        message.textContent = 'Welcome to TP External Refer A Friend Page';
+        message.textContent = 'Welcome to TP External Refer A Friend Program';
         
         popup.appendChild(logo);
         popup.appendChild(message);
