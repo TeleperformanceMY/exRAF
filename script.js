@@ -546,7 +546,7 @@ elements.phoneNumber.addEventListener('input', function() {
     const hint = this.nextElementSibling;
     if (this.value && !validatePhoneNumber(this.value)) {
         hint.style.display = 'block';
-        hint.textContent = 'Please use Malaysian format: +601XXXXXXXX (must be linked to TnG eWallet)';
+        hint.textContent = 'Please use Malaysian number format: 01XXXXXXXX (must be linked to TnG eWallet)';
         this.classList.add('is-invalid');
     } else {
         hint.style.display = 'none';
