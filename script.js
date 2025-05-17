@@ -1006,86 +1006,97 @@ elements.phoneNumber.addEventListener('input', function() {
         });
     }
 
-    function updateSocialLinks() {
-        elements.locationSocialLinks.innerHTML = '';
 
-        const container = document.createElement('div');
-        container.className = 'social-media-container';
 
-        // Add TP Global section
-        const globalSection = document.createElement('div');
-        globalSection.className = 'social-media-section';
-        
-        const globalTitle = document.createElement('h6');
-        globalTitle.textContent = 'TP Global';
-        globalTitle.className = 'social-media-title';
-        globalSection.appendChild(globalTitle);
-        
-        const globalLinks = document.createElement('div');
-        globalLinks.className = 'social-media-links';
-        
-        locationSocialLinks.global.forEach(link => {
-            const anchor = document.createElement('a');
-            anchor.href = link.url;
-            anchor.className = `social-icon ${link.icon}`;
-            anchor.target = "_blank";
-            anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
-            anchor.title = link.name;
-            globalLinks.appendChild(anchor);
-        });
-        
-        globalSection.appendChild(globalLinks);
-        container.appendChild(globalSection);
 
-        // Add TP Malaysia section if location is Malaysia
-            const malaysiaSection = document.createElement('div');
-            malaysiaSection.className = 'social-media-section';
-            
-            const malaysiaTitle = document.createElement('h6');
-            malaysiaTitle.textContent = 'TP Malaysia';
-            malaysiaTitle.className = 'social-media-title';
-            malaysiaSection.appendChild(malaysiaTitle);
-            
-            const malaysiaLinks = document.createElement('div');
-            malaysiaLinks.className = 'social-media-links';
-            
-            locationSocialLinks.malaysia.forEach(link => {
-                const anchor = document.createElement('a');
-                anchor.href = link.url;
-                anchor.className = `social-icon ${link.icon}`;
-                anchor.target = "_blank";
-                anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
-                anchor.title = link.name;
-                malaysiaLinks.appendChild(anchor);
-            });
-            
-            malaysiaSection.appendChild(malaysiaLinks);
-            container.appendChild(malaysiaSection);
 
-        // Add TP Thailand section if location is Thailand
-            const thailandSection = document.createElement('div');
-            thailandSection.className = 'social-media-section';
-            
-            const thailandTitle = document.createElement('h6');
-            thailandTitle.textContent = 'TP Thailand';
-            thailandTitle.className = 'social-media-title';
-            thailandSection.appendChild(thailandTitle);
-            
-            const thailandLinks = document.createElement('div');
-            thailandLinks.className = 'social-media-links';
-            
-            locationSocialLinks.thailand.forEach(link => {
-                const anchor = document.createElement('a');
-                anchor.href = link.url;
-                anchor.className = `social-icon ${link.icon}`;
-                anchor.target = "_blank";
-                anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
-                anchor.title = link.name;
-                thailandLinks.appendChild(anchor);
-            });
-            
-            thailandSection.appendChild(thailandLinks);
-            container.appendChild(thailandSection);
+function updateSocialLinks() {
+    elements.locationSocialLinks.innerHTML = '';
+
+    const container = document.createElement('div');
+    container.className = 'social-media-container';
+
+    // Add TP Global section
+    const globalSection = document.createElement('div');
+    globalSection.className = 'social-media-section';
+    
+    const globalTitle = document.createElement('h6');
+    globalTitle.textContent = 'TP Global';
+    globalTitle.className = 'social-media-title';
+    globalSection.appendChild(globalTitle);
+    
+    const globalLinks = document.createElement('div');
+    globalLinks.className = 'social-media-links';
+    
+    locationSocialLinks.global.forEach(link => {
+        const anchor = document.createElement('a');
+        anchor.href = link.url;
+        anchor.className = `social-icon ${link.icon}`;
+        anchor.target = "_blank";
+        anchor.innerHTML = `<i class="fab fa-${link.icon}" style="color:black;"></i>`;
+        anchor.title = link.name;
+        globalLinks.appendChild(anchor);
+    });
+    
+    globalSection.appendChild(globalLinks);
+    container.appendChild(globalSection);
+
+    // Add TP Malaysia section if location is Malaysia
+    const malaysiaSection = document.createElement('div');
+    malaysiaSection.className = 'social-media-section';
+    
+    const malaysiaTitle = document.createElement('h6');
+    malaysiaTitle.textContent = 'TP Malaysia';
+    malaysiaTitle.className = 'social-media-title';
+    malaysiaSection.appendChild(malaysiaTitle);
+    
+    const malaysiaLinks = document.createElement('div');
+    malaysiaLinks.className = 'social-media-links';
+    
+    locationSocialLinks.malaysia.forEach(link => {
+        const anchor = document.createElement('a');
+        anchor.href = link.url;
+        anchor.className = `social-icon ${link.icon}`;
+        anchor.target = "_blank";
+        anchor.innerHTML = `<i class="fab fa-${link.icon}" style="color:black;"></i>`;
+        anchor.title = link.name;
+        malaysiaLinks.appendChild(anchor);
+    });
+    
+    malaysiaSection.appendChild(malaysiaLinks);
+    container.appendChild(malaysiaSection);
+
+    // Add TP Thailand section if location is Thailand
+    const thailandSection = document.createElement('div');
+    thailandSection.className = 'social-media-section';
+    
+    const thailandTitle = document.createElement('h6');
+    thailandTitle.textContent = 'TP Thailand';
+    thailandTitle.className = 'social-media-title';
+    thailandSection.appendChild(thailandTitle);
+    
+    const thailandLinks = document.createElement('div');
+    thailandLinks.className = 'social-media-links';
+    
+    locationSocialLinks.thailand.forEach(link => {
+        const anchor = document.createElement('a');
+        anchor.href = link.url;
+        anchor.className = `social-icon ${link.icon}`;
+        anchor.target = "_blank";
+        anchor.innerHTML = `<i class="fab fa-${link.icon}" style="color:black;"></i>`;
+        anchor.title = link.name;
+        thailandLinks.appendChild(anchor);
+    });
+    
+    thailandSection.appendChild(thailandLinks);
+    container.appendChild(thailandSection);
+
+    elements.locationSocialLinks.appendChild(container);
+}
+
+
+
+    
 
         elements.locationSocialLinks.appendChild(container);
         updateShareButtons();
