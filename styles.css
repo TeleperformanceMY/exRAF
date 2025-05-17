@@ -284,6 +284,61 @@ body {
     padding-top: 20px;
 }
 
+/* Updated CSS (only the changed parts) */
+/* Add these styles for the welcome message lines */
+.welcome-message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.welcome-message-line {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Update the welcome popup styles */
+.welcome-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.welcome-popup.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.welcome-logo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+    animation: flip 2s ease-in-out;
+}
+
 /* Welcome Popup Styles */
 .welcome-popup {
     position: fixed;
