@@ -364,10 +364,11 @@ const locationSocialLinks = {
         { url: "http://www.instagram.com/tpinthailand/", icon: "instagram", name: "Instagram" }
     ],
     global: [
-        { url: "https://www.linkedin.com/company/TP (Teleperformance Malaysia Sdn Bhd.)", icon: "linkedin", name: "LinkedIn" },
-        { url: "https://www.youtube.com/@TP (Teleperformance Malaysia Sdn Bhd.)Group", icon: "youtube", name: "YouTube" }
+        { url: "https://www.linkedin.com/company/teleperformance", icon: "LinkedIn", name: "LinkedIn" },
+        { url: "https://www.youtube.com/@TeleperformanceGroup", icon: "YouTube", name: "YouTube" }
     ]
 };
+
 
 document.addEventListener('DOMContentLoaded', function() {
     const elements = {
@@ -680,7 +681,6 @@ elements.phoneNumber.addEventListener('input', function() {
         container.appendChild(globalSection);
 
         // Add TP Malaysia section if location is Malaysia
-        if (currentLocation === 'malaysia') {
             const malaysiaSection = document.createElement('div');
             malaysiaSection.className = 'social-media-section';
             
@@ -704,10 +704,8 @@ elements.phoneNumber.addEventListener('input', function() {
             
             malaysiaSection.appendChild(malaysiaLinks);
             container.appendChild(malaysiaSection);
-        }
 
         // Add TP Thailand section if location is Thailand
-        if (currentLocation === 'thailand') {
             const thailandSection = document.createElement('div');
             thailandSection.className = 'social-media-section';
             
@@ -731,7 +729,6 @@ elements.phoneNumber.addEventListener('input', function() {
             
             thailandSection.appendChild(thailandLinks);
             container.appendChild(thailandSection);
-        }
 
         elements.locationSocialLinks.appendChild(container);
         updateShareButtons();
