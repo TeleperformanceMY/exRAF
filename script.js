@@ -68,7 +68,7 @@ const translations = {
         <p>Last updated: ${new Date().toLocaleDateString('en-US')}</p>
         `,
         dashboardLink: "Referral Dashboard",
-        colleagueLink: "Already a TP colleague? Click here!",
+        employeeLink: "Already a TP employee? Click here!",
         noJobError: "No job found for the selected criteria",
         loadError: "Failed to load job data. Please try again later."
     },
