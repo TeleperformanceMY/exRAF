@@ -1,4 +1,3 @@
-// Updated script.js
 const translations = {
     en: {
         welcomeMessage: "Welcome to TP External Refer A Friend Program",
@@ -71,7 +70,6 @@ const translations = {
         dashboardLink: "Referral Dashboard",
         colleagueLink: "Already a TP colleague? Click here!",
         noJobError: "No job found for the selected criteria",
-        facebookAlert: "For Facebook, please copy the link and share it manually on your Facebook.",
         loadError: "Failed to load job data. Please try again later."
     },
     ja: {
@@ -142,7 +140,6 @@ const translations = {
         <p>最終更新日: ${new Date().toLocaleDateString('ja-JP')}</p>
         `,
         noJobError: "選択した条件に該当する仕事が見つかりません",
-        facebookAlert: "Facebookで共有するには、リンクをコピーしてFacebookで手動で共有してください。",
         loadError: "仕事のデータの読み込みに失敗しました。後ほど再度お試しください。"
     },
     ko: {
@@ -213,7 +210,6 @@ const translations = {
         <p>마지막 업데이트: ${new Date().toLocaleDateString('ko-KR')}</p>
         `,
         noJobError: "선택한 기준에 맞는 직업을 찾을 수 없습니다",
-        facebookAlert: "Facebook에서 공유하려면 링크를 복사하여 Facebook에서 수동으로 공유하십시오.",
         loadError: "작업 데이터를 로드하지 못했습니다. 나중에 다시 시도하십시오."
     },
     "zh-CN": {
@@ -284,7 +280,6 @@ const translations = {
         <p>最后更新日期: ${new Date().toLocaleDateString('zh-CN')}</p>
         `,
         noJobError: "找不到符合所选条件的工作",
-        facebookAlert: "要在Facebook上分享，请复制链接并在Facebook应用中手动分享。",
         loadError: "无法加载工作数据。请稍后再试。"
     },
     "zh-HK": {
@@ -355,7 +350,6 @@ const translations = {
         <p>最後更新日期: ${new Date().toLocaleDateString('zh-HK')}</p>
         `,
         noJobError: "找不到符合所選條件的工作",
-        facebookAlert: "要在Facebook上分享，請復制鏈接並在Facebook應用中手動分享。",
         loadError: "無法加載工作數據。請稍後再試。"
     }
 };
@@ -757,7 +751,6 @@ elements.phoneNumber.addEventListener('input', function() {
         };
         
         elements.shareFacebook.onclick = () => {
-            alert(translations[currentLanguage]?.facebookAlert || translations.en.facebookAlert);
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, '_blank');
         };
     }
