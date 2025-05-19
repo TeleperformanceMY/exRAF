@@ -364,8 +364,8 @@ const locationSocialLinks = {
         { url: "http://www.instagram.com/tpinthailand/", icon: "instagram", name: "Instagram" }
     ],
     global: [
-        { url: "https://www.linkedin.com/company/teleperformance", icon: "LinkedIn", name: "LinkedIn" },
-        { url: "https://www.youtube.com/@TeleperformanceGroup", icon: "YouTube", name: "YouTube" },
+        { url: "https://www.linkedin.com/company/teleperformance", icon: "linkedin", name: "LinkedIn" },
+        { url: "https://www.youtube.com/@TeleperformanceGroup", icon: "youtube", name: "YouTube" },
         { url: "https://www.tiktok.com/@teleperformance", icon: "tiktok", name: "TikTok" }
     ]
 };
