@@ -25,7 +25,7 @@ const translations = {
         nextBtn: "Submit Referral",
         thankYouTitle: "Thank you for your referral!",
         referralMessage: "Here's the personalized link for your friend to apply:",
-        scanText: "Or scan this QR code to apply",
+        scanText: "Or share this QR code with them to apply",
         followUs: "Follow Us On:",
         followMalaysia: "TP Malaysia:",
         followThailand: "TP Thailand:",
