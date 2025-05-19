@@ -8,7 +8,7 @@ const translations = {
         fullNamePlaceholder: "Enter your full name",
         fullNameError: "Please provide your full name.",
         phoneLabel: "Phone Number:",
-        phonePlaceholder: "Enter your phone number",
+        phonePlaceholder: "Enter your phone number (01XXXXXXXX)",
         phoneError: "Please provide a valid phone number.",
         emailLabel: "Email Address:",
         emailPlaceholder: "Enter your email address",
@@ -81,7 +81,7 @@ const translations = {
         fullNamePlaceholder: "氏名を入力してください",
         fullNameError: "氏名を入力してください。",
         phoneLabel: "電話番号:",
-        phonePlaceholder: "電話番号を入力してください",
+        phonePlaceholder: "電話番号を入力してください (01XXXXXXXX)",
         phoneError: "有効な電話番号を入力してください。",
         emailLabel: "メールアドレス:",
         emailPlaceholder: "メールアドレスを入力してください",
@@ -151,7 +151,7 @@ const translations = {
         fullNamePlaceholder: "성명을 입력하세요",
         fullNameError: "성명을 입력해 주세요.",
         phoneLabel: "전화번호:",
-        phonePlaceholder: "전화번호를 입력하세요",
+        phonePlaceholder: "전화번호를 입력하세요 (01XXXXXXXX)",
         phoneError: "유효한 전화번호를 입력해 주세요.",
         emailLabel: "이메일 주소:",
         emailPlaceholder: "이메일 주소를 입력하세요",
@@ -221,7 +221,7 @@ const translations = {
         fullNamePlaceholder: "输入您的全名",
         fullNameError: "请提供您的全名。",
         phoneLabel: "电话号码:",
-        phonePlaceholder: "输入您的电话号码",
+        phonePlaceholder: "输入您的电话号码 (01XXXXXXXX)",
         phoneError: "请输入有效的电话号码。",
         emailLabel: "电子邮件地址:",
         emailPlaceholder: "输入您的电子邮件地址",
@@ -291,7 +291,7 @@ const translations = {
         fullNamePlaceholder: "輸入您的全名",
         fullNameError: "請提供您的全名。",
         phoneLabel: "電話號碼:",
-        phonePlaceholder: "輸入您的電話號碼",
+        phonePlaceholder: "輸入您的電話號碼 (01XXXXXXXX)",
         phoneError: "請輸入有效的電話號碼。",
         emailLabel: "電子郵件地址:",
         emailPlaceholder: "輸入您的電子郵件地址",
@@ -542,7 +542,7 @@ elements.phoneNumber.addEventListener('input', function() {
     const hint = this.nextElementSibling;
     if (this.value && !validatePhoneNumber(this.value)) {
         hint.style.display = 'block';
-        hint.textContent = 'Please use Malaysian number format: 01XXXXXXXX (must be linked to TnG eWallet)';
+        hint.textContent = 'Your phone number must be linked to TnG eWallet';
         this.classList.add('is-invalid');
     } else {
         hint.style.display = 'none';
