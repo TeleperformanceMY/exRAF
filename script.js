@@ -61,7 +61,7 @@ const translations = {
                     </tr>
                 </table>
             </li>
-            <li>By participating, you consent to TP (Teleperformance Malaysia Sdn Bhd.) in collecting and using your personal data for program administration.</li>
+            <li>By participating, you consent TP (Teleperformance Malaysia Sdn Bhd.) in collecting and using your personal data for program administration.</li>
             <li>TP (Teleperformance Malaysia Sdn Bhd.) reserves the right to modify or terminate this program at any time.</li>
             <li>All hiring decisions are made at the sole discretion of TP (Teleperformance Malaysia Sdn Bhd.).</li>
         </ol>
