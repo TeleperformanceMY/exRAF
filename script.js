@@ -389,7 +389,7 @@ const locationSocialLinks = {
     global: [
         { url: "https://www.linkedin.com/company/teleperformance", icon: "linkedin", name: "LinkedIn" },
         { url: "https://www.youtube.com/@TeleperformanceGroup", icon: "youtube", name: "YouTube" },
-        { url: "https://www.tiktok.com/@teleperformance", icon: "tiktok", name: "TikTok" }
+        { url: "https://www.tiktok.com/@teleperformance_group", icon: "tiktok", name: "TikTok" }
     ]
 };
 
