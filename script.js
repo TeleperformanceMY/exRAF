@@ -25,7 +25,7 @@ const translations = {
         nextBtn: "Submit Referral",
         thankYouTitle: "Thank you for your referral!",
         referralMessage: "Here's the personalized link for your friend to apply:",
-        scanText: "Or share this QR code with them to apply",
+        scanText: "Or share this QR code with them to apply",
         followUs: "Follow Us On:",
         followMalaysia: "TP Malaysia:",
         followThailand: "TP Thailand:",
@@ -39,6 +39,10 @@ const translations = {
         termsTitle: "Terms and Conditions",
         closeBtn: "Close",
         copiedText: "Copied!",
+        dashboardText: "Dashboard",
+        employeeText: "Already a TP employee?",
+        clickHereText: "Click here!",
+        tpGlobal: "TP Global",
         termsContent: `
         <h4>Refer a Friend Program Terms</h4>
         <p>By participating in the TP (Teleperformance Malaysia Sdn Bhd.) Refer a Friend program, you agree to the following terms:</p>
@@ -67,8 +71,6 @@ const translations = {
         </ol>
         <p>Last updated: ${new Date().toLocaleDateString('en-US')}</p>
         `,
-        dashboardLink: "Referral Dashboard",
-        employeeLink: "Already a TP employee? Click here!",
         noJobError: "No job found for the selected criteria",
         loadError: "Failed to load job data. Please try again later."
     },
@@ -112,6 +114,10 @@ const translations = {
         termsTitle: "利用規約",
         closeBtn: "閉じる",
         copiedText: "コピーしました!",
+        dashboardText: "ダッシュボード",
+        employeeText: "すでにTPの従業員ですか？",
+        clickHereText: "ここをクリック！",
+        tpGlobal: "TP Global",
         termsContent: `
         <h4>友人紹介プログラムの利用規約</h4>
         <p>TP (Teleperformance Malaysia Sdn Bhd.)の友人紹介プログラムに参加することで、以下の規約に同意したものとみなされます：</p>
@@ -182,6 +188,10 @@ const translations = {
         termsTitle: "이용 약관",
         closeBtn: "닫기",
         copiedText: "복사되었습니다!",
+        dashboardText: "대시보드",
+        employeeText: "이미 TP 직원이신가요?",
+        clickHereText: "여기를 클릭하세요!",
+        tpGlobal: "TP Global",
         termsContent: `
         <h4>친구 추천 프로그램 약관</h4>
         <p>TP (Teleperformance Malaysia Sdn Bhd.) 친구 추천 프로그램에 참여함으로써 귀하는 다음 약관에 동의하는 것으로 간주됩니다:</p>
@@ -252,6 +262,10 @@ const translations = {
         termsTitle: "条款和条件",
         closeBtn: "关闭",
         copiedText: "已复制!",
+        dashboardText: "仪表板",
+        employeeText: "已经是TP员工？",
+        clickHereText: "点击这里！",
+        tpGlobal: "TP Global",
         termsContent: `
         <h4>推荐好友计划条款</h4>
         <p>参与TP (Teleperformance Malaysia Sdn Bhd.)推荐好友计划，即表示您同意以下条款：</p>
@@ -322,6 +336,10 @@ const translations = {
         termsTitle: "條款和條件",
         closeBtn: "關閉",
         copiedText: "已複製!",
+        dashboardText: "儀表板",
+        employeeText: "已經是TP員工？",
+        clickHereText: "點擊這裡！",
+        tpGlobal: "TP Global",
         termsContent: `
         <h4>推薦朋友計劃條款</h4>
         <p>參與TP (Teleperformance Malaysia Sdn Bhd.)推薦朋友計劃，即表示你同意以下條款：</p>
@@ -366,10 +384,9 @@ const locationSocialLinks = {
     global: [
         { url: "https://www.linkedin.com/company/teleperformance", icon: "linkedin", name: "LinkedIn" },
         { url: "https://www.youtube.com/@TeleperformanceGroup", icon: "youtube", name: "YouTube" },
-        { url: "https://www.tiktok.com/@teleperformance", icon: "tiktok", name: "TikTok" }
+        { url: "https://www.tiktok.com/@teleperformance", icon: "tiktok", name: "TikTok" }
     ]
 };
-
 
 document.addEventListener('DOMContentLoaded', function() {
     const elements = {
@@ -531,26 +548,23 @@ document.addEventListener('DOMContentLoaded', function() {
         validateForm();
     });
 
-// Phone number validation
-function validatePhoneNumber(phone) {
-    const regex = /^\+601\d{8,9}$/;
-    return regex.test(phone);
-}
-
-// Update your existing phone number event listener
-elements.phoneNumber.addEventListener('input', function() {
-    const hint = this.nextElementSibling;
-    if (this.value && !validatePhoneNumber(this.value)) {
-        hint.style.display = 'block';
-        hint.textContent = 'Your phone number must be linked to TnG eWallet';
-        this.classList.add('is-invalid');
-    } else {
-        hint.style.display = 'none';
-        this.classList.remove('is-invalid');
+    function validatePhoneNumber(phone) {
+        const regex = /^\+601\d{8,9}$/;
+        return regex.test(phone);
     }
-    validateForm();
-});
 
+    elements.phoneNumber.addEventListener('input', function() {
+        const hint = this.nextElementSibling;
+        if (this.value && !validatePhoneNumber(this.value)) {
+            hint.style.display = 'block';
+            hint.textContent = translations[currentLanguage].phoneError;
+            this.classList.add('is-invalid');
+        } else {
+            hint.style.display = 'none';
+            this.classList.remove('is-invalid');
+        }
+        validateForm();
+    });
     
     function validateForm() {
         let isValid = true;
@@ -661,7 +675,7 @@ elements.phoneNumber.addEventListener('input', function() {
         globalSection.className = 'social-media-section';
         
         const globalTitle = document.createElement('h6');
-        globalTitle.textContent = 'TP Global';
+        globalTitle.textContent = translations[currentLanguage].tpGlobal || 'TP Global';
         globalTitle.className = 'social-media-title';
         globalSection.appendChild(globalTitle);
         
@@ -682,11 +696,12 @@ elements.phoneNumber.addEventListener('input', function() {
         container.appendChild(globalSection);
 
         // Add TP Malaysia section if location is Malaysia
+        if (currentLocation === 'malaysia') {
             const malaysiaSection = document.createElement('div');
             malaysiaSection.className = 'social-media-section';
             
             const malaysiaTitle = document.createElement('h6');
-            malaysiaTitle.textContent = 'TP Malaysia';
+            malaysiaTitle.textContent = translations[currentLanguage].followMalaysia || 'TP Malaysia';
             malaysiaTitle.className = 'social-media-title';
             malaysiaSection.appendChild(malaysiaTitle);
             
@@ -705,13 +720,15 @@ elements.phoneNumber.addEventListener('input', function() {
             
             malaysiaSection.appendChild(malaysiaLinks);
             container.appendChild(malaysiaSection);
+        }
 
         // Add TP Thailand section if location is Thailand
+        if (currentLocation === 'thailand') {
             const thailandSection = document.createElement('div');
             thailandSection.className = 'social-media-section';
             
             const thailandTitle = document.createElement('h6');
-            thailandTitle.textContent = 'TP Thailand';
+            thailandTitle.textContent = translations[currentLanguage].followThailand || 'TP Thailand';
             thailandTitle.className = 'social-media-title';
             thailandSection.appendChild(thailandTitle);
             
@@ -730,6 +747,7 @@ elements.phoneNumber.addEventListener('input', function() {
             
             thailandSection.appendChild(thailandLinks);
             container.appendChild(thailandSection);
+        }
 
         elements.locationSocialLinks.appendChild(container);
         updateShareButtons();
