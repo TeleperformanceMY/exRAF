@@ -10,6 +10,7 @@ const translations = {
         phoneLabel: "Phone Number:",
         phonePlaceholder: "Enter your phone number (01XXXXXXXX)",
         phoneError: "Please provide a valid phone number.",
+        phoneHint: "Your phone number must be linked to TnG eWallet for the payment process",
         emailLabel: "Email Address:",
         emailPlaceholder: "Enter your email address",
         emailError: "Please provide a valid email address.",
@@ -85,6 +86,7 @@ const translations = {
         phoneLabel: "電話番号:",
         phonePlaceholder: "電話番号を入力してください (01XXXXXXXX)",
         phoneError: "有効な電話番号を入力してください。",
+        phoneHint: "支払いプロセスのため、電話番号はTnG eWalletにリンクされている必要があります",
         emailLabel: "メールアドレス:",
         emailPlaceholder: "メールアドレスを入力してください",
         emailError: "有効なメールアドレスを入力してください。",
@@ -159,6 +161,7 @@ const translations = {
         phoneLabel: "전화번호:",
         phonePlaceholder: "전화번호를 입력하세요 (01XXXXXXXX)",
         phoneError: "유효한 전화번호를 입력해 주세요.",
+        phoneHint: "결제 과정을 위해 전화번호는 TnG eWallet에 연결되어 있어야 합니다",
         emailLabel: "이메일 주소:",
         emailPlaceholder: "이메일 주소를 입력하세요",
         emailError: "유효한 이메일 주소를 입력해 주세요.",
@@ -233,6 +236,7 @@ const translations = {
         phoneLabel: "电话号码:",
         phonePlaceholder: "输入您的电话号码 (01XXXXXXXX)",
         phoneError: "请输入有效的电话号码。",
+        phoneHint: "您的电话号码必须链接到TnG eWallet以进行支付流程",
         emailLabel: "电子邮件地址:",
         emailPlaceholder: "输入您的电子邮件地址",
         emailError: "请输入有效的电子邮件地址。",
@@ -307,6 +311,7 @@ const translations = {
         phoneLabel: "電話號碼:",
         phonePlaceholder: "輸入您的電話號碼 (01XXXXXXXX)",
         phoneError: "請輸入有效的電話號碼。",
+        phoneHint: "您的電話號碼必須連結到TnG eWallet以進行支付流程",
         emailLabel: "電子郵件地址:",
         emailPlaceholder: "輸入您的電子郵件地址",
         emailError: "請輸入有效的電子郵件地址。",
@@ -415,6 +420,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentLanguage = 'en';
     let currentLocation = '';
     let jobData = [];
+
+    // Create phone hint element
+    const phoneHint = document.createElement('div');
+    phoneHint.className = 'phone-hint mt-1 small text-muted';
+    elements.phoneNumber.parentNode.insertBefore(phoneHint, elements.phoneNumber.nextSibling);
 
     function showWelcomePopup() {
         const popup = document.createElement('div');
@@ -533,6 +543,9 @@ document.addEventListener('DOMContentLoaded', function() {
             elements.termsContent.innerHTML = translation.termsContent;
         }
         
+        // Update phone hint message
+        phoneHint.textContent = translation.phoneHint;
+        
         populateJobDropdowns();
     }
 
@@ -541,40 +554,26 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePageContent();
     }
 
-// Update your existing phone number event listener
-elements.phoneNumber.addEventListener('input', function() {
-    const hint = this.nextElementSibling;
-    if (this.value && !validatePhoneNumber(this.value)) {
-        hint.style.display = 'block';
-        hint.textContent = 'Your phone number must be linked to TnG eWallet';
-        this.classList.add('is-invalid');
-    } else {
-        hint.style.display = 'none';
-        this.classList.remove('is-invalid');
-    }
+    // Phone number validation - only allow numbers
+    elements.phoneNumber.addEventListener('input', function() {
         // Remove any non-digit characters
         this.value = this.value.replace(/[^\d]/g, '');
-    validateForm();
-});
-    
+        
+        // Show TnG hint when user starts typing
+        if (this.value.length > 0) {
+            phoneHint.style.display = 'block';
+        } else {
+            phoneHint.style.display = 'none';
+        }
+        
+        validateForm();
+    });
+
     function validatePhoneNumber(phone) {
         const regex = /^\+601\d{8,9}$/;
         return regex.test(phone);
     }
 
-    elements.phoneNumber.addEventListener('input', function() {
-        const hint = this.nextElementSibling;
-        if (this.value && !validatePhoneNumber(this.value)) {
-            hint.style.display = 'block';
-            hint.textContent = translations[currentLanguage].phoneError;
-            this.classList.add('is-invalid');
-        } else {
-            hint.style.display = 'none';
-            this.classList.remove('is-invalid');
-        }
-        validateForm();
-    });
-    
     function validateForm() {
         let isValid = true;
         
@@ -679,84 +678,38 @@ elements.phoneNumber.addEventListener('input', function() {
         const container = document.createElement('div');
         container.className = 'social-media-container';
 
-        // Add TP Global section
-        const globalSection = document.createElement('div');
-        globalSection.className = 'social-media-section';
-        
-        const globalTitle = document.createElement('h6');
-        globalTitle.textContent = translations[currentLanguage].tpGlobal || 'TP Global';
-        globalTitle.className = 'social-media-title';
-        globalSection.appendChild(globalTitle);
-        
-        const globalLinks = document.createElement('div');
-        globalLinks.className = 'social-media-links';
-        
-        locationSocialLinks.global.forEach(link => {
-            const anchor = document.createElement('a');
-            anchor.href = link.url;
-            anchor.className = `social-icon ${link.icon}`;
-            anchor.target = "_blank";
-            anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
-            anchor.title = link.name;
-            globalLinks.appendChild(anchor);
+        // Always show all social media sections regardless of location
+        const sections = [
+            { title: translations[currentLanguage].tpGlobal || 'TP Global', links: locationSocialLinks.global },
+            { title: translations[currentLanguage].followMalaysia || 'TP Malaysia', links: locationSocialLinks.malaysia },
+            { title: translations[currentLanguage].followThailand || 'TP Thailand', links: locationSocialLinks.thailand }
+        ];
+
+        sections.forEach(section => {
+            const sectionDiv = document.createElement('div');
+            sectionDiv.className = 'social-media-section';
+            
+            const title = document.createElement('h6');
+            title.textContent = section.title;
+            title.className = 'social-media-title';
+            sectionDiv.appendChild(title);
+            
+            const linksDiv = document.createElement('div');
+            linksDiv.className = 'social-media-links';
+            
+            section.links.forEach(link => {
+                const anchor = document.createElement('a');
+                anchor.href = link.url;
+                anchor.className = `social-icon ${link.icon}`;
+                anchor.target = "_blank";
+                anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
+                anchor.title = link.name;
+                linksDiv.appendChild(anchor);
+            });
+            
+            sectionDiv.appendChild(linksDiv);
+            container.appendChild(sectionDiv);
         });
-        
-        globalSection.appendChild(globalLinks);
-        container.appendChild(globalSection);
-
-        // Add TP Malaysia section if location is Malaysia
-        if (currentLocation === 'malaysia') {
-            const malaysiaSection = document.createElement('div');
-            malaysiaSection.className = 'social-media-section';
-            
-            const malaysiaTitle = document.createElement('h6');
-            malaysiaTitle.textContent = translations[currentLanguage].followMalaysia || 'TP Malaysia';
-            malaysiaTitle.className = 'social-media-title';
-            malaysiaSection.appendChild(malaysiaTitle);
-            
-            const malaysiaLinks = document.createElement('div');
-            malaysiaLinks.className = 'social-media-links';
-            
-            locationSocialLinks.malaysia.forEach(link => {
-                const anchor = document.createElement('a');
-                anchor.href = link.url;
-                anchor.className = `social-icon ${link.icon}`;
-                anchor.target = "_blank";
-                anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
-                anchor.title = link.name;
-                malaysiaLinks.appendChild(anchor);
-            });
-            
-            malaysiaSection.appendChild(malaysiaLinks);
-            container.appendChild(malaysiaSection);
-        }
-
-        // Add TP Thailand section if location is Thailand
-        if (currentLocation === 'thailand') {
-            const thailandSection = document.createElement('div');
-            thailandSection.className = 'social-media-section';
-            
-            const thailandTitle = document.createElement('h6');
-            thailandTitle.textContent = translations[currentLanguage].followThailand || 'TP Thailand';
-            thailandTitle.className = 'social-media-title';
-            thailandSection.appendChild(thailandTitle);
-            
-            const thailandLinks = document.createElement('div');
-            thailandLinks.className = 'social-media-links';
-            
-            locationSocialLinks.thailand.forEach(link => {
-                const anchor = document.createElement('a');
-                anchor.href = link.url;
-                anchor.className = `social-icon ${link.icon}`;
-                anchor.target = "_blank";
-                anchor.innerHTML = `<i class="fab fa-${link.icon}"></i>`;
-                anchor.title = link.name;
-                thailandLinks.appendChild(anchor);
-            });
-            
-            thailandSection.appendChild(thailandLinks);
-            container.appendChild(thailandSection);
-        }
 
         elements.locationSocialLinks.appendChild(container);
         updateShareButtons();
