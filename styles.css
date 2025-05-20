@@ -170,8 +170,6 @@ body {
     text-decoration: none;
 }
 
-
-
 #qr-code-canvas {
     width: 200px;
     height: 200px;
@@ -244,10 +242,22 @@ body {
     overflow-y: auto;
 }
 
+/* Top Buttons Container */
+.top-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 /* Employee Login Button Styles */
 .employee-login-container {
     text-align: right;
-    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .employee-btn {
@@ -275,14 +285,38 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Adjust container positioning */
-.container {
-    position: relative;
-    padding-top: 20px;
+/* Dashboard Button Styles */
+.dashboard-btn-container {
+    text-align: left;
 }
 
-/* Updated CSS (only the changed parts) */
-/* Add these styles for the welcome message lines */
+.dashboard-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: 2px solid var(--secondary-color);
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.dashboard-btn i {
+    margin-right: 6px;
+    font-size: 0.9em;
+}
+
+.dashboard-btn:hover {
+    background-color: var(--dark-color);
+    border-color: var(--dark-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Welcome Message Styles */
 .welcome-message-container {
     display: flex;
     flex-direction: column;
@@ -305,35 +339,6 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-/* Update the welcome popup styles */
-.welcome-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 1s ease-out;
-}
-
-.welcome-popup.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.welcome-logo {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 30px;
-    animation: flip 2s ease-in-out;
 }
 
 /* Welcome Popup Styles */
@@ -365,14 +370,6 @@ body {
     animation: flip 2s ease-in-out;
 }
 
-.welcome-message {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    text-align: center;
-    animation: fadeIn 2s ease-in-out;
-}
-
 @keyframes flip {
     0% { transform: rotateY(0); }
     50% { transform: rotateY(180deg); }
@@ -392,51 +389,23 @@ body {
     display: none;
 }
 
-/* Modern Footer */
-.modern-footer {
-    background-color: #000;
-    color: #fff;
-    padding: 30px 0;
-    margin-top: 50px;
-    font-size: 14px;
+/* Footer */
+footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 2rem 0;
+    margin-top: auto;
 }
 
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.footer-section {
-    flex: 1;
-    min-width: 200px;
-    margin-bottom: 20px;
-}
-
-.footer-section h4 {
-    color: #fff;
-    margin-bottom: 15px;
-    font-size: 16px;
-}
-
-.footer-section a {
-    color: #ccc;
-    display: block;
-    margin-bottom: 8px;
+.footer-link {
+    color: var(--secondary-color);
     text-decoration: none;
+    transition: all var(--transition-speed) ease;
 }
 
-.footer-section a:hover {
-    color: #fff;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #333;
-    margin-top: 20px;
+.footer-link:hover {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -458,28 +427,21 @@ body {
         height: 150px;
     }
     
-    .welcome-message {
-        font-size: 1.8rem;
+    .top-buttons-container {
+        flex-direction: column;
+        align-items: stretch;
     }
-}
-
-/* Footer */
-footer {
-    background-color: var(--black);
-    color: var(--white);
-    padding: 2rem 0;
-    margin-top: auto;
-}
-
-.footer-link {
-    color: var(--secondary-color);
-    text-decoration: none;
-    transition: all var(--transition-speed) ease;
-}
-
-.footer-link:hover {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: underline;
+    
+    .dashboard-btn-container,
+    .employee-login-container {
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .employee-login-container {
+        flex-direction: column;
+        gap: 5px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -519,7 +481,7 @@ footer {
         height: 120px;
     }
     
-    .welcome-message {
-        font-size: 1.5rem;
+    .welcome-message-line {
+        font-size: 1.2rem;
     }
 }
