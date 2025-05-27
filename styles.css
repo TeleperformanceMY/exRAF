@@ -17,6 +17,8 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -27,6 +29,8 @@ body {
     justify-content: center;
     position: relative;
     padding-top: 20px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .logo {
@@ -242,7 +246,6 @@ body {
     overflow-y: auto;
 }
 
-/* Top Buttons Container */
 .top-buttons-container {
     display: flex;
     justify-content: space-between;
@@ -252,7 +255,6 @@ body {
     gap: 10px;
 }
 
-/* Employee Login Button Styles */
 .employee-login-container {
     text-align: right;
     display: flex;
@@ -285,7 +287,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Dashboard Button Styles */
 .dashboard-btn-container {
     text-align: left;
 }
@@ -316,7 +317,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Welcome Message Styles */
 .welcome-message-container {
     display: flex;
     flex-direction: column;
@@ -341,7 +341,6 @@ body {
     }
 }
 
-/* Welcome Popup Styles */
 .welcome-popup {
     position: fixed;
     top: 0;
@@ -381,7 +380,6 @@ body {
     to { opacity: 1; }
 }
 
-/* Phone Number Validation Message */
 .phone-hint {
     font-size: 0.8rem;
     color: #666;
@@ -389,46 +387,44 @@ body {
     display: none;
 }
 
+/* FULL WIDTH FOOTER FIX */
 footer {
-    background-color: var(--dark-color);
+    background-color: #000000; /* Pure black */
     color: var(--white);
     padding: 2.5rem 0;
-    margin-top: 3rem;
-    width: 100%;
+    margin-top: auto;
+    width: 100vw;
     position: relative;
-    z-index: 10;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 
 footer .container {
     max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
     padding: 0 20px;
+    margin: 0 auto;
 }
 
 footer .row {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1000px;
-    margin: 0 auto;
+    width: 100%;
 }
 
 footer p {
     margin: 0;
     font-size: 1.1rem;
-    opacity: 0.9;
-    padding: 0.5rem 0;
+    color: var(--white);
 }
 
 footer a {
     color: var(--secondary-color);
     text-decoration: none;
     transition: all 0.3s ease;
-    font-weight: 500;
 }
 
 footer a:hover {
@@ -438,24 +434,18 @@ footer a:hover {
 
 #current-year {
     font-weight: bold;
-    color: var(--secondary-color);
 }
 
-/* ==================== */
-/* IMPROVED BUTTON LAYOUT */
-/* ==================== */
+/* BUTTONS CONTAINER IMPROVEMENTS */
 .buttons-container {
     max-width: 800px;
     margin: 0 auto 25px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
 }
 
-/* Job Portal Button (full width) */
 .job-portal-wrapper {
     width: 100%;
+    margin-bottom: 15px;
 }
 
 .job-portal-btn {
@@ -463,24 +453,21 @@ footer a:hover {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 16px 24px;
+    padding: 14px 20px;
     background-color: var(--primary-color);
     color: white;
     text-decoration: none;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 1.25rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.2rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 2px solid var(--primary-color);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
-/* Small buttons row */
 .small-buttons-row {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     width: 100%;
 }
 
@@ -493,68 +480,76 @@ footer a:hover {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 14px 20px;
+    padding: 12px 15px;
     color: white;
     text-decoration: none;
-    border-radius: 10px;
-    font-weight: 600;
+    border-radius: 8px;
+    font-weight: bold;
     transition: all 0.3s ease;
-    font-size: 1.05rem;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    border: 2px solid transparent;
 }
 
 .dashboard-btn {
     background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
 }
 
-.employee-btn {
-    background-color: var(--gray-color);
-    border-color: var(--gray-color);
-}
-
-/* RAF Button Specific Improvements */
 .employee-btn {
     background-color: #5a67d8;
-    border-color: #5a67d8;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    border: 2px solid #5a67d8;
 }
 
-.employee-btn i {
-    font-size: 1.1em;
-}
-
-/* Hover effects */
 .job-portal-btn:hover {
     background-color: var(--dark-color);
     border-color: var(--dark-color);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .dashboard-btn:hover {
     background-color: #2980b9;
     border-color: #2980b9;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
 
 .employee-btn:hover {
     background-color: #4c51bf;
     border-color: #4c51bf;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
 
-/* ==================== */
-/* RESPONSIVE ADJUSTMENTS */
-/* ==================== */
 @media (max-width: 768px) {
-    footer {
-        padding: 2rem 0;
+    .container {
+        padding: 20px;
+    }
+    
+    .logo {
+        max-width: 140px;
+    }
+    
+    #qr-code-canvas {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .welcome-logo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .top-buttons-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .dashboard-btn-container,
+    .employee-login-container {
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .employee-login-container {
+        flex-direction: column;
+        gap: 5px;
     }
     
     footer .row {
@@ -563,45 +558,17 @@ footer a:hover {
         gap: 10px;
     }
     
-    footer p {
-        font-size: 1rem;
-    }
-    
     .small-buttons-row {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
     }
     
     .dashboard-btn-wrapper, 
     .employee-login-wrapper {
         width: 100%;
     }
-    
-    .job-portal-btn {
-        padding: 14px 20px;
-        font-size: 1.15rem;
-    }
-    
-    .dashboard-btn,
-    .employee-btn {
-        padding: 12px 18px;
-    }
 }
 
-@media (max-width: 576px) {
-    footer {
-        padding: 1.5rem 0;
-    }
-    
-    .job-portal-btn {
-        font-size: 1.1rem;
-        padding: 12px 18px;
-    }
-    
-    .buttons-container {
-        margin-bottom: 20px;
-    }
-}
 @media (max-width: 576px) {
     .container {
         padding: 15px;
@@ -641,5 +608,13 @@ footer a:hover {
     
     .welcome-message-line {
         font-size: 1.2rem;
+    }
+    
+    footer {
+        padding: 1.5rem 0;
+    }
+    
+    footer p {
+        font-size: 1rem;
     }
 }
