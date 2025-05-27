@@ -42,7 +42,7 @@ const translations = {
         copiedText: "Copied!",
         dashboardText: "Dashboard",
         employeeText: "Already a TP employee?",
-        clickHereText: "Click here!",
+        clickHereText: "TP employee!",
         tpGlobal: "TP Global",
         termsContent: `
         <h4>Refer a Friend Program Terms</h4>
