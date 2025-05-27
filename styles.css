@@ -504,6 +504,81 @@ footer {
         max-width: 300px;
     }
 }
+/* Buttons Container */
+.buttons-container {
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+/* Job Portal Button (full width) */
+.job-portal-wrapper {
+    width: 100%;
+}
+
+.job-portal-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Small buttons row */
+.small-buttons-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.dashboard-btn-wrapper, .employee-login-wrapper {
+    flex: 1; /* Each takes half the space */
+}
+
+.dashboard-btn, .employee-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.employee-btn {
+    background-color: #6c757d; /* Different color for distinction */
+}
+
+/* Hover effects */
+.job-portal-btn:hover, .dashboard-btn:hover, .employee-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .small-buttons-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .dashboard-btn-wrapper, .employee-login-wrapper {
+        width: 100%;
+    }
+}
 @media (max-width: 576px) {
     .container {
         padding: 15px;
