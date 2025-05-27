@@ -41,7 +41,7 @@ const translations = {
         closeBtn: "Close",
         copiedText: "Copied!",
         dashboardText: "Dashboard",
-        clickHereText: "TP employee!",
+        clickHereText: "TP RAF",
         tpGlobal: "TP Global",
         termsContent: `
         <h4>Refer a Friend Program Terms</h4>
@@ -117,7 +117,7 @@ const translations = {
         closeBtn: "閉じる",
         copiedText: "コピーしました!",
         dashboardText: "ダッシュボード",
-        clickHereText: "従業員ですか！",
+        clickHereText: "TP RAF",
         tpGlobal: "TP Global",
         termsContent: `
         <h4>友人紹介プログラムの利用規約</h4>
@@ -191,7 +191,7 @@ const translations = {
         closeBtn: "닫기",
         copiedText: "복사되었습니다!",
         dashboardText: "대시보드",
-        clickHereText: " TP 직원이신가요!",
+        clickHereText: "TP RAF",
         tpGlobal: "TP Global",
         termsContent: `
         <h4>친구 추천 프로그램 약관</h4>
@@ -265,7 +265,7 @@ const translations = {
         closeBtn: "关闭",
         copiedText: "已复制!",
         dashboardText: "仪表板",
-        clickHereText: "TP员工！",
+        clickHereText: "TP RAF",
         tpGlobal: "TP Global",
         termsContent: `
         <h4>推荐好友计划条款</h4>
@@ -339,7 +339,7 @@ const translations = {
         closeBtn: "關閉",
         copiedText: "已複製!",
         dashboardText: "儀表板",
-        clickHereText: "TP員工！",
+        clickHereText: "TP RAF",
         tpGlobal: "TP Global",
         termsContent: `
         <h4>推薦朋友計劃條款</h4>
