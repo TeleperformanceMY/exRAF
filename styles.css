@@ -389,125 +389,68 @@ body {
     display: none;
 }
 
-/* Footer */
 footer {
-    background-color: var(--black);
+    background-color: var(--dark-color);
     color: var(--white);
-    padding: 2rem 0;
-    margin-top: auto;
+    padding: 2.5rem 0;
+    margin-top: 3rem;
+    width: 100%;
+    position: relative;
+    z-index: 10;
 }
 
-.footer-link {
+footer .container {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+footer .row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    padding: 0.5rem 0;
+}
+
+footer a {
     color: var(--secondary-color);
     text-decoration: none;
-    transition: all var(--transition-speed) ease;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
-.footer-link:hover {
-    color: rgba(255, 255, 255, 0.8);
+footer a:hover {
+    color: var(--white);
     text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-    }
-    
-    .logo {
-        max-width: 140px;
-    }
-    
-    #qr-code-canvas {
-        width: 180px;
-        height: 180px;
-    }
-    
-    .welcome-logo {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .top-buttons-container {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .dashboard-btn-container,
-    .employee-login-container {
-        text-align: center;
-        justify-content: center;
-    }
-    
-    .employee-login-container {
-        flex-direction: column;
-        gap: 5px;
-    }
-}
-/* Top buttons container */
-.top-buttons-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-/* Job Portal Button */
-.job-portal-container {
-    order: 1; /* Makes it appear first */
-}
-
-.job-portal-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 20px;
-    background-color: --gray-color; 
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
+#current-year {
     font-weight: bold;
-    font-size: 1.2rem; /* Larger font size */
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 200px; /* Wider than others */
+    color: var(--secondary-color);
 }
 
-.job-portal-btn:hover {
-    background-color: #218838;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-    color: white;
-}
-
-.job-portal-btn i {
-    margin-right: 8px;
-    font-size: 1.1rem;
-}
-
-/* Existing buttons - make them smaller to contrast */
-.dashboard-btn, .employee-btn {
-    font-size: 1rem;
-    min-width: 160px;
-    padding: 10px 15px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .top-buttons-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .job-portal-btn, .dashboard-btn, .employee-btn {
-        width: 100%;
-        max-width: 300px;
-    }
-}
-/* Buttons Container */
+/* ==================== */
+/* IMPROVED BUTTON LAYOUT */
+/* ==================== */
 .buttons-container {
     max-width: 800px;
-    margin: 0 auto 20px;
+    margin: 0 auto 25px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 /* Job Portal Button (full width) */
@@ -520,26 +463,29 @@ footer {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 12px 20px;
-    background-color: #28a745;
+    padding: 16px 24px;
+    background-color: var(--primary-color);
     color: white;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1.2rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.25rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border: 2px solid var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* Small buttons row */
 .small-buttons-row {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     width: 100%;
 }
 
 .dashboard-btn-wrapper, .employee-login-wrapper {
-    flex: 1; /* Each takes half the space */
+    flex: 1;
 }
 
 .dashboard-btn, .employee-btn {
@@ -547,36 +493,113 @@ footer {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 10px 15px;
-    background-color: #007bff;
+    padding: 14px 20px;
     color: white;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
+    border-radius: 10px;
+    font-weight: 600;
     transition: all 0.3s ease;
+    font-size: 1.05rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+}
+
+.dashboard-btn {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
 }
 
 .employee-btn {
-    background-color: #6c757d; /* Different color for distinction */
+    background-color: var(--gray-color);
+    border-color: var(--gray-color);
+}
+
+/* RAF Button Specific Improvements */
+.employee-btn {
+    background-color: #5a67d8;
+    border-color: #5a67d8;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.employee-btn i {
+    font-size: 1.1em;
 }
 
 /* Hover effects */
-.job-portal-btn:hover, .dashboard-btn:hover, .employee-btn:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: white;
+.job-portal-btn:hover {
+    background-color: var(--dark-color);
+    border-color: var(--dark-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive adjustments */
+.dashboard-btn:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.employee-btn:hover {
+    background-color: #4c51bf;
+    border-color: #4c51bf;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== */
+/* RESPONSIVE ADJUSTMENTS */
+/* ==================== */
 @media (max-width: 768px) {
-    .small-buttons-row {
+    footer {
+        padding: 2rem 0;
+    }
+    
+    footer .row {
         flex-direction: column;
+        text-align: center;
         gap: 10px;
     }
     
-    .dashboard-btn-wrapper, .employee-login-wrapper {
+    footer p {
+        font-size: 1rem;
+    }
+    
+    .small-buttons-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .dashboard-btn-wrapper, 
+    .employee-login-wrapper {
         width: 100%;
+    }
+    
+    .job-portal-btn {
+        padding: 14px 20px;
+        font-size: 1.15rem;
+    }
+    
+    .dashboard-btn,
+    .employee-btn {
+        padding: 12px 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    footer {
+        padding: 1.5rem 0;
+    }
+    
+    .job-portal-btn {
+        font-size: 1.1rem;
+        padding: 12px 18px;
+    }
+    
+    .buttons-container {
+        margin-bottom: 20px;
     }
 }
 @media (max-width: 576px) {
