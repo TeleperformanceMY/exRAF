@@ -73,6 +73,7 @@ const translations = {
         <p>Last updated: ${new Date().toLocaleDateString('en-US')}</p>
         `,
         noJobError: "No job found for the selected criteria",
+        jobPortalText: "TP Job Portal",
         loadError: "Failed to load job data. Please try again later."
     },
     ja: {
