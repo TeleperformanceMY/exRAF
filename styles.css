@@ -7,11 +7,6 @@
     --white: #fff;
     --black: #212529;
     --section-bg: #f8f9fa;
-    --success-color: #28a745;
-    --info-color: #17a2b8;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --transition-speed: 0.3s;
 }
 
 body {
@@ -22,23 +17,27 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 600px;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
     padding-top: 20px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .logo {
     max-width: 180px;
     height: auto;
     filter: grayscale(100%);
-    transition: all var(--transition-speed) ease;
+    transition: all 0.3s ease;
     margin-top: 10px;
 }
 
@@ -51,9 +50,7 @@ body {
     border: none;
     border-radius: 12px;
     overflow: hidden;
-    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-    max-width: 800px;
-    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -79,7 +76,7 @@ body {
     padding: 12px 15px;
     border: 2px solid #e9ecef;
     border-radius: 8px;
-    transition: all var(--transition-speed) ease;
+    transition: all 0.3s ease;
 }
 
 .form-control:focus, .form-select:focus {
@@ -91,7 +88,7 @@ body {
     padding: 12px 24px;
     border-radius: 8px;
     font-weight: 600;
-    transition: all var(--transition-speed) ease;
+    transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -115,7 +112,7 @@ body {
 
 .consent-box {
     background-color: rgba(248, 249, 250, 0.5);
-    transition: all var(--transition-speed) ease;
+    transition: all 0.3s ease;
 }
 
 .consent-box:hover {
@@ -166,7 +163,7 @@ body {
     background-color: var(--light-color);
     color: var(--black);
     font-size: 20px;
-    transition: all var(--transition-speed) ease;
+    transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 0.25rem;
 }
@@ -202,7 +199,7 @@ body {
 }
 
 .is-invalid {
-    border-color: var(--danger-color) !important;
+    border-color: #dc3545 !important;
 }
 
 .is-invalid + .invalid-feedback {
@@ -214,19 +211,24 @@ body {
     width: 100%;
     margin-top: 0.25rem;
     font-size: 0.875em;
-    color: var(--danger-color);
+    color: #dc3545;
 }
 
 .form-check-input.is-invalid {
-    border-color: var(--danger-color);
+    border-color: #dc3545;
 }
 
 .form-check-input.is-invalid ~ .form-check-label {
-    color: var(--danger-color);
+    color: #dc3545;
 }
 
 .btn-success {
-    background-color: var(--success-color);
+    background-color: #28a745;
+}
+
+.btn-primary {
+    background-color: #2c3e50;
+    border-color: #2c3e50;
 }
 
 .modal-content {
@@ -244,16 +246,203 @@ body {
     overflow-y: auto;
 }
 
-/* ====================== */
-/* BUTTONS LAYOUT SECTION */
-/* ====================== */
-
-.buttons-container {
-    max-width: 800px;
-    margin: 0 auto 20px;
+.top-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-/* Job Portal Button (full width) */
+.employee-login-container {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.employee-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.employee-btn i {
+    margin-right: 6px;
+    font-size: 0.9em;
+}
+
+.employee-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-btn-container {
+    text-align: left;
+}
+
+.dashboard-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: var(--black);
+    color: var(--white);
+    border: 2px solid var(--black);
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.dashboard-btn i {
+    margin-right: 6px;
+    font-size: 0.9em;
+}
+
+.dashboard-btn:hover {
+    background-color: var(--dark-color);
+    border-color: var(--dark-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.welcome-message-line {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.welcome-popup.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.welcome-logo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+    animation: flip 2s ease-in-out;
+}
+
+@keyframes flip {
+    0% { transform: rotateY(0); }
+    50% { transform: rotateY(180deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.phone-hint {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 5px;
+    display: none;
+}
+
+/* FULL WIDTH FOOTER FIX */
+footer {
+    background-color: #000000; /* Pure black */
+    color: var(--white);
+    padding: 2.5rem 0;
+    margin-top: auto;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+footer .container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+footer .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--white);
+}
+
+footer a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--white);
+    text-decoration: underline;
+}
+
+#current-year {
+    font-weight: bold;
+}
+
+/* BUTTONS CONTAINER IMPROVEMENTS */
+.buttons-container {
+    max-width: 800px;
+    margin: 0 auto 25px;
+    width: 100%;
+}
+
 .job-portal-wrapper {
     width: 100%;
     margin-bottom: 15px;
@@ -270,24 +459,12 @@ body {
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 1.25rem;
-    transition: all var(--transition-speed) ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 2px solid var(--primary-color);
 }
 
-.job-portal-btn:hover {
-    background-color: var(--dark-color);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.job-portal-btn i {
-    margin-right: 10px;
-    font-size: 1.2rem;
-}
-
-/* Small buttons row */
 .small-buttons-row {
     display: flex;
     gap: 15px;
@@ -308,95 +485,45 @@ body {
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
-    transition: all var(--transition-speed) ease;
-    font-size: 1rem;
-    border: 2px solid transparent;
+    transition: all 0.3s ease;
 }
 
 .dashboard-btn {
     background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-}
-
-.dashboard-btn:hover {
-    background-color: #258cd1;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--secondary-color);
 }
 
 .employee-btn {
-    background-color: var(--gray-color);
-    border-color: var(--gray-color);
+    background-color: #5a67d8;
+    border: 2px solid #5a67d8;
+}
+
+.job-portal-btn:hover {
+    background-color: var(--dark-color);
+    border-color: var(--dark-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-btn:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+    transform: translateY(-2px);
 }
 
 .employee-btn:hover {
-    background-color: #5a6268;
+    background-color: #4c51bf;
+    border-color: #4c51bf;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* ============== */
-/* FOOTER SECTION */
-/* ============== */
-
-footer {
-    background-color: var(--dark-color);
-    color: var(--white);
-    padding: 2rem 0;
-    margin-top: 3rem;
-    width: 100%;
-}
-
-footer .container {
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-footer .row {
-    width: 100%;
-    margin: 0 auto;
-}
-
-footer p {
-    margin: 0;
-    font-size: 1rem;
-}
-
-footer a {
-    color: var(--secondary-color);
-    text-decoration: none;
-    transition: all var(--transition-speed) ease;
-}
-
-footer a:hover {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: underline;
-}
-
-/* =================== */
-/* RESPONSIVE ADJUSTMENTS */
-/* =================== */
-
-@media (max-width: 992px) {
-    .container {
-        padding: 20px;
-    }
 }
 
 @media (max-width: 768px) {
-    .small-buttons-row {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .dashboard-btn-wrapper, .employee-login-wrapper {
-        width: 100%;
+    .container {
+        padding: 20px;
     }
     
     .logo {
-        max-width: 150px;
+        max-width: 140px;
     }
     
     #qr-code-canvas {
@@ -404,16 +531,41 @@ footer a:hover {
         height: 180px;
     }
     
-    .section-box {
-        padding: 1.25rem;
+    .welcome-logo {
+        width: 150px;
+        height: 150px;
     }
     
-    .btn {
-        padding: 10px 20px;
+    .top-buttons-container {
+        flex-direction: column;
+        align-items: stretch;
     }
     
-    footer {
-        padding: 1.5rem 0;
+    .dashboard-btn-container,
+    .employee-login-container {
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .employee-login-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    footer .row {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .small-buttons-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .dashboard-btn-wrapper, 
+    .employee-login-wrapper {
+        width: 100%;
     }
 }
 
@@ -428,9 +580,8 @@ footer a:hover {
         font-size: 18px;
     }
     
-    .job-portal-btn {
-        padding: 12px 15px;
-        font-size: 1.1rem;
+    .btn {
+        padding: 10px 20px;
     }
     
     #qr-code-canvas {
@@ -446,13 +597,24 @@ footer a:hover {
         margin: 0.5rem;
     }
     
-    footer p {
-        font-size: 0.9rem;
+    .section-box {
+        padding: 1rem;
     }
     
-    footer .row {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
+    .welcome-logo {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .welcome-message-line {
+        font-size: 1.2rem;
+    }
+    
+    footer {
+        padding: 1.5rem 0;
+    }
+    
+    footer p {
+        font-size: 1rem;
     }
 }
