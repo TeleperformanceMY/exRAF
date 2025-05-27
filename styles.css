@@ -462,7 +462,7 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 12px 20px;
-    background-color: #28a745; /* Green color, change as needed */
+    background-color: --gray-color; 
     color: white;
     text-decoration: none;
     border-radius: 8px;
