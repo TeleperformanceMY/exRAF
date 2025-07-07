@@ -83,27 +83,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Helper function to get simplified status type
     function getSimplifiedStatusType(status) {
-        const mappedStatus = mapStatusToGroup(status);
-        
-        switch(mappedStatus) {
-            case "Hired (Confirmed)":
-                return "passed";
-            case "Hired (Probation)":
-                return "probation";
-            case "Previously Applied (No Payment)":
-                return "previouslyApplied";
-            case "Final Review":
-                return "operations";
-            case "Interview Stage":
-                return "talent";
-            case "Assessment Stage":
-                return "assessment";
-            case "Application Received":
-                return "received";
-            case "Not Selected":
-                return "failed";
-            default:
-                return "received";
+         const mappedStatus = mapStatusToGroup(status);
+            
+            switch(mappedStatus) {
+                case "Hired (Confirmed)":
+                    return "passed";
+                case "Hired (Probation)":
+                    return "probation";
+                case "Previously Applied (No Payment)":
+                    return "previouslyApplied";
+                case "Assessment Stage":
+                    return "assessment";
+                case "Application Received":
+                    return "received";
+                case "Not Selected":
+                    return "failed";
+                default:
+                    return "received";
         }
     }
 
