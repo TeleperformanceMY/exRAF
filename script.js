@@ -655,54 +655,42 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h5 class="card-title text-center mb-4">
                         <i class="fas fa-info-circle me-2"></i>Status Examples
                     </h5>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="status-example status-passed">
-                                <h5><i class="fas fa-check-circle me-2 text-success"></i>Passed Probation</h5>
-                                <p>Candidate completed 90+ days</p>
-                                <span class="badge bg-success">${translation.statusPassed || 'Passed'}</span>
-                            </div>
-                            <div class="status-example status-probation">
-                                <h5><i class="fas fa-clock me-2 text-warning"></i>In Probation</h5>
-                                <p>Candidate hired but under 90 days</p>
-                                <span class="badge bg-warning text-dark">${translation.statusProbation || 'Probation'}</span>
-                            </div>
-                            <div class="status-example status-operations">
-                                <h5><i class="fas fa-cogs me-2 text-warning"></i>Final Review</h5>
-                                <p>Operations team finalizing</p>
-                                <span class="badge bg-warning text-dark">${translation.statusOperations || 'Operations'}</span>
-                            </div>
-                            <div class="status-example status-talent">
-                                <h5><i class="fas fa-users me-2 text-info"></i>Interview Stage</h5>
-                                <p>Candidate in interview process</p>
-                                <span class="badge bg-info">${translation.statusTalent || 'Interview'}</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="status-example status-previouslyApplied">
-                                <h5><i class="fas fa-ban me-2 text-secondary"></i>Previously Applied</h5>
-                                <p>No payment will be made</p>
-                                <span class="badge bg-previously-applied">${translation.statusPreviouslyApplied || 'Previously Applied'}</span>
-                            </div>
-                            <div class="status-example status-assessment">
-                                <h5><i class="fas fa-clipboard-check me-2 text-primary"></i>Assessment Stage</h5>
-                                <p>Candidate completing assessments</p>
-                                <span class="badge bg-primary">${translation.statusAssessment || 'Assessment'}</span>
-                            </div>
-                            <div class="status-example status-received">
-                                <h5><i class="fas fa-file-alt me-2 text-secondary"></i>Application Received</h5>
-                                <p>Initial application stage</p>
-                                <span class="badge bg-secondary">${translation.statusReceived || 'Received'}</span>
-                            </div>
-                            <div class="status-example status-failed">
-                                <h5><i class="fas fa-times-circle me-2 text-danger"></i>Not Selected</h5>
-                                <p>Candidate not hired</p>
-                                <span class="badge bg-danger">${translation.statusFailed || 'Failed'}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="status-example status-passed">
+            <h5><i class="fas fa-check-circle me-2 text-success"></i>Passed Probation</h5>
+            <p>Candidate completed 90+ days</p>
+            <span class="badge bg-success">${translation.statusPassed || 'Passed'}</span>
+        </div>
+        <div class="status-example status-probation">
+            <h5><i class="fas fa-clock me-2 text-warning"></i>In Probation</h5>
+            <p>Candidate hired but under 90 days</p>
+            <span class="badge bg-warning text-dark">${translation.statusProbation || 'Probation'}</span>
+        </div>
+        <div class="status-example status-assessment">
+            <h5><i class="fas fa-clipboard-check me-2 text-primary"></i>Assessment Stage</h5>
+            <p>Candidate completing assessments and interviews</p>
+            <span class="badge bg-primary">${translation.statusAssessment || 'Assessment'}</span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="status-example status-previouslyApplied">
+            <h5><i class="fas fa-ban me-2 text-secondary"></i>Previously Applied</h5>
+            <p>No payment will be made</p>
+            <span class="badge bg-previously-applied">${translation.statusPreviouslyApplied || 'Previously Applied'}</span>
+        </div>
+        <div class="status-example status-received">
+            <h5><i class="fas fa-file-alt me-2 text-secondary"></i>Application Received</h5>
+            <p>Initial application stage</p>
+            <span class="badge bg-secondary">${translation.statusReceived || 'Received'}</span>
+        </div>
+        <div class="status-example status-failed">
+            <h5><i class="fas fa-times-circle me-2 text-danger"></i>Not Selected</h5>
+            <p>Candidate not hired</p>
+            <span class="badge bg-danger">${translation.statusFailed || 'Failed'}</span>
+        </div>
+    </div>
+</div>
             
             <!-- Getting Started Section for New Users -->
             ${isNewUser || referrals.length === 0 ? `
@@ -992,63 +980,53 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Chart data - different setup for filtered vs unfiltered
         const data = filteredView ? {
-            labels: statusMapping.displayOrder.map(group => {
-                // Try to find a translation, fallback to group name
-                const translationKey = `status${group.replace(/\s+/g, '').replace(/[()]/g, '')}`;
-                return translation[translationKey] || group;
-            }),
-            datasets: [{
-                data: hasData ? statusMapping.displayOrder.map(group => statusCounts[group]) : [1, 1, 1, 1, 1, 1, 1, 1], // Show equal parts if no data
-                backgroundColor: [
-                    '#28a745', // Hired (Confirmed) - green
-                    '#ffc107', // Hired (Probation) - yellow
-                    '#6c757d', // Previously Applied - gray
-                    '#fd7e14', // Final Review - orange
-                    '#17a2b8', // Interview Stage - teal
-                    '#007bff', // Assessment Stage - blue
-                    '#6c757d', // Application Received - gray
-                    '#dc3545'  // Not Selected - red
-                ],
-                borderWidth: 2,
-                borderColor: '#fff',
-                hoverOffset: hasData ? 8 : 0
-            }]
-        } : {
-            // Original chart data setup
-            labels: [
-                translation.statusPassed || 'Passed',
-                translation.statusProbation || 'Probation',
-                translation.statusPreviouslyApplied || 'Previously Applied',
-                translation.statusOperations || 'Operations',
-                translation.statusTalent || 'Interview',
-                translation.statusAssessment || 'Assessment',
-                translation.statusReceived || 'Received',
-                translation.statusFailed || 'Failed'
-            ],
-            datasets: [{
-                data: hasData ? [
-                    statusCounts.passed,
-                    statusCounts.probation,
-                    statusCounts.previouslyApplied,
-                    statusCounts.operations,
-                    statusCounts.talent,
-                    statusCounts.assessment,
-                    statusCounts.received,
-                    statusCounts.failed
-                ] : [1, 1, 1, 1, 1, 1, 1, 1], // Show equal parts if no data
-                backgroundColor: [
-                    '#28a745', // Passed - green
-                    '#ffc107', // Probation - yellow
-                    '#6c757d', // Previously applied - gray
-                    '#fd7e14', // Operations - orange
-                    '#17a2b8', // Talent - teal
-                    '#007bff', // Assessment - blue
-                    '#6c757d', // Received - gray
-                    '#dc3545'  // Failed - red
-                ],
-                borderWidth: 2,
-                borderColor: '#fff',
-                hoverOffset: hasData ? 8 : 0
+    labels: statusMapping.displayOrder.map(group => {
+        const translationKey = `status${group.replace(/\s+/g, '').replace(/[()]/g, '')}`;
+        return translation[translationKey] || group;
+    }),
+    datasets: [{
+        data: hasData ? statusMapping.displayOrder.map(group => statusCounts[group]) : [1, 1, 1, 1, 1, 1, 1, 1],
+        backgroundColor: [
+            '#28a745', // Hired (Confirmed) - green
+            '#ffc107', // Hired (Probation) - yellow
+            '#6c757d', // Previously Applied - gray
+            '#007bff', // Assessment Stage - blue
+            '#6c757d', // Application Received - gray
+            '#dc3545'  // Not Selected - red
+        ],
+        borderWidth: 2,
+        borderColor: '#fff',
+        hoverOffset: hasData ? 8 : 0
+    }]
+} : {
+    labels: [
+        translation.statusPassed || 'Passed',
+        translation.statusProbation || 'Probation',
+        translation.statusPreviouslyApplied || 'Previously Applied',
+        translation.statusAssessment || 'Assessment',
+        translation.statusReceived || 'Received',
+        translation.statusFailed || 'Failed'
+    ],
+    datasets: [{
+        data: hasData ? [
+            statusCounts.passed,
+            statusCounts.probation,
+            statusCounts.previouslyApplied,
+            statusCounts.assessment,
+            statusCounts.received,
+            statusCounts.failed
+        ] : [1, 1, 1, 1, 1, 1],
+        backgroundColor: [
+            '#28a745', // Passed - green
+            '#ffc107', // Probation - yellow
+            '#6c757d', // Previously applied - gray
+            '#007bff', // Assessment - blue
+            '#6c757d', // Received - gray
+            '#dc3545'  // Failed - red
+        ],
+        borderWidth: 2,
+        borderColor: '#fff',
+        hoverOffset: hasData ? 8 : 0
             }]
         };
 
