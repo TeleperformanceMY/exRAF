@@ -4,8 +4,6 @@ const statusMapping = {
         "Hired (Confirmed)": ["Hired (Confirmed)", "New Starter (Hired)", "Graduate"],
         "Hired (Probation)": ["Hired (Probation)"],
         "Previously Applied (No Payment)": ["Previously Applied (No Payment)"],
-        "Final Review": ["Final Review", "Ready to Offer", "Job Offer Presented", "Onboarding Started", "Cleared to Start"],
-        "Interview Stage": ["Interview Stage", "Interview Scheduled", "Interview Complete / Offer Requested", "Second Interview Scheduled", "Second Interview Complete / Offer Requested", "Third Interview Scheduled", "Third Interview Complete / Offer Requested"],
         "Assessment Stage": ["Assessment Stage", "SHL Assessment: Conversational Multichat ENG", "SHL Assessment: Sales Competency ENG", "SHL Assessment: System Diagnostic ENG", "SHL Assessment: Typing ENG", "SHL Assessment: WriteX E-mail ENG", "Contact Attempt 1", "Contact Attempt 2", "Contact Attempt 3"],
         "Application Received": ["Application Received", "TextApply", "External Portal", "Internal Portal", "Recruiter Submitted", "Agency Submissions", "Employee Referral"],
         "Not Selected": [
@@ -47,8 +45,6 @@ const statusMapping = {
         "Hired (Confirmed)",
         "Hired (Probation)",
         "Previously Applied (No Payment)",
-        "Final Review",
-        "Interview Stage",
         "Assessment Stage",
         "Application Received",
         "Not Selected"
