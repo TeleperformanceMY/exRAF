@@ -452,43 +452,107 @@ document.addEventListener('DOMContentLoaded', function() {
             button.innerHTML = originalText;
             button.disabled = false;
             
+            // Check if user exists but has no referrals or if user doesn't exist
             if (!apiData) {
-                // Show user not found modal
-                const userNotFoundModal = new bootstrap.Modal(document.getElementById('userNotFoundModal'));
-                userNotFoundModal.show();
-                return;
+                // Create empty data structure for new users
+                const emptyData = {
+                    referrer: {
+                        phone: phone,
+                        email: email,
+                        fullName: "New User"
+                    },
+                    referrals: []
+                };
+                
+                // Store empty data
+                currentReferralData = emptyData;
+                
+                // Process and show results with empty referrals
+                const processedReferrals = processReferralData(emptyData);
+                showReferralResults(processedReferrals, emptyData.referrer, true); // Added showWelcome flag
+                
+                // Show welcome message
+                setTimeout(() => {
+                    showWelcomeMessage();
+                }, 500);
+                
+            } else {
+                // Store current data
+                currentReferralData = apiData;
+                
+                // Process and show results
+                const processedReferrals = processReferralData(apiData);
+                showReferralResults(processedReferrals, apiData.referrer, false);
             }
-            
-            // Store current data
-            currentReferralData = apiData;
-            
-            // Process and show results
-            const processedReferrals = processReferralData(apiData);
-            showReferralResults(processedReferrals, apiData.referrer);
             
         } catch (error) {
             console.error('Error fetching referrals:', error);
             button.innerHTML = originalText;
             button.disabled = false;
             
-            // Show error modal
-            const userNotFoundModal = new bootstrap.Modal(document.getElementById('userNotFoundModal'));
-            userNotFoundModal.show();
+            // Show dashboard with empty data instead of error
+            const emptyData = {
+                referrer: {
+                    phone: phone,
+                    email: email,
+                    fullName: "Guest User"
+                },
+                referrals: []
+            };
+            
+            currentReferralData = emptyData;
+            const processedReferrals = processReferralData(emptyData);
+            showReferralResults(processedReferrals, emptyData.referrer, true);
+            
+            setTimeout(() => {
+                showWelcomeMessage();
+            }, 500);
         }
     });
     
+    // Show welcome message for new users
+    function showWelcomeMessage() {
+        const translation = translations[currentLanguage] || translations.en;
+        
+        // Create and show a welcome alert at the top of results
+        const welcomeAlert = document.createElement('div');
+        welcomeAlert.className = 'alert alert-info alert-dismissible fade show mb-4';
+        welcomeAlert.innerHTML = `
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <h5 class="alert-heading">
+                <i class="fas fa-hand-wave me-2"></i>Welcome to xRAF!
+            </h5>
+            <p class="mb-2">No referrals found for this account yet. Start referring friends to TP and earn up to RM800 per successful hire!</p>
+            <hr>
+            <p class="mb-0">
+                <strong>How it works:</strong><br>
+                • Refer friends using the xRAF form<br>
+                • Track their progress here<br>
+                • Earn RM50 when they pass assessment<br>
+                • Earn RM750 when they complete 90 days
+            </p>
+        `;
+        
+        // Insert at the beginning of results-step
+        const resultsStep = document.getElementById('results-step');
+        resultsStep.insertBefore(welcomeAlert, resultsStep.firstChild);
+    }
+    
     // Show referral results
-    function showReferralResults(referrals, referrerInfo) {
+    function showReferralResults(referrals, referrerInfo, isNewUser = false) {
         document.getElementById('auth-step').style.display = 'none';
         document.getElementById('results-step').style.display = 'block';
         
         const translation = translations[currentLanguage] || translations.en;
         
+        // Adjust the name display for new users
+        const displayName = isNewUser ? 'Welcome!' : (referrerInfo ? referrerInfo.fullName : 'User');
+        
         // Create results content
         const resultsContent = `
             <div class="d-flex justify-content-between align-items-start mb-4 fade-in-up">
                 <div>
-                    ${referrerInfo ? `<h3 class="user-name-display"><i class="fas fa-user-tie me-2"></i>${referrerInfo.fullName}</h3>` : ''}
+                    <h3 class="user-name-display"><i class="fas fa-user-tie me-2"></i>${displayName}</h3>
                     <h4 data-translate="yourReferralsTitle"><i class="fas fa-users me-2"></i>${translation.yourReferralsTitle}</h4>
                 </div>
                 <button id="dashboard-back" class="btn btn-outline-secondary" data-translate="backBtn">
@@ -589,7 +653,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div id="referral-list"></div>
             
-            <!-- Status Examples Section -->
+            <!-- Status Examples Section - Always visible -->
             <div class="card mb-4 status-examples fade-in-up" style="animation-delay: 0.8s">
                 <div class="card-body">
                     <h5 class="card-title text-center mb-4">
@@ -636,6 +700,60 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                             <div class="status-example status-failed">
                                 <h5><i class="fas fa-times-circle me-2 text-danger"></i>Not Selected</h5>
+                                <p>Candidate not hired</p>
+                                <span class="badge bg-danger">${translation.statusFailed || 'Failed'}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Getting Started Section for New Users -->
+            ${isNewUser || referrals.length === 0 ? `
+            <div class="card mb-4 fade-in-up" style="animation-delay: 0.9s; border: 2px dashed #000;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        <i class="fas fa-rocket me-2"></i>Ready to Start Earning?
+                    </h5>
+                    <p class="mb-3">Start referring friends to TP and track their progress here!</p>
+                    <a href="https://tpmyandtpth.github.io/xRAF/" class="btn btn-primary btn-lg">
+                        <i class="fas fa-user-plus me-2"></i>Start Referring Now
+                    </a>
+                </div>
+            </div>
+            ` : ''}
+            
+            <!-- Social Media -->
+            <div class="mt-4 fade-in-up" style="animation-delay: 1s">
+                <div class="row text-center">
+                    <!-- TP Global -->
+                    <div class="col-md-4 mb-3">
+                        <h5 data-translate="tpGlobal">${translation.tpGlobal}</h5>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="https://www.linkedin.com/company/teleperformance" class="social-icon" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.youtube.com/@TeleperformanceGroup" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.tiktok.com/@teleperformance_group" class="social-icon" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                    <!-- TP Malaysia -->
+                    <div class="col-md-4 mb-3">
+                        <h5 data-translate="followMalaysia">${translation.followMalaysia}</h5>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="https://www.facebook.com/TPinMalaysia/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="http://www.instagram.com/tp_malaysia/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <!-- TP Thailand -->
+                    <div class="col-md-4 mb-3">
+                        <h5 data-translate="followThailand">${translation.followThailand}</h5>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="http://www.facebook.com/TPinThailand/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="http://www.instagram.com/tpinthailand/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;"></i>Not Selected</h5>
                                 <p>Candidate not hired</p>
                                 <span class="badge bg-danger">${translation.statusFailed || 'Failed'}</span>
                             </div>
@@ -843,7 +961,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateTranslations();
     }
     
-    // Update chart with referral data
+    // Update chart with referral data - handle empty data
     function updateChart(referrals) {
         const ctx = document.getElementById('statusChart').getContext('2d');
         const translation = translations[currentLanguage] || translations.en;
@@ -873,6 +991,9 @@ document.addEventListener('DOMContentLoaded', function() {
             };
         }
         
+        // Check if all counts are zero
+        const hasData = Object.values(statusCounts).some(count => count > 0);
+        
         // Chart data - different setup for filtered vs unfiltered
         const data = filteredView ? {
             labels: statusMapping.displayOrder.map(group => {
@@ -881,7 +1002,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return translation[translationKey] || group;
             }),
             datasets: [{
-                data: statusMapping.displayOrder.map(group => statusCounts[group]),
+                data: hasData ? statusMapping.displayOrder.map(group => statusCounts[group]) : [1, 1, 1, 1, 1, 1, 1, 1], // Show equal parts if no data
                 backgroundColor: [
                     '#28a745', // Hired (Confirmed) - green
                     '#ffc107', // Hired (Probation) - yellow
@@ -894,7 +1015,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ],
                 borderWidth: 2,
                 borderColor: '#fff',
-                hoverOffset: 8
+                hoverOffset: hasData ? 8 : 0
             }]
         } : {
             // Original chart data setup
@@ -909,7 +1030,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 translation.statusFailed || 'Failed'
             ],
             datasets: [{
-                data: [
+                data: hasData ? [
                     statusCounts.passed,
                     statusCounts.probation,
                     statusCounts.previouslyApplied,
@@ -918,7 +1039,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     statusCounts.assessment,
                     statusCounts.received,
                     statusCounts.failed
-                ],
+                ] : [1, 1, 1, 1, 1, 1, 1, 1], // Show equal parts if no data
                 backgroundColor: [
                     '#28a745', // Passed - green
                     '#ffc107', // Probation - yellow
@@ -931,7 +1052,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ],
                 borderWidth: 2,
                 borderColor: '#fff',
-                hoverOffset: 8
+                hoverOffset: hasData ? 8 : 0
             }]
         };
 
@@ -953,6 +1074,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         display: false // We'll create custom legend below
                     },
                     tooltip: {
+                        enabled: hasData, // Disable tooltips if no data
                         backgroundColor: 'rgba(0, 0, 0, 0.8)',
                         titleColor: '#fff',
                         bodyColor: '#fff',
@@ -962,6 +1084,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         padding: 10,
                         callbacks: {
                             label: function(context) {
+                                if (!hasData) return 'No data yet';
                                 const label = context.label || '';
                                 const value = context.raw || 0;
                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
@@ -984,11 +1107,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const legendContainer = document.getElementById('chartLegend');
         legendContainer.innerHTML = '';
         
-        data.labels.forEach((label, i) => {
-            const legendItem = document.createElement('span');
-            legendItem.innerHTML = `<span style="background-color: ${data.datasets[0].backgroundColor[i]}"></span>${label}`;
-            legendContainer.appendChild(legendItem);
-        });
+        // Add "No data" message if empty
+        if (!hasData) {
+            const noDataMsg = document.createElement('div');
+            noDataMsg.className = 'text-muted mt-3';
+            noDataMsg.innerHTML = '<i class="fas fa-chart-pie me-2"></i>Start referring to see your status distribution!';
+            legendContainer.appendChild(noDataMsg);
+        } else {
+            data.labels.forEach((label, i) => {
+                const legendItem = document.createElement('span');
+                legendItem.innerHTML = `<span style="background-color: ${data.datasets[0].backgroundColor[i]}"></span>${label}`;
+                legendContainer.appendChild(legendItem);
+            });
+        }
     }
 
     // Handle remind button clicks - opens WhatsApp with template message
@@ -1017,7 +1148,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize modals
     const tngModal = new bootstrap.Modal(document.getElementById('tngModal'));
-    const userNotFoundModal = new bootstrap.Modal(document.getElementById('userNotFoundModal'));
     
     // Enhanced form interactions
     const formInputs = document.querySelectorAll('.form-control, .form-select');
