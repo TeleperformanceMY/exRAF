@@ -163,20 +163,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Language change handler
-    document.getElementById('lang-select').addEventListener('change', function() {
-        currentLanguage = this.value;
-        console.log('Language changed to:', currentLanguage);
-        updateTranslations();
-        
-        // Refresh displays if data exists
-        if (currentReferralData) {
-            const processedReferrals = processReferralData(currentReferralData);
-            updateChart(processedReferrals);
-            updateEarningsTable(processedReferrals);
-            updateReminderSection(processedReferrals);
-            updateReferralList(processedReferrals);
-        }
+    // Language flag click handler
+    document.querySelectorAll('.lang-flag').forEach(flag => {
+        flag.addEventListener('click', function() {
+            // Remove active class from all flags
+            document.querySelectorAll('.lang-flag').forEach(f => f.classList.remove('active'));
+            
+            // Add active class to clicked flag
+            this.classList.add('active');
+            
+            // Update language
+            currentLanguage = this.dataset.lang;
+            console.log('Language changed to:', currentLanguage);
+            updateTranslations();
+            
+            // Refresh displays if data exists
+            if (currentReferralData) {
+                const processedReferrals = processReferralData(currentReferralData);
+                updateChart(processedReferrals);
+                updateEarningsTable(processedReferrals);
+                updateReminderSection(processedReferrals);
+                updateReferralList(processedReferrals);
+            }
+        });
     });
     
     // Validate phone number
@@ -519,17 +528,17 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="modal fade" id="userNotFoundModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header bg-info">
+                        <div class="modal-header bg-dark">
                             <h5 class="modal-title text-white">Welcome to xRAF!</h5>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="text-center mb-3">
-                                <i class="fas fa-user-plus fa-3x text-info mb-3"></i>
+                                <i class="fas fa-user-plus fa-3x mb-3"></i>
                                 <p>We couldn't find an account with the provided email and phone number.</p>
                                 <p class="text-muted">Don't worry! You can still explore the dashboard and see how the referral program works.</p>
                             </div>
-                            <div class="alert alert-info">
+                            <div class="alert alert-secondary">
                                 <i class="fas fa-info-circle me-2"></i>
                                 <strong>New to xRAF?</strong> Start referring friends to TP and earn up to RM800 per successful hire!
                             </div>
@@ -603,18 +612,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             
-            <div class="card mb-3 fade-in-up" style="animation-delay: 0.4s">
-                <div class="card-body">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="filteredViewToggle">
-                        <label class="form-check-label" for="filteredViewToggle" data-translate="filteredViewLabel">
-                            <i class="fas fa-filter me-2"></i>${translation.filteredViewLabel}
-                        </label>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card mb-4 fade-in-up" style="animation-delay: 0.5s">
+            <div class="card mb-4 fade-in-up" style="animation-delay: 0.4s">
                 <div class="card-body">
                     <h5 class="card-title text-center mb-3" data-translate="statusDistribution">
                         <i class="fas fa-chart-pie me-2"></i>${translation.statusDistribution}
@@ -627,7 +625,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
 
-            <div class="card mb-4 fade-in-up" style="animation-delay: 0.6s">
+            <div class="card mb-4 fade-in-up" style="animation-delay: 0.5s">
                 <div class="card-body">
                     <h5 class="card-title text-center mb-3" data-translate="earningsTitle">
                         <i class="fas fa-money-bill-wave me-2"></i>${translation.earningsTitle}
@@ -654,14 +652,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         </table>
                     </div>
                     <div class="text-center mt-3">
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#tngModal" data-translate="paymentNote">
-                            <i class="fas fa-info-circle me-2"></i>${translation.paymentNote}
+                        <button type="button" class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#tngModal" data-translate="paymentNote">
+                            <i class="fas fa-info-circle me-2"></i>${translation.paymentNote || 'View Payment Terms'}
                         </button>
                     </div>
                 </div>
             </div>
             
-            <div id="reminder-section" class="card mb-4 fade-in-up" style="animation-delay: 0.7s">
+            <div id="reminder-section" class="card mb-4 fade-in-up" style="animation-delay: 0.6s">
                 <div class="card-body">
                     <h5 class="card-title text-center mb-3" data-translate="remindFriendsTitle">
                         <i class="fas fa-bell me-2"></i>${translation.remindFriendsTitle}
@@ -676,7 +674,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div id="referral-list"></div>
             
             <!-- Status Examples Section - Always visible -->
-            <div class="card mb-4 status-examples fade-in-up" style="animation-delay: 0.8s">
+            <div class="card mb-4 status-examples fade-in-up" style="animation-delay: 0.7s">
                 <div class="card-body">
                     <h5 class="card-title text-center mb-4">
                         <i class="fas fa-info-circle me-2"></i>Status Examples
@@ -722,7 +720,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <!-- Getting Started Section for New Users -->
             ${isNewUser || referrals.length === 0 ? `
-            <div class="card mb-4 fade-in-up" style="animation-delay: 0.9s; border: 2px dashed #000;">
+            <div class="card mb-4 fade-in-up" style="animation-delay: 0.8s; border: 2px dashed #000;">
                 <div class="card-body text-center">
                     <h5 class="card-title">
                         <i class="fas fa-rocket me-2"></i>Ready to Start Earning?
@@ -736,7 +734,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ` : ''}
             
             <!-- Social Media -->
-            <div class="mt-4 fade-in-up" style="animation-delay: 1s">
+            <div class="mt-4 fade-in-up" style="animation-delay: 0.9s">
                 <div class="row text-center">
                     <!-- TP Global -->
                     <div class="col-md-4 mb-3">
@@ -790,12 +788,6 @@ document.addEventListener('DOMContentLoaded', function() {
             currentReferralData = null;
         });
         
-        // Add event listener for filtered view toggle
-        document.getElementById('filteredViewToggle').addEventListener('change', function() {
-            updateChart(referrals);
-            updateReferralList(referrals);
-        });
-        
         // Update translations
         updateTranslations();
     }
@@ -821,32 +813,17 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Check if filtered view is enabled
-        const filteredView = document.getElementById('filteredViewToggle')?.checked || false;
-        
-        // Process referrals based on view mode
-        const processedReferrals = referrals.map(r => {
-            if (filteredView) {
-                return {
-                    ...r,
-                    status: mapStatusToGroup(r.status),
-                    statusType: getSimplifiedStatusType(r.status)
-                };
-            }
-            return r;
-        });
-        
-        // Sort referrals with new status
+        // Sort referrals by status importance
         const statusOrder = ['passed', 'passedAssessment', 'probation', 'previouslyApplied', 'received', 'failed'];
             
-        const sortedReferrals = [...processedReferrals].sort((a, b) => {
+        const sortedReferrals = [...referrals].sort((a, b) => {
             return statusOrder.indexOf(a.statusType) - statusOrder.indexOf(b.statusType);
         });
         
         // Create referral list card
         const referralListCard = document.createElement('div');
         referralListCard.className = 'card mb-4 fade-in-up';
-        referralListCard.style.animationDelay = '1s';
+        referralListCard.style.animationDelay = '0.8s';
         referralListCard.innerHTML = `
             <div class="card-body">
                 <h5 class="card-title text-center mb-3">
@@ -885,7 +862,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                       !referral.isPreviousCandidate;
             
             item.className = `card mb-3 status-${referral.statusType} ${isPaymentEligible ? 'payment-eligible' : ''} slide-in`;
-            item.style.animationDelay = `${1.1 + (index * 0.1)}s`;
+            item.style.animationDelay = `${0.9 + (index * 0.1)}s`;
             
             // Only show WhatsApp button for Application Received
             const showRemindButton = referral.statusType === 'received' && !referral.isPreviousCandidate;
@@ -953,9 +930,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const ctx = chartCanvas.getContext('2d');
         const translation = translations[currentLanguage] || translations.en;
         
-        // Check if filtered view is enabled
-        const filteredView = document.getElementById('filteredViewToggle')?.checked || false;
-        
         // Count statuses for 6-status system
         let statusCounts = {
             received: referrals.filter(r => r.statusType === 'received').length,
@@ -989,12 +963,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     statusCounts.failed
                 ] : [1, 1, 1, 1, 1, 1], // Show equal parts if no data
                 backgroundColor: [
-                    '#007bff', // Blue - Application Received
-                    '#90EE90', // Light Green - Passed Assessment
-                    '#ffc107', // Yellow - Probation
-                    '#28a745', // Dark Green - Confirmed
-                    '#6c757d', // Gray - Previously Applied
-                    '#dc3545'  // Red - Not Selected
+                    '#666666', // Gray - Application Received
+                    '#000000', // Black - Passed Assessment
+                    '#999999', // Light Gray - Probation
+                    '#000000', // Black - Confirmed
+                    '#e0e0e0', // Very Light Gray - Previously Applied
+                    '#cccccc'  // Light Gray - Not Selected
                 ],
                 borderWidth: 2,
                 borderColor: '#fff',
@@ -1095,7 +1069,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Initialize modals
-    const tngModal = new bootstrap.Modal(document.getElementById('tngModal'));
+    if (document.getElementById('tngModal')) {
+        const tngModal = new bootstrap.Modal(document.getElementById('tngModal'));
+    }
     
     // Enhanced form interactions
     const formInputs = document.querySelectorAll('.form-control, .form-select');
