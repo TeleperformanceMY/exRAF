@@ -1,24 +1,12 @@
-/* styles.css */
+/* Enhanced CSS for xRAF Dashboard */
 :root {
-    --primary-color: #000000;  /* Black */
-    --secondary-color: #333333; /* Dark gray */
-    --success-color: #28a745; /* Green for success */
-    --warning-color: #ffc107; /* Yellow for warning */
-    --danger-color: #dc3545; /* Red for danger */
-    --light-color: #ffffff;  /* White */
-    --dark-color: #000000;   /* Black */
-    --gray-color: #666666;   /* Medium gray */
-    --light-gray: #f8f9fa;   /* Light gray background */
-    --border-gray: #dee2e6;  /* Border gray */
-    
-    /* Enhanced design tokens */
-    --border-radius: 0; /* Sharp corners */
-    --border-radius-sm: 0;
-    --border-radius-lg: 0;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-    --transition: all 0.2s ease;
+    --black: #000000;
+    --white: #FFFFFF;
+    --light-gray: #f8f9fa;
+    --dark-gray: #343a40;
+    --accent: #000000;
+    --border-width: 2px;
+    --transition: all 0.3s ease;
 }
 
 * {
@@ -28,412 +16,134 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    background: var(--light-color);
-    color: var(--dark-color);
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background-color: var(--white);
+    color: var(--black);
+    line-height: 1.6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
     max-width: 1000px;
+    padding: 20px;
     flex: 1;
-    position: relative;
 }
 
-/* Logo */
+/* Header & Logo */
+.logo-container {
+    text-align: center;
+    margin: 10px 0 20px;
+}
+
 .logo {
-    width: 180px;
+    width: 160px;
     height: auto;
     transition: var(--transition);
-    margin-top: 20px;
 }
 
 .logo:hover {
     transform: scale(1.05);
 }
 
-/* Cards - Minimalist Design with Sharp Corners */
-.card {
-    border: 1px solid var(--border-gray);
-    border-radius: var(--border-radius);
-    background: var(--light-color);
-    box-shadow: var(--shadow-sm);
+/* Language Selector - Creative Design */
+.language-selector {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.lang-flag {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    background: var(--white);
+    border: var(--border-width) solid var(--black);
+    cursor: pointer;
     transition: var(--transition);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.lang-flag:hover {
+    background: var(--light-gray);
+    transform: translateY(-3px);
+}
+
+.lang-flag.active {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+}
+
+.lang-flag.active .flag, .lang-flag.active .lang-code {
+    color: var(--white);
+}
+
+.flag {
+    font-size: 20px;
+    margin-right: 8px;
+    transition: var(--transition);
+}
+
+.lang-code {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--black);
+    transition: var(--transition);
+}
+
+/* Cards - Sharp Corners */
+.card {
+    border: var(--border-width) solid var(--black);
+    border-radius: 0;
+    background: var(--white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: var(--transition);
+    margin-bottom: 20px;
     overflow: hidden;
 }
 
 .card:hover {
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 .card-body {
-    padding: 2rem;
+    padding: 20px;
 }
 
 .card-title {
-    color: var(--primary-color);
-    font-weight: 700; /* Bolder font weight */
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    text-transform: uppercase; /* Uppercase headings */
-    letter-spacing: 0.5px; /* Better letter spacing */
-}
-
-/* Form Controls - Clean Design */
-.form-control, .form-select {
-    padding: 12px 16px;
-    border: 1px solid var(--border-gray);
-    border-radius: var(--border-radius-sm);
-    font-size: 1rem;
-    transition: var(--transition);
-    background: var(--light-color);
-}
-
-.form-control:focus, .form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
-    outline: none;
-}
-
-.form-label {
-    font-weight: 600;
-    color: var(--dark-color);
-    margin-bottom: 6px;
-    font-size: 0.9rem;
-    text-transform: uppercase; /* Uppercase labels */
-    letter-spacing: 0.5px;
-}
-
-/* Buttons - Flat Design */
-.btn {
-    padding: 12px 24px;
-    border-radius: var(--border-radius-sm);
-    font-weight: 600;
-    font-size: 1rem;
-    transition: var(--transition);
-    border: 1px solid var(--primary-color);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase; /* Uppercase buttons */
-    letter-spacing: 0.5px;
-}
-
-.btn-primary {
-    background: var(--primary-color);
-    color: var(--light-color);
-}
-
-.btn-primary:hover {
-    background: var(--secondary-color);
-    color: var(--light-color);
-}
-
-.btn-outline-secondary {
-    background: var(--light-color);
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-}
-
-.btn-outline-secondary:hover {
-    background: var(--primary-color);
-    color: var(--light-color);
-}
-
-.btn-success {
-    background: var(--success-color);
-    color: var(--light-color);
-}
-
-.btn-success:hover {
-    background: #218838;
-    color: var(--light-color);
-}
-
-/* Status Colors - Enhanced */
-.status-received {
-    background: rgba(0, 123, 255, 0.08);
-    border-left: 3px solid #007bff;
-}
-
-.status-passedAssessment {
-    background: rgba(144, 238, 144, 0.15);
-    border-left: 3px solid #90EE90;
-}
-
-.status-passed {
-    background: rgba(40, 167, 69, 0.08);
-    border-left: 3px solid var(--success-color);
-}
-
-.status-probation {
-    background: rgba(255, 193, 7, 0.08);
-    border-left: 3px solid var(--warning-color);
-}
-
-.status-previouslyApplied {
-    background: rgba(108, 117, 125, 0.08);
-    border-left: 3px solid #6c757d;
-}
-
-.status-failed {
-    background: rgba(220, 53, 69, 0.08);
-    border-left: 3px solid var(--danger-color);
-}
-
-/* Social Icons - Minimalist */
-.social-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 0; /* Sharp corners */
-    background: var(--light-color);
-    color: var(--dark-color);
-    font-size: 18px;
-    transition: var(--transition);
-    margin: 0 0.5rem;
-    text-decoration: none;
-    border: 1px solid var(--border-gray);
-}
-
-.social-icon:hover {
-    background: var(--primary-color);
-    color: var(--light-color);
-    border-color: var(--primary-color);
-    text-decoration: none;
-}
-
-/* Earnings Table - Clean Design */
-.earnings-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    background: var(--light-color);
-}
-
-.earnings-table th, .earnings-table td {
-    padding: 14px 16px;
-    text-align: left;
-    border-bottom: 1px solid var(--border-gray);
-    font-size: 0.9rem;
-}
-
-.earnings-table th {
-    background: var(--light-gray);
-    font-weight: 700; /* Bolder headers */
-    color: var(--dark-color);
+    font-size: 1.3rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-size: 0.8rem;
-}
-
-.earnings-table tbody tr:hover {
-    background: var(--light-gray);
-}
-
-.earnings-table tfoot th {
-    background: var(--primary-color);
-    color: var(--light-color);
-    font-size: 1rem;
-    font-weight: 600;
-    border-bottom: none;
-}
-
-/* Chart Container */
-.chart-container {
-    position: relative;
-    margin: 2rem auto;
-    height: 300px;
-    width: 100%;
-    background: var(--light-color);
-    padding: 1rem;
-}
-
-.chart-logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    opacity: 0.05;
-    pointer-events: none;
-}
-
-/* Status Badges - Flat Design */
-.status-badge {
-    font-size: 0.75rem;
-    padding: 4px 12px;
-    border-radius: 0; /* Sharp corners */
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.bg-previously-applied {
-    background-color: #6c757d;
-    color: white;
-}
-
-/* Footer - Minimal */
-.footer {
-    background: var(--primary-color);
-    color: var(--light-color);
-    padding: 1.5rem 0;
-    margin-top: auto;
-    width: 100%;
-}
-
-.footer a {
-    color: var(--light-color);
-    text-decoration: none;
-    opacity: 0.8;
-    transition: var(--transition);
-}
-
-.footer a:hover {
-    opacity: 1;
-    text-decoration: underline;
-}
-
-.footer p {
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-/* Friend Reminder Cards - Clean */
-.friend-to-remind {
-    padding: 1.25rem;
-    margin-bottom: 1rem;
-    border-radius: var(--border-radius);
-    background: var(--light-color);
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-    border: 1px solid var(--border-gray);
-}
-
-.friend-to-remind:hover {
-    box-shadow: var(--shadow-md);
-}
-
-/* User name display */
-.user-name-display {
-    color: var(--primary-color);
-    font-size: 1.75rem;
-    font-weight: 800;
-    text-transform: uppercase; /* Uppercase name */
-    margin-bottom: 0.5rem;
-}
-
-/* Stats Cards - Minimalist */
-.stats-card {
-    background: var(--light-color);
-    border: 1px solid var(--border-gray);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: var(--black);
     text-align: center;
-    transition: var(--transition);
-    height: 100%;
-    box-shadow: var(--shadow-sm);
 }
 
-.stats-card:hover {
-    box-shadow: var(--shadow-md);
-}
-
-.stats-card h3 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    color: var(--primary-color);
-}
-
-.stats-card h5 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--gray-color);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* Chart Legend */
-.chart-legend {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    font-size: 0.85rem;
-}
-
-.chart-legend span {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--dark-color);
-}
-
-.chart-legend span::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    border-radius: 0; /* Sharp corners */
-    flex-shrink: 0;
-}
-
-/* Status Examples Section */
-.status-examples {
-    margin-top: 2rem;
-}
-
-.status-example {
-    padding: 1.25rem;
-    margin-bottom: 1rem;
-    border-radius: var(--border-radius);
-    background: var(--light-color);
-    border: 1px solid var(--border-gray);
-    transition: var(--transition);
-}
-
-.status-example:hover {
-    box-shadow: var(--shadow-sm);
-}
-
-.status-example h5 {
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-}
-
-.status-example p {
-    color: var(--gray-color);
-    margin-bottom: 0.75rem;
-    font-size: 0.9rem;
-}
-
-/* How It Works Card - Enhanced */
+/* How It Works - Compact Design */
 .how-it-works-card {
-    border: 2px solid var(--primary-color);
-    background: var(--light-color);
+    border-color: var(--black);
+    position: relative;
+    overflow: hidden;
 }
 
 .referral-flow {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0;
-    padding: 10px 0;
-    border-top: 1px solid var(--border-gray);
-    border-bottom: 1px solid var(--border-gray);
+    margin: 15px 0;
+    position: relative;
 }
 
 .flow-step {
@@ -442,165 +152,250 @@ body {
     align-items: center;
     text-align: center;
     flex: 1;
+    z-index: 2;
+    position: relative;
 }
 
 .step-icon {
     width: 50px;
     height: 50px;
-    background: var(--primary-color);
-    color: var(--light-color);
+    background: var(--black);
+    color: var(--white);
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
     font-size: 20px;
+    transition: var(--transition);
 }
 
 .step-text {
     font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--dark-color);
-    text-transform: uppercase; /* Uppercase step text */
+    font-size: 0.85rem;
+    text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .step-reward {
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-top: 5px;
-    color: var(--primary-color);
+    color: var(--black);
+    position: relative;
+}
+
+/* Animation for Payment Steps */
+@keyframes moneyPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.step-reward.money-animation {
+    animation: moneyPulse 1.5s infinite;
+    color: #28a745;
 }
 
 .flow-arrow {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     margin: 0 5px;
-    color: var(--primary-color);
+    color: var(--black);
+    position: relative;
+    z-index: 2;
 }
 
-/* Animations - Subtle */
+/* Form Elements */
+.form-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    color: var(--black);
+    margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+    border: var(--border-width) solid var(--black);
+    border-radius: 0;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    background: var(--white);
+    color: var(--black);
+    transition: var(--transition);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--black);
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+    outline: none;
+}
+
+.invalid-feedback {
+    font-weight: 500;
+    color: #dc3545;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 0;
+    border: var(--border-width) solid var(--black);
+    padding: 10px 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+}
+
+.btn-primary:hover {
+    background: var(--dark-gray);
+    border-color: var(--dark-gray);
+}
+
+.btn-outline-secondary {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--black);
+}
+
+.btn-outline-secondary:hover {
+    background: var(--black);
+    color: var(--white);
+}
+
+/* Results Section */
+.user-name-display {
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: var(--black);
+}
+
+/* Modal Footer - Mobile Optimization */
+.modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.modal-footer .btn {
+    flex: 1;
+    min-width: 150px;
+}
+
+/* Animations */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in-up {
-    animation: fadeIn 0.4s ease-out;
+    animation: fadeIn 0.6s ease forwards;
 }
 
 .slide-in {
-    animation: fadeIn 0.3s ease-out;
+    animation: fadeIn 0.4s ease forwards;
 }
 
-/* Mobile Responsiveness */
+/* Footer */
+.footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 15px 0;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
-        padding: 1rem;
+        padding: 15px;
     }
     
     .logo {
-        width: 150px;
+        width: 140px;
     }
     
-    .card-body {
-        padding: 1.5rem;
-    }
-    
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.95rem;
-    }
-    
-    .stats-card {
-        padding: 1.25rem;
-        margin-bottom: 1rem;
-    }
-    
-    .stats-card h3 {
-        font-size: 1.75rem;
-    }
-    
-    .user-name-display {
-        font-size: 1.5rem;
-    }
-    
-    .chart-container {
-        height: 250px;
-        padding: 0.75rem;
-    }
-    
-    .earnings-table th, 
-    .earnings-table td {
-        padding: 10px 12px;
-        font-size: 0.85rem;
-    }
-    
-    .footer {
-        padding: 1rem 0;
-        text-align: center;
-    }
-    
-    .social-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-        margin: 0 0.25rem;
-    }
-    
-    /* Flow steps on mobile */
     .referral-flow {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
     }
     
     .flow-arrow {
         transform: rotate(90deg);
         margin: 10px 0;
     }
+    
+    .stats-card {
+        margin-bottom: 15px;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .modal-footer .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    /* Ensure buttons are side-by-side on larger mobile screens */
+    @media (min-width: 480px) {
+        .modal-footer {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
 }
 
 @media (max-width: 576px) {
-    .container {
-        padding: 0.75rem;
+    .card-body {
+        padding: 15px;
     }
     
-    .card-body {
-        padding: 1.25rem;
+    .language-selector {
+        gap: 6px;
+    }
+    
+    .lang-flag {
+        padding: 6px 12px;
+    }
+    
+    .flag {
+        font-size: 18px;
+    }
+    
+    .lang-code {
+        font-size: 12px;
     }
     
     .btn {
-        padding: 10px 16px;
-        font-size: 0.9rem;
+        padding: 8px 12px;
+        font-size: 0.85rem;
     }
     
-    .chart-container {
-        height: 220px;
+    .step-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
     }
     
-    .earnings-table {
-        font-size: 0.8rem;
-    }
-    
-    .earnings-table th, 
-    .earnings-table td {
-        padding: 8px 10px;
-    }
-    
-    .status-example {
-        padding: 1rem;
-    }
-    
-    .friend-to-remind {
-        padding: 1rem;
-    }
-    
-    .stats-card {
-        padding: 1rem;
+    .step-text {
+        font-size: 0.75rem;
     }
 }
