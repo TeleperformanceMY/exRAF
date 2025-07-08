@@ -63,6 +63,7 @@ const translations = {
         contactUsText: "Email us at:",
         statusAssessmentPassed: "Assessment Passed (RM50)",
         noRemindersNeeded: "All your friends are on track!",
+        statusAssessmentPassed: "Passed Assessment",
         filteredViewLabel: "Simplified Status View"
     },
     ja: {
@@ -128,6 +129,7 @@ const translations = {
         contactUsText: "メールでお問い合わせ:",
         statusAssessmentPassed: "審査通過 (RM50)",
         noRemindersNeeded: "すべての友達が順調です！",
+        statusAssessmentPassed: "審査通過",
         filteredViewLabel: "簡易ステータス表示"
     },
     ko: {
@@ -193,6 +195,7 @@ const translations = {
         contactUsText: "이메일로 문의:",
         statusAssessmentPassed: "평가 통과 (RM50)",
         noRemindersNeeded: "모든 친구들이 순조롭게 진행 중입니다!",
+        statusAssessmentPassed: "평가 통과",
         filteredViewLabel: "간략한 상태 보기"
     },
     "zh-CN": {
@@ -258,6 +261,7 @@ const translations = {
         contactUsText: "发送邮件至:",
         statusAssessmentPassed: "评估通过 (RM50)",
         noRemindersNeeded: "您的朋友们都在正常进行中！",
+        statusAssessmentPassed: "评估通过",
         filteredViewLabel: "简化状态视图"
     },
     "zh-HK": {
@@ -323,6 +327,7 @@ const translations = {
         contactUsText: "發送郵件至:",
         statusAssessmentPassed: "評估通過 (RM50)",
         noRemindersNeeded: "您的朋友們都在正常進行中！",
+        statusAssessmentPassed: "評估通過",
         filteredViewLabel: "簡化狀態視圖"
     }
 };
