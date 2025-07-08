@@ -543,8 +543,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <strong>New to xRAF?</strong> Start referring friends to TP and earn up to RM800 per successful hire!
                             </div>
                         </div>
+
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Explore Dashboard</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Explore Dashboard</button>
                             <a href="https://tpmyandtpth.github.io/xRAF/" class="btn btn-success">
                                 <i class="fas fa-user-plus me-2"></i>Start Referring
                             </a>
