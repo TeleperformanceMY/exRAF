@@ -83,23 +83,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Helper function to get simplified status type
     function getSimplifiedStatusType(status) {
-         const mappedStatus = mapStatusToGroup(status);
-            
-            switch(mappedStatus) {
-                case "Hired (Confirmed)":
-                    return "passed";
-                case "Hired (Probation)":
-                    return "probation";
-                case "Previously Applied (No Payment)":
-                    return "previouslyApplied";
-                case "Assessment Stage":
-                    return "assessment";
-                case "Application Received":
-                    return "received";
-                case "Not Selected":
-                    return "failed";
-                default:
-                    return "received";
+        const mappedStatus = mapStatusToGroup(status);
+        
+        // Simplified 6-status system
+        switch(mappedStatus) {
+            case "Hired (Confirmed)":
+                return "passed";
+            case "Hired (Probation)":
+                return "probation";
+            case "Previously Applied (No Payment)":
+                return "previouslyApplied";
+            case "Assessment Stage":
+                // Check if passed assessment
+                if (status.includes("Pass") || mappedStatus === "Final Review" || mappedStatus === "Interview Stage") {
+                    return "passedAssessment";
+                }
+                return "assessment";
+            case "Application Received":
+                return "received";
+            case "Not Selected":
+                return "failed";
+            default:
+                // Handle edge cases
+                if (status.includes("Final Review") || status.includes("Interview")) {
+                    return "passedAssessment"; // They passed assessment to reach these stages
+                }
+                return "received";
         }
     }
 
@@ -279,8 +288,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get status badge color with payment eligibility check
     function getStatusBadgeColor(statusType, daysInStage = 0, isPreviousCandidate = false) {
         if (isPreviousCandidate) {
-            return 'previously-applied';
+            return 'secondary'; // Gray for previously applied
         }
+        
+        switch(statusType) {
+            case 'passed':
+                return 'success'; // Dark green (confirmed with payment)
+            case 'passedAssessment':
+                return 'success'; // Light green (passed with payment)
+            case 'probation':
+                return 'warning'; // Yellow
+            case 'previouslyApplied':
+                return 'secondary'; // Gray
+            case 'received':
+                return 'primary'; // Blue
+            case 'failed':
+                return 'danger'; // Red
+            default:
+                return 'secondary';
+        }
+    }
         
         switch(statusType) {
             case 'passed':
@@ -309,8 +336,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Calculate assessment passes (not previously applied)
         const assessmentPasses = referrals.filter(r => 
-            (r.statusType === 'passed' || r.statusType === 'probation' || 
-             r.statusType === 'operations' || r.statusType === 'talent') && 
+            (r.statusType === 'passedAssessment' || r.statusType === 'probation' || 
+             r.statusType === 'passed') && 
             !r.isPreviousCandidate
         );
         
@@ -341,14 +368,14 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('total-earnings').textContent = `RM ${totalEarnings}`;
     }
     
-    // Update reminder section - ONLY FOR ASSESSMENT STAGE
+    // Update reminder section - ONLY FOR APPLICATION RECEIVED
     function updateReminderSection(referrals) {
         const friendsToRemind = document.getElementById('friends-to-remind');
         friendsToRemind.innerHTML = '';
         
-        // Filter for Assessment Stage only
+        // Filter for Application Received only
         const friendsNeedingReminder = referrals
-            .filter(r => r.statusType === 'assessment' && !r.isPreviousCandidate)
+            .filter(r => r.statusType === 'received' && !r.isPreviousCandidate)
             .sort((a, b) => b.daysInStage - a.daysInStage);
         
         if (friendsNeedingReminder.length === 0) {
@@ -368,13 +395,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const col = document.createElement('div');
             col.className = 'col-md-6 mb-3';
             
-            const statusTranslation = translations[currentLanguage].statusAssessment || 'Assessment Stage';
+            const statusTranslation = translations[currentLanguage].statusReceived || 'Application Received';
             
             col.innerHTML = `
                 <div class="friend-to-remind status-${friend.statusType} fade-in-up" style="animation-delay: ${index * 0.1}s">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h5><i class="fas fa-user me-2"></i>${friend.name}</h5>
-                        <span class="badge status-badge bg-${getStatusBadgeColor(friend.statusType)}">
+                        <span class="badge status-badge bg-primary">
                             ${statusTranslation}
                         </span>
                     </div>
@@ -467,10 +494,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const processedReferrals = processReferralData(emptyData);
                 showReferralResults(processedReferrals, emptyData.referrer, true); // Added showWelcome flag
                 
-                // Show welcome message
-                setTimeout(() => {
-                    showWelcomeMessage();
-                }, 500);
+                // Show popup message
+                showUserNotFoundPopup();
                 
             } else {
                 // Store current data
@@ -500,12 +525,58 @@ document.addEventListener('DOMContentLoaded', function() {
             const processedReferrals = processReferralData(emptyData);
             showReferralResults(processedReferrals, emptyData.referrer, true);
             
-            setTimeout(() => {
-                showWelcomeMessage();
-            }, 500);
+            // Show popup message
+            showUserNotFoundPopup();
         }
     });
     
+    // Show user not found popup
+    function showUserNotFoundPopup() {
+        // Create modal HTML dynamically
+        const modalHtml = `
+            <div class="modal fade" id="userNotFoundModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info">
+                            <h5 class="modal-title text-white">Welcome to xRAF!</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center mb-3">
+                                <i class="fas fa-user-plus fa-3x text-info mb-3"></i>
+                                <p>We couldn't find an account with the provided email and phone number.</p>
+                                <p class="text-muted">Don't worry! You can still explore the dashboard and see how the referral program works.</p>
+                            </div>
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>New to xRAF?</strong> Start referring friends to TP and earn up to RM800 per successful hire!
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Explore Dashboard</button>
+                            <a href="https://tpmyandtpth.github.io/xRAF/" class="btn btn-success">
+                                <i class="fas fa-user-plus me-2"></i>Start Referring
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Add modal to body if it doesn't exist
+        if (!document.getElementById('userNotFoundModal')) {
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        }
+        
+        // Show the modal
+        const userNotFoundModal = new bootstrap.Modal(document.getElementById('userNotFoundModal'));
+        userNotFoundModal.show();
+        
+        // Clean up modal after it's hidden
+        document.getElementById('userNotFoundModal').addEventListener('hidden.bs.modal', function () {
+            this.remove();
+        });
+    }
     // Show welcome message for new users
     function showWelcomeMessage() {
         const translation = translations[currentLanguage] || translations.en;
@@ -655,42 +726,44 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h5 class="card-title text-center mb-4">
                         <i class="fas fa-info-circle me-2"></i>Status Examples
                     </h5>
-<div class="row">
-    <div class="col-md-6">
-        <div class="status-example status-passed">
-            <h5><i class="fas fa-check-circle me-2 text-success"></i>Passed Probation</h5>
-            <p>Candidate completed 90+ days</p>
-            <span class="badge bg-success">${translation.statusPassed || 'Passed'}</span>
-        </div>
-        <div class="status-example status-probation">
-            <h5><i class="fas fa-clock me-2 text-warning"></i>In Probation</h5>
-            <p>Candidate hired but under 90 days</p>
-            <span class="badge bg-warning text-dark">${translation.statusProbation || 'Probation'}</span>
-        </div>
-        <div class="status-example status-assessment">
-            <h5><i class="fas fa-clipboard-check me-2 text-primary"></i>Assessment Stage</h5>
-            <p>Candidate completing assessments and interviews</p>
-            <span class="badge bg-primary">${translation.statusAssessment || 'Assessment'}</span>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="status-example status-previouslyApplied">
-            <h5><i class="fas fa-ban me-2 text-secondary"></i>Previously Applied</h5>
-            <p>No payment will be made</p>
-            <span class="badge bg-previously-applied">${translation.statusPreviouslyApplied || 'Previously Applied'}</span>
-        </div>
-        <div class="status-example status-received">
-            <h5><i class="fas fa-file-alt me-2 text-secondary"></i>Application Received</h5>
-            <p>Initial application stage</p>
-            <span class="badge bg-secondary">${translation.statusReceived || 'Received'}</span>
-        </div>
-        <div class="status-example status-failed">
-            <h5><i class="fas fa-times-circle me-2 text-danger"></i>Not Selected</h5>
-            <p>Candidate not hired</p>
-            <span class="badge bg-danger">${translation.statusFailed || 'Failed'}</span>
-        </div>
-    </div>
-</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="status-example status-received">
+                                <h5><i class="fas fa-file-alt me-2 text-primary"></i>Application Received</h5>
+                                <p>Initial stage - Remind to take assessment</p>
+                                <span class="badge bg-primary">${translation.statusReceived || 'Application Received'}</span>
+                            </div>
+                            <div class="status-example status-passedAssessment">
+                                <h5><i class="fas fa-check-circle me-2 text-success"></i>Passed Assessment 💵</h5>
+                                <p>Passed AI Interview - RM50 earned</p>
+                                <span class="badge bg-success">${translation.statusAssessmentPassed || 'Passed Assessment'}</span>
+                            </div>
+                            <div class="status-example status-probation">
+                                <h5><i class="fas fa-clock me-2 text-warning"></i>Hired (Probation)</h5>
+                                <p>Hired but under 90 days</p>
+                                <span class="badge bg-warning text-dark">${translation.statusProbation || 'Hired (Probation)'}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="status-example status-passed">
+                                <h5><i class="fas fa-check-circle me-2 text-success"></i>Hired (Confirmed) 💵</h5>
+                                <p>Completed 90+ days - RM750 earned</p>
+                                <span class="badge bg-success">${translation.statusPassed || 'Hired (Confirmed)'}</span>
+                            </div>
+                            <div class="status-example status-previouslyApplied">
+                                <h5><i class="fas fa-ban me-2 text-secondary"></i>Previously Applied</h5>
+                                <p>No payment will be made</p>
+                                <span class="badge bg-secondary">${translation.statusPreviouslyApplied || 'Previously Applied'}</span>
+                            </div>
+                            <div class="status-example status-failed">
+                                <h5><i class="fas fa-times-circle me-2 text-danger"></i>Not Selected</h5>
+                                <p>Failed assessment or withdrew</p>
+                                <span class="badge bg-danger">${translation.statusFailed || 'Not Selected'}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <!-- Getting Started Section for New Users -->
             ${isNewUser || referrals.length === 0 ? `
@@ -884,8 +957,8 @@ document.addEventListener('DOMContentLoaded', function() {
             item.className = `card mb-3 status-${referral.statusType} ${isPaymentEligible ? 'payment-eligible' : ''} slide-in`;
             item.style.animationDelay = `${1.1 + (index * 0.1)}s`;
             
-            // Only show WhatsApp button for Assessment Stage
-            const showRemindButton = referral.statusType === 'assessment' && !referral.isPreviousCandidate;
+            // Only show WhatsApp button for Application Received
+            const showRemindButton = referral.statusType === 'received' && !referral.isPreviousCandidate;
             
             item.innerHTML = `
                 <div class="card-body">
@@ -893,6 +966,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div>
                             <h6 class="mb-1">
                                 <i class="fas fa-user me-2"></i>${referral.name}
+                                ${referral.statusType === 'passedAssessment' || referral.statusType === 'passed' ? '💵' : ''}
                             </h6>
                             <p class="mb-1 text-muted small">
                                 <i class="fas fa-envelope me-1"></i>${referral.email}
@@ -953,80 +1027,49 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check if filtered view is enabled
         const filteredView = document.getElementById('filteredViewToggle')?.checked || false;
         
-        // Count statuses
-        let statusCounts = {};
-        
-        if (filteredView) {
-            // Use the simplified status groups
-            statusMapping.displayOrder.forEach(group => {
-                statusCounts[group] = referrals.filter(r => mapStatusToGroup(r.status) === group).length;
-            });
-        } else {
-            // Original status counting
-            statusCounts = {
-                passed: referrals.filter(r => r.statusType === 'passed').length,
-                probation: referrals.filter(r => r.statusType === 'probation').length,
-                previouslyApplied: referrals.filter(r => r.statusType === 'previouslyApplied').length,
-                operations: referrals.filter(r => r.statusType === 'operations').length,
-                talent: referrals.filter(r => r.statusType === 'talent').length,
-                assessment: referrals.filter(r => r.statusType === 'assessment').length,
-                received: referrals.filter(r => r.statusType === 'received').length,
-                failed: referrals.filter(r => r.statusType === 'failed').length
-            };
-        }
+        // Count statuses for 6-status system
+        let statusCounts = {
+            received: referrals.filter(r => r.statusType === 'received').length,
+            passedAssessment: referrals.filter(r => r.statusType === 'passedAssessment').length,
+            probation: referrals.filter(r => r.statusType === 'probation').length,
+            passed: referrals.filter(r => r.statusType === 'passed').length,
+            previouslyApplied: referrals.filter(r => r.statusType === 'previouslyApplied').length,
+            failed: referrals.filter(r => r.statusType === 'failed').length
+        };
         
         // Check if all counts are zero
         const hasData = Object.values(statusCounts).some(count => count > 0);
         
-        // Chart data - different setup for filtered vs unfiltered
-        const data = filteredView ? {
-    labels: statusMapping.displayOrder.map(group => {
-        const translationKey = `status${group.replace(/\s+/g, '').replace(/[()]/g, '')}`;
-        return translation[translationKey] || group;
-    }),
-    datasets: [{
-        data: hasData ? statusMapping.displayOrder.map(group => statusCounts[group]) : [1, 1, 1, 1, 1, 1, 1, 1],
-        backgroundColor: [
-            '#28a745', // Hired (Confirmed) - green
-            '#ffc107', // Hired (Probation) - yellow
-            '#6c757d', // Previously Applied - gray
-            '#007bff', // Assessment Stage - blue
-            '#6c757d', // Application Received - gray
-            '#dc3545'  // Not Selected - red
-        ],
-        borderWidth: 2,
-        borderColor: '#fff',
-        hoverOffset: hasData ? 8 : 0
-    }]
-} : {
-    labels: [
-        translation.statusPassed || 'Passed',
-        translation.statusProbation || 'Probation',
-        translation.statusPreviouslyApplied || 'Previously Applied',
-        translation.statusAssessment || 'Assessment',
-        translation.statusReceived || 'Received',
-        translation.statusFailed || 'Failed'
-    ],
-    datasets: [{
-        data: hasData ? [
-            statusCounts.passed,
-            statusCounts.probation,
-            statusCounts.previouslyApplied,
-            statusCounts.assessment,
-            statusCounts.received,
-            statusCounts.failed
-        ] : [1, 1, 1, 1, 1, 1],
-        backgroundColor: [
-            '#28a745', // Passed - green
-            '#ffc107', // Probation - yellow
-            '#6c757d', // Previously applied - gray
-            '#007bff', // Assessment - blue
-            '#6c757d', // Received - gray
-            '#dc3545'  // Failed - red
-        ],
-        borderWidth: 2,
-        borderColor: '#fff',
-        hoverOffset: hasData ? 8 : 0
+        // Chart data for 6-status system
+        const data = {
+            labels: [
+                translation.statusReceived || 'Application Received',
+                translation.statusAssessmentPassed || 'Passed Assessment',
+                translation.statusProbation || 'Hired (Probation)',
+                translation.statusPassed || 'Hired (Confirmed)',
+                translation.statusPreviouslyApplied || 'Previously Applied',
+                translation.statusFailed || 'Not Selected'
+            ],
+            datasets: [{
+                data: hasData ? [
+                    statusCounts.received,
+                    statusCounts.passedAssessment,
+                    statusCounts.probation,
+                    statusCounts.passed,
+                    statusCounts.previouslyApplied,
+                    statusCounts.failed
+                ] : [1, 1, 1, 1, 1, 1], // Show equal parts if no data
+                backgroundColor: [
+                    '#007bff', // Blue - Application Received
+                    '#90EE90', // Light Green - Passed Assessment
+                    '#ffc107', // Yellow - Probation
+                    '#28a745', // Dark Green - Confirmed
+                    '#6c757d', // Gray - Previously Applied
+                    '#dc3545'  // Red - Not Selected
+                ],
+                borderWidth: 2,
+                borderColor: '#fff',
+                hoverOffset: hasData ? 8 : 0
             }]
         };
 
@@ -1103,8 +1146,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const name = button.dataset.name;
             const phone = button.dataset.phone;
             
-            const message = `Hi ${name}, this is a friendly reminder to complete your TP assessment. ` +
-                           `We're excited about your application! Please complete it at your earliest convenience. Thank you!`;
+            const message = `Hi ${name}, this is a friendly reminder to complete your AI Interview assessment for TP. ` +
+                           `It's quick and easy! Please complete it at your earliest convenience to move forward with your application. Thank you!`;
             window.open(`https://wa.me/+6${phone}?text=${encodeURIComponent(message)}`, '_blank');
         }
     });
