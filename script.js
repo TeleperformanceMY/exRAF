@@ -15,6 +15,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    // Make sure translations are loaded
+    if (typeof translations === 'undefined') {
+        console.error('Translations not loaded! Make sure translations.js is included before script.js');
+    }
+    
+    if (typeof statusMapping === 'undefined') {
+        console.error('Status mapping not loaded! Make sure statusMapping.js is included before script.js');
+    }
+    
+    if (typeof earningsStructure === 'undefined') {
+        console.error('Earnings structure not defined! Adding default...');
+        window.earningsStructure = {
+            assessment: {
+                amount: 50,
+                label: "Pass Assessment",
+                description: "Paid when candidate passes AI Interview assessment"
+            },
+            probation: { 
+                amount: 750, 
+                label: "Complete Probation (90 days)",
+                description: "Paid only for new candidates who complete 90 days"
+            }
+        };
+    }
+
     // Function to calculate days between dates
     function calculateDays(startDate, endDate = new Date()) {
         const start = new Date(startDate);
@@ -114,8 +139,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update translations
     function updateTranslations() {
-        const translation = translations[currentLanguage] || translations.en;
+        if (typeof translations === 'undefined') {
+            console.error('Translations object not found!');
+            return;
+        }
         
+        const translation = translations[currentLanguage];
+        if (!translation) {
+            console.error('Translation not found for language:', currentLanguage);
+            return;
+        }
+        
+        // Update text content
         document.querySelectorAll('[data-translate]').forEach(el => {
             const key = el.getAttribute('data-translate');
             if (translation[key]) {
@@ -123,6 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
+        // Update placeholders
         document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
             const key = el.getAttribute('data-translate-placeholder');
             if (translation[key]) {
@@ -134,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Language change handler
     document.getElementById('lang-select').addEventListener('change', function() {
         currentLanguage = this.value;
+        console.log('Language changed to:', currentLanguage);
         updateTranslations();
         
         // Refresh displays if data exists
@@ -182,6 +219,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch referrals from API
     async function fetchReferrals(phone, email) {
         try {
+            // For testing, always return null to simulate no user found
+            // Remove this in production
+            if (API_CONFIG.endpoint.includes('your-api-endpoint')) {
+                console.log('Using test mode - no user found');
+                return null;
+            }
+            
             const response = await fetch(API_CONFIG.endpoint, {
                 method: 'POST',
                 headers: API_CONFIG.headers,
@@ -201,89 +245,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.error('Network Error:', error);
-            // For development/testing, return mock data
-            // Remove this in production
-            return getMockData(phone, email);
+            return null;
         }
     }
-    
-    // Mock data for development (remove in production)
-    function getMockData(phone, email) {
-        const mockData = {
-            "0123456789:amr@tp.com": {
-                referrer: {
-                    phone: "0123456789",
-                    email: "amr@tp.com",
-                    fullName: "Amr EzZ"
-                },
-                referrals: [
-                    {
-                        candidateName: "John Smith",
-                        candidateEmail: "john.smith@example.com",
-                        candidatePhone: "0112345678",
-                        currentStatus: "Hired (Confirmed)",
-                        stage: "Hired",
-                        applicationDate: "2023-11-15T00:00:00Z",
-                        hireDate: "2023-11-20T00:00:00Z",
-                        category: "Customer Service",
-                        source: "Employee Referral",
-                        isPreviousCandidate: false
-                    },
-                    {
-                        candidateName: "Sarah Johnson",
-                        candidateEmail: "sarah.j@example.com",
-                        candidatePhone: "0112345679",
-                        currentStatus: "Hired (Probation)",
-                        stage: "Hired",
-                        applicationDate: "2023-12-10T00:00:00Z",
-                        hireDate: "2023-12-15T00:00:00Z",
-                        category: "Technical Support",
-                        source: "Employee Referral",
-                        isPreviousCandidate: false
-                    },
-                    {
-                        candidateName: "Michael Brown",
-                        candidateEmail: "michael.b@example.com",
-                        candidatePhone: "0112345680",
-                        currentStatus: "Final Review",
-                        stage: "Operations",
-                        applicationDate: "2024-01-05T00:00:00Z",
-                        hireDate: null,
-                        category: "Sales",
-                        source: "Employee Referral",
-                        isPreviousCandidate: false
-                    },
-                    {
-                        candidateName: "Emma Davis",
-                        candidateEmail: "emma.d@example.com",
-                        candidatePhone: "0112345681",
-                        currentStatus: "SHL Assessment: Conversational Multichat ENG",
-                        stage: "Assessment",
-                        applicationDate: "2024-01-20T00:00:00Z",
-                        hireDate: null,
-                        category: "Customer Service",
-                        source: "Employee Referral",
-                        isPreviousCandidate: false
-                    },
-                    {
-                        candidateName: "Previous Candidate",
-                        candidateEmail: "previous@example.com",
-                        candidatePhone: "0112345682",
-                        currentStatus: "Previously Applied (No Payment)",
-                        stage: "Application",
-                        applicationDate: "2023-01-10T00:00:00Z",
-                        hireDate: null,
-                        category: "Customer Service",
-                        source: "Employee Referral",
-                        isPreviousCandidate: true
-                    }
-                ]
-            }
-        };
-        
-        const key = `${phone}:${email.toLowerCase()}`;
-        return mockData[key] || null;
-    }
+    // Remove getMockData function as we'll handle empty state differently
     
     // Get status badge color with payment eligibility check
     function getStatusBadgeColor(statusType, daysInStage = 0, isPreviousCandidate = false) {
@@ -371,6 +336,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update reminder section - ONLY FOR APPLICATION RECEIVED
     function updateReminderSection(referrals) {
         const friendsToRemind = document.getElementById('friends-to-remind');
+        if (!friendsToRemind) return; // Guard clause
+        
         friendsToRemind.innerHTML = '';
         
         // Filter for Application Received only
@@ -379,15 +346,15 @@ document.addEventListener('DOMContentLoaded', function() {
             .sort((a, b) => b.daysInStage - a.daysInStage);
         
         if (friendsNeedingReminder.length === 0) {
+            const translation = translations[currentLanguage] || translations.en;
             friendsToRemind.innerHTML = `
                 <div class="col-12 text-center">
                     <div class="alert alert-success fade-in-up">
                         <i class="fas fa-check-circle me-2"></i>
-                        <span data-translate="noRemindersNeeded">${translations[currentLanguage].noRemindersNeeded}</span>
+                        <span>${translation.noRemindersNeeded || 'All your friends are on track!'}</span>
                     </div>
                 </div>
             `;
-            updateTranslations();
             return;
         }
         
@@ -395,7 +362,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const col = document.createElement('div');
             col.className = 'col-md-6 mb-3';
             
-            const statusTranslation = translations[currentLanguage].statusReceived || 'Application Received';
+            const translation = translations[currentLanguage] || translations.en;
+            const statusTranslation = translation.statusReceived || 'Application Received';
             
             col.innerHTML = `
                 <div class="friend-to-remind status-${friend.statusType} fade-in-up" style="animation-delay: ${index * 0.1}s">
@@ -409,21 +377,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class="fas fa-envelope me-1"></i>${friend.email}
                     </p>
                     <p class="small mb-2">
-                        <strong><i class="fas fa-calendar-alt me-1"></i><span data-translate="referralDays">${translations[currentLanguage].referralDays}:</span></strong> ${friend.daysInStage}
+                        <strong><i class="fas fa-calendar-alt me-1"></i>${translation.referralDays || 'Days in Stage'}:</strong> ${friend.daysInStage}
                     </p>
                     <button class="btn btn-sm btn-success w-100 remind-btn" 
                             data-name="${friend.name}" 
-                            data-phone="${friend.phone}" 
-                            data-translate="remindBtn">
-                        <i class="fab fa-whatsapp me-2"></i>${translations[currentLanguage].remindBtn}
+                            data-phone="${friend.phone}">
+                        <i class="fab fa-whatsapp me-2"></i>${translation.remindBtn || 'Send WhatsApp Reminder'}
                     </button>
                 </div>
             `;
             
             friendsToRemind.appendChild(col);
         });
-        
-        updateTranslations();
     }
     
     // Form submission
@@ -438,11 +403,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Validate phone
         if (!phone) {
             showError(document.getElementById('dashboard-phone'), 
-                     translations[currentLanguage].phoneError);
+                     (translations[currentLanguage] || translations.en).phoneError || 'Please provide a valid phone number');
             isValid = false;
         } else if (!validatePhone(phone)) {
             showError(document.getElementById('dashboard-phone'), 
-                     translations[currentLanguage].phoneError);
+                     (translations[currentLanguage] || translations.en).phoneError || 'Please provide a valid phone number');
             isValid = false;
         } else {
             clearError(document.getElementById('dashboard-phone'));
@@ -451,11 +416,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Validate email
         if (!email) {
             showError(document.getElementById('dashboard-email'), 
-                     translations[currentLanguage].emailError);
+                     (translations[currentLanguage] || translations.en).emailError || 'Please provide a valid email address');
             isValid = false;
         } else if (!validateEmail(email)) {
             showError(document.getElementById('dashboard-email'), 
-                     translations[currentLanguage].emailError);
+                     (translations[currentLanguage] || translations.en).emailError || 'Please provide a valid email address');
             isValid = false;
         } else {
             clearError(document.getElementById('dashboard-email'));
@@ -467,6 +432,35 @@ document.addEventListener('DOMContentLoaded', function() {
         button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Loading...';
         button.disabled = true;
         
+        // Force test mode for specific phone number
+        if (phone === '0000000000') {
+            console.log('Test mode activated - forcing empty dashboard');
+            // Simulate delay
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+                
+                const emptyData = {
+                    referrer: {
+                        phone: phone,
+                        email: email,
+                        fullName: "Test User"
+                    },
+                    referrals: []
+                };
+                
+                currentReferralData = emptyData;
+                const processedReferrals = processReferralData(emptyData);
+                showReferralResults(processedReferrals, emptyData.referrer, true);
+                
+                // Show popup
+                setTimeout(() => {
+                    showUserNotFoundPopup();
+                }, 300);
+            }, 500);
+            return;
+        }
+        
         try {
             // Fetch data from API
             const apiData = await fetchReferrals(phone, email);
@@ -475,8 +469,10 @@ document.addEventListener('DOMContentLoaded', function() {
             button.innerHTML = originalText;
             button.disabled = false;
             
-            // Check if user exists but has no referrals or if user doesn't exist
+            // Always show dashboard, even if no user found
             if (!apiData) {
+                console.log('No user found - showing empty dashboard');
+                
                 // Create empty data structure for new users
                 const emptyData = {
                     referrer: {
@@ -492,10 +488,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Process and show results with empty referrals
                 const processedReferrals = processReferralData(emptyData);
-                showReferralResults(processedReferrals, emptyData.referrer, true); // Added showWelcome flag
+                showReferralResults(processedReferrals, emptyData.referrer, true);
                 
-                // Show popup message
-                showUserNotFoundPopup();
+                // Show popup message after dashboard is displayed
+                setTimeout(() => {
+                    showUserNotFoundPopup();
+                }, 300);
                 
             } else {
                 // Store current data
@@ -511,7 +509,7 @@ document.addEventListener('DOMContentLoaded', function() {
             button.innerHTML = originalText;
             button.disabled = false;
             
-            // Show dashboard with empty data instead of error
+            // Show dashboard with empty data on error too
             const emptyData = {
                 referrer: {
                     phone: phone,
@@ -525,8 +523,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const processedReferrals = processReferralData(emptyData);
             showReferralResults(processedReferrals, emptyData.referrer, true);
             
-            // Show popup message
-            showUserNotFoundPopup();
+            // Show popup after dashboard
+            setTimeout(() => {
+                showUserNotFoundPopup();
+            }, 300);
         }
     });
     
@@ -887,18 +887,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update referral list
     function updateReferralList(referrals) {
         const referralList = document.getElementById('referral-list');
+        if (!referralList) return; // Guard clause
+        
         referralList.innerHTML = '';
+        
+        const translation = translations[currentLanguage] || translations.en;
         
         if (referrals.length === 0) {
             referralList.innerHTML = `
                 <div class="card fade-in-up">
                     <div class="card-body text-center">
                         <i class="fas fa-user-slash fa-3x text-muted mb-3"></i>
-                        <h5 data-translate="noReferrals">${translations[currentLanguage].noReferrals}</h5>
+                        <h5>${translation.noReferrals || 'You don\'t have any referrals yet'}</h5>
                     </div>
                 </div>
             `;
-            updateTranslations();
             return;
         }
         
@@ -918,9 +921,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Sort referrals with new status
-        const statusOrder = filteredView ? 
-            statusMapping.displayOrder || ['passed', 'probation', 'previouslyApplied', 'operations', 'talent', 'assessment', 'received', 'failed'] :
-            ['passed', 'probation', 'previouslyApplied', 'operations', 'talent', 'assessment', 'received', 'failed'];
+        const statusOrder = ['passed', 'passedAssessment', 'probation', 'previouslyApplied', 'received', 'failed'];
             
         const sortedReferrals = [...processedReferrals].sort((a, b) => {
             return statusOrder.indexOf(a.statusType) - statusOrder.indexOf(b.statusType);
@@ -934,7 +935,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="card-body">
                 <h5 class="card-title text-center mb-3">
                     <i class="fas fa-list me-2"></i>
-                    <span data-translate="yourReferralsTitle">${translations[currentLanguage].yourReferralsTitle}</span>
+                    <span>${translation.yourReferralsTitle || 'Your Referrals'}</span>
                 </h5>
                 <div id="referral-items"></div>
             </div>
@@ -946,8 +947,22 @@ document.addEventListener('DOMContentLoaded', function() {
         
         sortedReferrals.forEach((referral, index) => {
             const item = document.createElement('div');
-            const statusKey = `status${referral.statusType.charAt(0).toUpperCase() + referral.statusType.slice(1)}`;
-            const statusTranslation = translations[currentLanguage][statusKey] || referral.status;
+            
+            // Get status translation
+            let statusTranslation = referral.status;
+            if (referral.statusType === 'passed') {
+                statusTranslation = translation.statusPassed || 'Hired (Confirmed)';
+            } else if (referral.statusType === 'passedAssessment') {
+                statusTranslation = translation.statusAssessmentPassed || 'Passed Assessment';
+            } else if (referral.statusType === 'probation') {
+                statusTranslation = translation.statusProbation || 'Hired (Probation)';
+            } else if (referral.statusType === 'previouslyApplied') {
+                statusTranslation = translation.statusPreviouslyApplied || 'Previously Applied';
+            } else if (referral.statusType === 'received') {
+                statusTranslation = translation.statusReceived || 'Application Received';
+            } else if (referral.statusType === 'failed') {
+                statusTranslation = translation.statusFailed || 'Not Selected';
+            }
             
             // Determine if payment is eligible
             const isPaymentEligible = referral.statusType === 'passed' && 
@@ -980,21 +995,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="col-md-3 mb-2">
                             <small class="text-muted d-block">
                                 <i class="fas fa-layer-group me-1"></i>
-                                <span data-translate="referralStage">${translations[currentLanguage].referralStage}</span>
+                                ${translation.referralStage || 'Stage'}
                             </small>
                             <span class="fw-bold">${referral.stage}</span>
                         </div>
                         <div class="col-md-3 mb-2">
                             <small class="text-muted d-block">
                                 <i class="fas fa-calendar-alt me-1"></i>
-                                <span data-translate="referralDate">${translations[currentLanguage].referralDate}</span>
+                                ${translation.referralDate || 'Application Date'}
                             </small>
                             <span class="fw-bold">${new Date(referral.applicationDate).toLocaleDateString()}</span>
                         </div>
                         <div class="col-md-3 mb-2">
                             <small class="text-muted d-block">
                                 <i class="fas fa-clock me-1"></i>
-                                <span data-translate="referralDays">${translations[currentLanguage].referralDays}</span>
+                                ${translation.referralDays || 'Days in Stage'}
                             </small>
                             <span class="fw-bold">${referral.daysInStage}</span>
                         </div>
@@ -1002,9 +1017,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             ${showRemindButton ? `
                             <button class="btn btn-sm btn-success w-100 remind-btn" 
                                     data-name="${referral.name}" 
-                                    data-phone="${referral.phone}" 
-                                    data-translate="remindBtn">
-                                <i class="fab fa-whatsapp me-2"></i>${translations[currentLanguage].remindBtn}
+                                    data-phone="${referral.phone}">
+                                <i class="fab fa-whatsapp me-2"></i>${translation.remindBtn || 'WhatsApp'}
                             </button>
                             ` : ''}
                         </div>
@@ -1014,9 +1028,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             referralItems.appendChild(item);
         });
-        
-        // Update translations for dynamic content
-        updateTranslations();
     }
     
     // Update chart with referral data - handle empty data
@@ -1211,4 +1222,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize app
     console.log('xRAF Dashboard initialized successfully');
+    
+    // Wait a bit for all scripts to load, then initialize translations
+    setTimeout(() => {
+        if (typeof translations !== 'undefined') {
+            updateTranslations();
+            console.log('Translations loaded successfully');
+        } else {
+            console.error('Translations still not loaded after delay');
+        }
+    }, 100);
 });
