@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return diffDays;
     }
 
-    // Function to process referral data from API
+    // Function to process referral data from API - FIXED to return empty array
     function processReferralData(apiData) {
-        if (!apiData || !apiData.referrals) return null;
+        if (!apiData || !apiData.referrals) return []; // Return empty array instead of null
         
         return apiData.referrals.map(referral => {
             // Calculate days in stage
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 category: referral.category,
                 source: referral.source,
                 needsAction: needsAction,
-                isPreviousCandidate: referral.isPreviousCandidate
+                isPreviousCandidate: referral.isPreviousCandidate || false
             };
         });
     }
@@ -118,12 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 return "probation";
             case "Previously Applied (No Payment)":
                 return "previouslyApplied";
-            case "Assessment Stage":
-                // Check if passed assessment
-                if (status.includes("Pass") || mappedStatus === "Final Review" || mappedStatus === "Interview Stage") {
-                    return "passedAssessment";
-                }
-                return "assessment";
+            case "Passed Assessment":
+                return "passedAssessment";
             case "Application Received":
                 return "received";
             case "Not Selected":
@@ -174,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateTranslations();
         
         // Refresh displays if data exists
-        if (currentReferralData && currentReferralData.referrals) {
+        if (currentReferralData) {
             const processedReferrals = processReferralData(currentReferralData);
             updateChart(processedReferrals);
             updateEarningsTable(processedReferrals);
@@ -248,9 +244,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return null;
         }
     }
-    // Remove getMockData function as we'll handle empty state differently
     
-    // Get status badge color with payment eligibility check
+    // Get status badge color with payment eligibility check - REMOVED DUPLICATE
     function getStatusBadgeColor(statusType, daysInStage = 0, isPreviousCandidate = false) {
         if (isPreviousCandidate) {
             return 'secondary'; // Gray for previously applied
@@ -273,28 +268,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 return 'secondary';
         }
     }
-        
-        switch(statusType) {
-            case 'passed':
-                return daysInStage >= 90 ? 'success' : 'warning';
-            case 'probation':
-                return 'warning';
-            case 'previouslyApplied':
-                return 'previously-applied';
-            case 'assessment':
-            case 'talent':
-            case 'operations':
-                return 'warning';
-            case 'failed':
-                return 'danger';
-            default:
-                return 'secondary';
-        }
-    }
     
     // Update earnings table
     function updateEarningsTable(referrals) {
         const earningsBody = document.getElementById('earnings-body');
+        if (!earningsBody) return; // Guard clause
+        
         earningsBody.innerHTML = '';
         
         let totalEarnings = 0;
@@ -330,7 +309,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Update total earnings
-        document.getElementById('total-earnings').textContent = `RM ${totalEarnings}`;
+        const totalEarningsEl = document.getElementById('total-earnings');
+        if (totalEarningsEl) {
+            totalEarningsEl.textContent = `RM ${totalEarnings}`;
+        }
     }
     
     // Update reminder section - ONLY FOR APPLICATION RECEIVED
@@ -577,35 +559,8 @@ document.addEventListener('DOMContentLoaded', function() {
             this.remove();
         });
     }
-    // Show welcome message for new users
-    function showWelcomeMessage() {
-        const translation = translations[currentLanguage] || translations.en;
-        
-        // Create and show a welcome alert at the top of results
-        const welcomeAlert = document.createElement('div');
-        welcomeAlert.className = 'alert alert-info alert-dismissible fade show mb-4';
-        welcomeAlert.innerHTML = `
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            <h5 class="alert-heading">
-                <i class="fas fa-hand-wave me-2"></i>Welcome to xRAF!
-            </h5>
-            <p class="mb-2">No referrals found for this account yet. Start referring friends to TP and earn up to RM800 per successful hire!</p>
-            <hr>
-            <p class="mb-0">
-                <strong>How it works:</strong><br>
-                • Refer friends using the xRAF form<br>
-                • Track their progress here<br>
-                • Earn RM50 when they pass assessment<br>
-                • Earn RM750 when they complete 90 days
-            </p>
-        `;
-        
-        // Insert at the beginning of results-step
-        const resultsStep = document.getElementById('results-step');
-        resultsStep.insertBefore(welcomeAlert, resultsStep.firstChild);
-    }
     
-    // Show referral results
+    // Show referral results - FIXED SYNTAX ERROR
     function showReferralResults(referrals, referrerInfo, isNewUser = false) {
         document.getElementById('auth-step').style.display = 'none';
         document.getElementById('results-step').style.display = 'block';
@@ -615,7 +570,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Adjust the name display for new users
         const displayName = isNewUser ? 'Welcome!' : (referrerInfo ? referrerInfo.fullName : 'User');
         
-        // Create results content
+        // Create results content - FIXED: Properly closed string literal
         const resultsContent = `
             <div class="d-flex justify-content-between align-items-start mb-4 fade-in-up">
                 <div>
@@ -636,13 +591,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="stats-card fade-in-up" style="animation-delay: 0.2s">
-                        <h3 class="text-success" id="hired-referrals">${referrals.filter(r => r.stage === 'Hired').length}</h3>
+                        <h3 class="text-success" id="hired-referrals">${referrals.filter(r => r.statusType === 'passed' || r.statusType === 'probation').length}</h3>
                         <h5 data-translate="hiredReferrals"><i class="fas fa-check-circle me-2"></i>${translation.hiredReferrals}</h5>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="stats-card fade-in-up" style="animation-delay: 0.3s">
-                        <h3 class="text-warning" id="progress-referrals">${referrals.filter(r => r.stage !== 'Hired').length}</h3>
+                        <h3 class="text-warning" id="progress-referrals">${referrals.filter(r => ['received', 'passedAssessment'].includes(r.statusType)).length}</h3>
                         <h5 data-translate="inProgress"><i class="fas fa-clock me-2"></i>${translation.inProgress}</h5>
                     </div>
                 </div>
@@ -810,45 +765,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             </div>
-        `;"></i>Not Selected</h5>
-                                <p>Candidate not hired</p>
-                                <span class="badge bg-danger">${translation.statusFailed || 'Failed'}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Social Media -->
-            <div class="mt-4 fade-in-up" style="animation-delay: 0.9s">
-                <div class="row text-center">
-                    <!-- TP Global -->
-                    <div class="col-md-4 mb-3">
-                        <h5 data-translate="tpGlobal">${translation.tpGlobal}</h5>
-                        <div class="d-flex justify-content-center gap-3">
-                            <a href="https://www.linkedin.com/company/teleperformance" class="social-icon" target="_blank"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://www.youtube.com/@TeleperformanceGroup" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
-                            <a href="https://www.tiktok.com/@teleperformance_group" class="social-icon" target="_blank"><i class="fab fa-tiktok"></i></a>
-                        </div>
-                    </div>
-                    <!-- TP Malaysia -->
-                    <div class="col-md-4 mb-3">
-                        <h5 data-translate="followMalaysia">${translation.followMalaysia}</h5>
-                        <div class="d-flex justify-content-center gap-3">
-                            <a href="https://www.facebook.com/TPinMalaysia/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                            <a href="http://www.instagram.com/tp_malaysia/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <!-- TP Thailand -->
-                    <div class="col-md-4 mb-3">
-                        <h5 data-translate="followThailand">${translation.followThailand}</h5>
-                        <div class="d-flex justify-content-center gap-3">
-                            <a href="http://www.facebook.com/TPinThailand/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                            <a href="http://www.instagram.com/tpinthailand/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         `;
         
         document.getElementById('results-step').innerHTML = resultsContent;
@@ -965,8 +881,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Determine if payment is eligible
-            const isPaymentEligible = referral.statusType === 'passed' && 
-                                      referral.daysInStage >= 90 && 
+            const isPaymentEligible = (referral.statusType === 'passed' || referral.statusType === 'passedAssessment') && 
                                       !referral.isPreviousCandidate;
             
             item.className = `card mb-3 status-${referral.statusType} ${isPaymentEligible ? 'payment-eligible' : ''} slide-in`;
@@ -981,7 +896,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div>
                             <h6 class="mb-1">
                                 <i class="fas fa-user me-2"></i>${referral.name}
-                                ${referral.statusType === 'passedAssessment' || referral.statusType === 'passed' ? '💵' : ''}
+                                ${isPaymentEligible ? '💵' : ''}
                             </h6>
                             <p class="mb-1 text-muted small">
                                 <i class="fas fa-envelope me-1"></i>${referral.email}
@@ -997,7 +912,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <i class="fas fa-layer-group me-1"></i>
                                 ${translation.referralStage || 'Stage'}
                             </small>
-                            <span class="fw-bold">${referral.stage}</span>
+                            <span class="fw-bold">${referral.stage || 'N/A'}</span>
                         </div>
                         <div class="col-md-3 mb-2">
                             <small class="text-muted d-block">
@@ -1032,7 +947,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update chart with referral data - handle empty data
     function updateChart(referrals) {
-        const ctx = document.getElementById('statusChart').getContext('2d');
+        const chartCanvas = document.getElementById('statusChart');
+        if (!chartCanvas) return; // Guard clause
+        
+        const ctx = chartCanvas.getContext('2d');
         const translation = translations[currentLanguage] || translations.en;
         
         // Check if filtered view is enabled
@@ -1116,7 +1034,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 const label = context.label || '';
                                 const value = context.raw || 0;
                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                const percentage = Math.round((value / total) * 100);
+                                const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
                                 return `${label}: ${value} (${percentage}%)`;
                             }
                         }
@@ -1133,20 +1051,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Create custom legend below chart
         const legendContainer = document.getElementById('chartLegend');
-        legendContainer.innerHTML = '';
-        
-        // Add "No data" message if empty
-        if (!hasData) {
-            const noDataMsg = document.createElement('div');
-            noDataMsg.className = 'text-muted mt-3';
-            noDataMsg.innerHTML = '<i class="fas fa-chart-pie me-2"></i>Start referring to see your status distribution!';
-            legendContainer.appendChild(noDataMsg);
-        } else {
-            data.labels.forEach((label, i) => {
-                const legendItem = document.createElement('span');
-                legendItem.innerHTML = `<span style="background-color: ${data.datasets[0].backgroundColor[i]}"></span>${label}`;
-                legendContainer.appendChild(legendItem);
-            });
+        if (legendContainer) {
+            legendContainer.innerHTML = '';
+            
+            // Add "No data" message if empty
+            if (!hasData) {
+                const noDataMsg = document.createElement('div');
+                noDataMsg.className = 'text-muted mt-3';
+                noDataMsg.innerHTML = '<i class="fas fa-chart-pie me-2"></i>Start referring to see your status distribution!';
+                legendContainer.appendChild(noDataMsg);
+            } else {
+                data.labels.forEach((label, i) => {
+                    const legendItem = document.createElement('span');
+                    legendItem.innerHTML = `<span style="background-color: ${data.datasets[0].backgroundColor[i]}"></span>${label}`;
+                    legendContainer.appendChild(legendItem);
+                });
+            }
         }
     }
 
