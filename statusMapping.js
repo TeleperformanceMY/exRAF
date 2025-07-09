@@ -1,7 +1,7 @@
 // Status mapping configuration - Simplified 6-Status System
 const statusMapping = {
     "statusGroups": {
-        // Status 1: Application Received (Blue)
+        // Status 1: Application Received (Black)
         "Application Received": [
             "Application Received",
             "TextApply",
@@ -15,7 +15,7 @@ const statusMapping = {
             "Contact Attempt 3"
         ],
         
-        // Status 2: Passed Assessment (Light Green with $ - RM50 payment)
+        // Status 2: Passed Assessment (Dark Gray - RM50 payment)
         "Passed Assessment": [
             "Assessment Stage",
             "SHL Assessment: Conversational Multichat ENG",
@@ -38,24 +38,24 @@ const statusMapping = {
             "Cleared to Start"
         ],
         
-        // Status 3: Hired (Probation) - Yellow
+        // Status 3: Hired (Probation) - Medium Gray
         "Hired (Probation)": [
             "Hired (Probation)",
             "New Starter (Hired)" // Less than 90 days
         ],
         
-        // Status 4: Hired (Confirmed) - Dark Green with $ (RM750 payment after 90 days)
+        // Status 4: Hired (Confirmed) - Light Gray (RM750 payment after 90 days)
         "Hired (Confirmed)": [
             "Hired (Confirmed)",
             "Graduate" // Completed probation
         ],
         
-        // Status 5: Previously Applied (No Payment) - Gray
+        // Status 5: Previously Applied (No Payment) - Very Light Gray
         "Previously Applied (No Payment)": [
             "Previously Applied (No Payment)"
         ],
         
-        // Status 6: Not Selected - Red
+        // Status 6: Not Selected - White with black border
         "Not Selected": [
             // Assessment/Process Failures
             "Eliminated - Assessment Results Did Not Meet Criteria",
