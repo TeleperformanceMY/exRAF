@@ -10,7 +10,8 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container py-4">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="container py-4" id="main-content">
         <div class="text-center mb-4">
             <img src="TPLogo11.png" alt="TP Logo" class="logo">
         </div>
@@ -41,45 +42,6 @@
 
         <!-- Authentication Step -->
         <div id="auth-step">
-            <!-- How It Works Section -->
-            <div class="card mb-4 how-it-works-card">
-                <div class="card-body">
-                    <h4 class="text-center mb-4" data-translate="howItWorksTitle">How xRAF Works</h4>
-                    <div class="referral-flow">
-                        <div class="flow-step">
-                            <div class="step-icon">
-                                <i class="fas fa-user-plus"></i>
-                            </div>
-                            <div class="step-text" data-translate="step1">Refer a Friend</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="flow-step">
-                            <div class="step-icon">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <div class="step-text" data-translate="step2">Pass Assessment</div>
-                            <div class="step-reward">RM50</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="flow-step">
-                            <div class="step-icon">
-                                <i class="fas fa-briefcase"></i>
-                            </div>
-                            <div class="step-text" data-translate="step3">Get Hired</div>
-                        </div>
-                        <div class="flow-arrow">→</div>
-                        <div class="flow-step">
-                            <div class="step-icon">
-                                <i class="fas fa-calendar-check"></i>
-                            </div>
-                            <div class="step-text" data-translate="step4">90 Days</div>
-                            <div class="step-reward">RM750</div>
-                        </div>
-                    </div>
-                    <p class="text-center mt-3 mb-0 text-muted" data-translate="totalEarning">Total Earning: RM800 per successful referral</p>
-                </div>
-            </div>
-
             <div class="card mb-4">
                 <div class="card-body">
                     <h2 class="card-title text-center" data-translate="dashboardTitle">TP External RAF Dashboard</h2>
@@ -192,10 +154,22 @@
         </div>
     </div>
 
+    <!-- How It Works Popup -->
+    <div class="popup-backdrop" id="popup-backdrop"></div>
+    <div class="how-it-works-popup" id="how-popup">
+        <button class="popup-close" onclick="closeHowItWorksPopup()">×</button>
+        <h4 class="text-center mb-4" data-translate="howItWorksTitle">How xRAF Works</h4>
+        <div class="circular-flow" id="circular-flow">
+            <!-- Flow items will be dynamically positioned -->
+        </div>
+        <p class="text-center mt-4 mb-0" data-translate="totalEarning">Total Earning: RM800 per successful referral</p>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="translations.js"></script>
     <script src="statusMapping.js"></script>
     <script src="script.js"></script>
+    <script src="enhanced-features.js"></script>
 </body>
 </html>
