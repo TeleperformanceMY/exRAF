@@ -73,6 +73,7 @@ async function fetchReferrals(phone, email) {
                 source: candidate.source || candidate.Source || '',
                 sourceName: candidate.source_name || candidate['Source Name'] || '',
                 updatedDate: candidateDate,
+                applicationDate: candidateDate, // Track individual application date
                 location: candidate.location || candidate.Location || '',
                 recentStatus: candidate.recent_status || candidate['Recent Status'] || '',
                 isXRAF: isXRAF
@@ -87,16 +88,24 @@ async function fetchReferrals(phone, email) {
                 // Handle duplicates based on rules
                 const existingDate = new Date(existing.updatedDate);
                 
+                // Always keep the earliest application date
+                if (candidateDate < existing.applicationDate) {
+                    existing.applicationDate = candidateDate;
+                }
+                
                 // If current is xRAF and existing is not, replace
                 if (isXRAF && !existing.isXRAF) {
+                    candidateInfo.applicationDate = existing.applicationDate; // Keep earliest date
                     emailCandidateMap.set(candidateEmail, candidateInfo);
                 }
-                // If both are xRAF, keep the newer one
+                // If both are xRAF, keep the newer one but preserve earliest application date
                 else if (isXRAF && existing.isXRAF && candidateDate > existingDate) {
+                    candidateInfo.applicationDate = existing.applicationDate; // Keep earliest date
                     emailCandidateMap.set(candidateEmail, candidateInfo);
                 }
-                // If neither is xRAF, keep the newer one
+                // If neither is xRAF, keep the newer one but preserve earliest application date
                 else if (!isXRAF && !existing.isXRAF && candidateDate > existingDate) {
+                    candidateInfo.applicationDate = existing.applicationDate; // Keep earliest date
                     emailCandidateMap.set(candidateEmail, candidateInfo);
                 }
                 // If existing is xRAF and current is not, mark as previously applied
@@ -146,7 +155,7 @@ async function fetchReferrals(phone, email) {
             }
             
             // Calculate days since application
-            const applicationDate = new Date(candidate.updatedDate);
+            const applicationDate = new Date(candidate.applicationDate); // Use the earliest application date
             const today = new Date();
             const daysInStage = Math.floor((today - applicationDate) / (1000 * 60 * 60 * 24));
             
@@ -158,8 +167,8 @@ async function fetchReferrals(phone, email) {
                 stage: stage,
                 status: status,
                 currentStatus: status,
-                applicationDate: applicationDate.toISOString().split('T')[0],
-                hireDate: status === 'Hired' ? applicationDate.toISOString().split('T')[0] : null,
+                applicationDate: applicationDate.toISOString().split('T')[0], // Use earliest date
+                hireDate: status === 'Hired' ? candidate.updatedDate.toISOString().split('T')[0] : null,
                 daysInStage: daysInStage,
                 category: candidate.source,
                 source: candidate.sourceName,
