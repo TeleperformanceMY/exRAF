@@ -1062,3 +1062,16 @@ body {
 .skip-link:focus {
     top: 6px;
 }
+
+/* WhatsApp Reminder Button */
+.remind-btn {
+    background-color: #00D769 !important;
+    border-color: #00D769 !important;
+    color: var(--light-color) !important;
+}
+
+.remind-btn:hover {
+    background-color: #00C15A !important;
+    border-color: #00C15A !important;
+    color: var(--light-color) !important;
+}
