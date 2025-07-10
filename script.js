@@ -453,29 +453,29 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h5 data-translate="totalReferrals"><i class="fas fa-users me-2"></i>${translation.totalReferrals}</h5>
                         <div class="mini-progress">
                             <div class="progress" style="height: 4px;">
-                                <div class="progress-bar" style="width: ${Math.min(referrals.length * 10, 100)}%; background-color: var(--status-received);"></div>
+                                <div class="progress-bar" style="width: ${Math.min(referrals.length * 10, 100)}%; background-color: var(--tp-light-blue);"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="stats-card">
-                        <h3 style="color: var(--status-confirmed);" id="hired-referrals" data-target="${referrals.filter(r => r.statusType === 'passed' || r.statusType === 'probation').length}">0</h3>
+                        <h3 style="color: var(--tp-green-light);" id="hired-referrals" data-target="${referrals.filter(r => r.statusType === 'passed' || r.statusType === 'probation').length}">0</h3>
                         <h5 data-translate="hiredReferrals"><i class="fas fa-check-circle me-2"></i>${translation.hiredReferrals}</h5>
                         <div class="mini-progress">
                             <div class="progress" style="height: 4px;">
-                                <div class="progress-bar" style="width: ${referrals.length > 0 ? (referrals.filter(r => r.statusType === 'passed' || r.statusType === 'probation').length / referrals.length * 100) : 0}%; background-color: var(--status-confirmed);"></div>
+                                <div class="progress-bar" style="width: ${referrals.length > 0 ? (referrals.filter(r => r.statusType === 'passed' || r.statusType === 'probation').length / referrals.length * 100) : 0}%; background-color: var(--tp-green-light);"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="stats-card">
-                        <h3 style="color: var(--status-probation);" id="progress-referrals" data-target="${referrals.filter(r => ['received', 'passedAssessment'].includes(r.statusType)).length}">0</h3>
+                        <h3 style="color: var(--tp-yellow);" id="progress-referrals" data-target="${referrals.filter(r => ['received', 'passedAssessment'].includes(r.statusType)).length}">0</h3>
                         <h5 data-translate="inProgress"><i class="fas fa-clock me-2"></i>${translation.inProgress}</h5>
                         <div class="mini-progress">
                             <div class="progress" style="height: 4px;">
-                                <div class="progress-bar" style="width: ${referrals.length > 0 ? (referrals.filter(r => ['received', 'passedAssessment'].includes(r.statusType)).length / referrals.length * 100) : 0}%; background-color: var(--status-probation);"></div>
+                                <div class="progress-bar" style="width: ${referrals.length > 0 ? (referrals.filter(r => ['received', 'passedAssessment'].includes(r.statusType)).length / referrals.length * 100) : 0}%; background-color: var(--tp-yellow);"></div>
                             </div>
                         </div>
                     </div>
@@ -570,7 +570,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="status-example status-passed">
                                 <h6><i class="fas fa-trophy me-2"></i>Hired (Confirmed) 💵</h6>
                                 <p>Excellent! Your friend completed 90+ days successfully. <strong>You earned RM750 bonus!</strong> Total: RM800</p>
-                                <span class="badge bg-success" style="background-color: var(--status-confirmed) !important;">${translation.statusPassed || 'Hired (Confirmed)'}</span>
+                                <span class="badge bg-success" style="background-color: var(--tp-green-light) !important;">${translation.statusPassed || 'Hired (Confirmed)'}</span>
                             </div>
                             <div class="status-example status-previouslyApplied">
                                 <h6><i class="fas fa-ban me-2"></i>Previously Applied</h6>
@@ -775,7 +775,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     ${referral.statusType !== 'previouslyApplied' && referral.statusType !== 'failed' ? `
                     <div class="status-progress">
-                        <div class="status-progress-bar" style="width: ${progressPercentage}%; background-color: var(--status-assessment);"></div>
+                        <div class="status-progress-bar" style="width: ${progressPercentage}%; background-color: var(--tp-green-flash);"></div>
                     </div>
                     ` : ''}
                     <div class="row mt-3">
@@ -855,12 +855,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     statusCounts.failed
                 ] : [1, 1, 1, 1, 1, 1],
                 backgroundColor: [
-                    '#00BFFF',  // Deep Sky Blue - Application Received
-                    '#32CD32',  // Lime Green - Passed Assessment  
-                    '#FF4500',  // Orange Red - Hired (Probation)
-                    '#228B22',  // Forest Green - Hired (Confirmed)
-                    '#9370DB',  // Medium Purple - Previously Applied
-                    '#FF1493'   // Deep Pink - Not Selected
+                    '#0087FF',  // TP Light Blue - Application Received
+                    '#00d769',  // TP Green Flash - Passed Assessment  
+                    '#f5d200',  // TP Yellow - Hired (Probation)
+                    '#84c98b',  // TP Green Light - Hired (Confirmed)
+                    '#5f365e',  // TP Burgundy - Previously Applied
+                    '#ab2c37'   // TP Carmine - Not Selected
                 ],
                 borderWidth: 2,
                 borderColor: '#000000',
