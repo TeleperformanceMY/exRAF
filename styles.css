@@ -721,50 +721,54 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Payment Modal - Happy Icon Colors */
+/* Payment Flow in Modal - Back to Original Style */
+.payment-flow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.payment-step {
+    text-align: center;
+    flex: 1;
+}
+
 .payment-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #FF6B6B, #4ECDC4); /* Happy gradient */
+    background: var(--primary-color);
     color: var(--light-color);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
     margin: 0 auto 1rem;
-    border-radius: 50%; /* Make it circular */
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-    transition: all 0.3s ease;
-}
-
-.payment-icon:nth-child(odd) {
-    background: linear-gradient(135deg, #667eea, #764ba2); /* Purple gradient */
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-}
-
-.payment-icon:hover {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    border-radius: var(--border-radius);
 }
 
 .payment-step h6 {
-    color: #FF6B6B !important; /* Happy pink */
+    color: var(--primary-color) !important;
     font-weight: 700;
 }
 
 .payment-amount {
     font-size: 2rem;
     font-weight: 700;
-    color: #4ECDC4 !important; /* Happy teal */
+    color: var(--primary-color) !important;
     margin: 0.5rem 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .payment-divider {
     font-size: 2rem;
     font-weight: 700;
-    color: #FFD93D !important; /* Happy yellow */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    color: var(--primary-color) !important;
+}
+
+.payment-desc {
+    font-size: 0.875rem;
+    color: var(--muted-color);
 }
 
 /* Empty State */
@@ -950,6 +954,9 @@ body {
     
     .payment-divider {
         transform: rotate(90deg);
+        font-size: 2rem;
+        margin: 1rem 0;
+        /* Changes → to ↓ appearance on mobile */
     }
     
     #dashboard-print {
