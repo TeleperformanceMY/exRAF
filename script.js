@@ -437,9 +437,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 data-translate="yourReferralsTitle"><i class="fas fa-users me-2"></i>${translation.yourReferralsTitle}</h4>
                 </div>
                 <div>
-                    <button id="dashboard-print" class="btn btn-outline-secondary me-2" title="Print Report">
-                        <i class="fas fa-print"></i>
-                    </button>
                     <button id="dashboard-back" class="btn btn-outline-secondary" data-translate="backBtn">
                         <i class="fas fa-arrow-left me-2"></i> ${translation.backBtn}
                     </button>
@@ -482,15 +479,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title text-center mb-3" data-translate="statusDistribution">
+            <div class="modern-chart-section mb-4">
+                <div class="chart-header text-center mb-4">
+                    <h5 class="chart-title" data-translate="statusDistribution">
                         <i class="fas fa-chart-pie me-2"></i>${translation.statusDistribution}
                     </h5>
-                    <div class="chart-container">
+                    <p class="chart-subtitle text-muted">Track your referral progress across all stages</p>
+                </div>
+                <div class="chart-grid">
+                    <div class="chart-canvas-container">
                         <canvas id="statusChart"></canvas>
+                        <div class="chart-center-info">
+                            <div class="total-count">${referrals.length}</div>
+                            <div class="total-label">Total Referrals</div>
+                        </div>
                     </div>
-                    <div class="chart-legend text-center mt-3" id="chartLegend"></div>
+                    <div class="chart-legend-modern" id="chartLegend"></div>
                 </div>
             </div>
 
@@ -557,7 +561,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                             <div class="status-example status-passedAssessment">
                                 <h6><i class="fas fa-check-circle me-2"></i>Passed Assessment 💵</h6>
-                                <p>Great news! Your friend passed the AI Interview. <strong>You earned RM50!</strong> They're now moving to the hiring process.</p>
+                                <p>Great news! Your friend passed the AI Interview. <strong>You earned RM50!</strong> They're now moving to the next stage.</p>
                                 <span class="badge bg-success">${translation.statusAssessmentPassed || 'Passed Assessment'}</span>
                             </div>
                             <div class="status-example status-probation">
@@ -656,11 +660,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             currentReferralData = null;
-        });
-        
-        // Add print functionality
-        document.getElementById('dashboard-print').addEventListener('click', function() {
-            window.print();
         });
         
         // Update translations
@@ -878,18 +877,21 @@ document.addEventListener('DOMContentLoaded', function() {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                cutout: '65%',
+                cutout: '70%',
                 plugins: {
                     legend: {
                         display: false
                     },
                     tooltip: {
                         enabled: hasData,
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
                         titleColor: '#fff',
                         bodyColor: '#fff',
                         borderColor: '#fff',
                         borderWidth: 1,
+                        cornerRadius: 8,
+                        padding: 12,
+                        displayColors: false,
                         callbacks: {
                             label: function(context) {
                                 if (!hasData) return 'No data yet';
@@ -903,7 +905,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 },
                 animation: {
-                    duration: 800
+                    animateScale: true,
+                    animateRotate: true,
+                    duration: 1200,
+                    easing: 'easeOutQuart'
+                },
+                elements: {
+                    arc: {
+                        borderWidth: 3,
+                        borderColor: '#ffffff'
+                    }
                 }
             }
         });
