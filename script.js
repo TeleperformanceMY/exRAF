@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             assessment: {
                 amount: 50,
                 label: "Pass Assessment",
-                description: "Paid when candidate passes AI Interview assessment"
+                description: "Paid when candidate passes the assessment"
             },
             probation: { 
                 amount: 750, 
@@ -254,9 +254,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             row.innerHTML = `
                 <td>${earning.label}</td>
-                <td>RM ${earning.amount}</td>
-                <td>${count}</td>
-                <td><strong>RM ${total}</strong></td>
+                <td style="color: var(--tp-green-flash); font-weight: 700;">RM ${earning.amount}</td>
+                <td style="color: var(--tp-dark-gray); font-weight: 600;">${count}</td>
+                <td style="color: var(--tp-green-flash); font-weight: 700;"><strong>RM ${total}</strong></td>
             `;
             earningsBody.appendChild(row);
         });
@@ -264,6 +264,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalEarningsEl = document.getElementById('total-earnings');
         if (totalEarningsEl) {
             totalEarningsEl.textContent = `RM ${totalEarnings}`;
+            totalEarningsEl.style.color = 'var(--tp-green-flash)';
+            totalEarningsEl.style.fontWeight = '700';
         }
     }
     
@@ -299,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const statusTranslation = translation.statusReceived || 'Application Received';
             
             col.innerHTML = `
-                <div class="friend-to-remind status-${friend.statusType}">
+                <div class="friend-to-remind status-item status-received">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h5><i class="fas fa-user me-2"></i>${friend.name}</h5>
                         <span class="badge status-badge bg-primary">
@@ -437,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 data-translate="yourReferralsTitle"><i class="fas fa-users me-2"></i>${translation.yourReferralsTitle}</h4>
                 </div>
                 <div>
-                    <button id="dashboard-back" class="btn btn-outline-secondary" data-translate="backBtn">
+                    <button id="dashboard-back" class="btn btn-outline-primary" data-translate="backBtn">
                         <i class="fas fa-arrow-left me-2"></i> ${translation.backBtn}
                     </button>
                 </div>
@@ -450,7 +452,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h5 data-translate="totalReferrals"><i class="fas fa-users me-2"></i>${translation.totalReferrals}</h5>
                         <div class="mini-progress">
                             <div class="progress" style="height: 4px;">
-                                <div class="progress-bar" style="width: ${Math.min(referrals.length * 10, 100)}%; background-color: var(--tp-light-blue);"></div>
+                                <div class="progress-bar" style="width: ${Math.min(referrals.length * 10, 100)}%;"></div>
                             </div>
                         </div>
                     </div>
@@ -461,7 +463,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h5 data-translate="hiredReferrals"><i class="fas fa-check-circle me-2"></i>${translation.hiredReferrals}</h5>
                         <div class="mini-progress">
                             <div class="progress" style="height: 4px;">
-                                <div class="progress-bar" style="width: ${referrals.length > 0 ? (referrals.filter(r => r.statusType === 'passed' || r.statusType === 'probation').length / referrals.length * 100) : 0}%; background-color: var(--tp-green-light);"></div>
+                                <div class="progress-bar" style="width: ${referrals.length > 0 ? (referrals.filter(r => r.statusType === 'passed' || r.statusType === 'probation').length / referrals.length * 100) : 0}%;"></div>
                             </div>
                         </div>
                     </div>
@@ -472,7 +474,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h5 data-translate="inProgress"><i class="fas fa-clock me-2"></i>${translation.inProgress}</h5>
                         <div class="mini-progress">
                             <div class="progress" style="height: 4px;">
-                                <div class="progress-bar" style="width: ${referrals.length > 0 ? (referrals.filter(r => ['received', 'passedAssessment'].includes(r.statusType)).length / referrals.length * 100) : 0}%; background-color: var(--tp-yellow);"></div>
+                                <div class="progress-bar" style="width: ${referrals.length > 0 ? (referrals.filter(r => ['received', 'passedAssessment'].includes(r.statusType)).length / referrals.length * 100) : 0}%;"></div>
                             </div>
                         </div>
                     </div>
@@ -500,7 +502,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title text-center mb-3" data-translate="earningsTitle">
+                    <h5 class="card-title text-center mb-3" data-translate="earningsTitle" style="color: var(--tp-green-flash);">
                         <i class="fas fa-money-bill-wave me-2"></i>${translation.earningsTitle}
                     </h5>
                     <div class="table-responsive">
@@ -546,49 +548,49 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div id="referral-list"></div>
             
-            <!-- Status Examples Section - Always visible -->
-            <div class="card mb-4 status-examples">
+            <!-- Status Examples Section -->
+            <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title text-center mb-4">
                         <i class="fas fa-info-circle me-2"></i>Status Guide - Understand Your Referral Journey
                     </h5>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="status-example status-received">
+                            <div class="status-example status-item status-received">
                                 <h6><i class="fas fa-file-alt me-2"></i>Application Received</h6>
-                                <p>Your friend's application is in the system. <strong>Remind them to take the AI Interview assessment!</strong></p>
+                                <p>Your friend's application is in the system. <strong>Remind them to take the assessment!</strong></p>
                                 <span class="badge bg-primary">${translation.statusReceived || 'Application Received'}</span>
                             </div>
-                            <div class="status-example status-passedAssessment">
+                            <div class="status-example status-item status-passedAssessment">
                                 <h6><i class="fas fa-check-circle me-2"></i>Passed Assessment 💵</h6>
-                                <p>Great news! Your friend passed the AI Interview. <strong>You earned RM50!</strong> They're now moving to the next stage.</p>
+                                <p>Great news! Your friend passed the assessment. <strong>You earned RM50!</strong> They're now moving to the next stage.</p>
                                 <span class="badge bg-success">${translation.statusAssessmentPassed || 'Passed Assessment'}</span>
                             </div>
-                            <div class="status-example status-probation">
+                            <div class="status-example status-item status-probation">
                                 <h6><i class="fas fa-clock me-2"></i>Hired (Probation)</h6>
                                 <p>Congratulations! Your friend got hired and is in their probation period. <strong>RM750 pending after 90 days.</strong></p>
                                 <span class="badge bg-warning">${translation.statusProbation || 'Hired (Probation)'}</span>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="status-example status-passed">
+                            <div class="status-example status-item status-passed">
                                 <h6><i class="fas fa-trophy me-2"></i>Hired (Confirmed) 💵</h6>
                                 <p>Excellent! Your friend completed 90+ days successfully. <strong>You earned RM750 bonus!</strong> Total: RM800</p>
                                 <span class="badge bg-success" style="background-color: var(--tp-green-light) !important;">${translation.statusPassed || 'Hired (Confirmed)'}</span>
                             </div>
-                            <div class="status-example status-previouslyApplied">
+                            <div class="status-example status-item status-previouslyApplied">
                                 <h6><i class="fas fa-ban me-2"></i>Previously Applied</h6>
                                 <p>This person applied to TP before your referral. <strong>No payment will be made</strong> for previous applicants.</p>
                                 <span class="badge bg-secondary">${translation.statusPreviouslyApplied || 'Previously Applied'}</span>
                             </div>
-                            <div class="status-example status-failed">
+                            <div class="status-example status-item status-failed">
                                 <h6><i class="fas fa-times-circle me-2"></i>Not Selected</h6>
                                 <p>Unfortunately, your friend wasn't selected or withdrew from the process. No payment for this referral.</p>
                                 <span class="badge bg-danger">${translation.statusFailed || 'Not Selected'}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4 p-3" style="background: rgba(0, 123, 255, 0.1); border-left: 4px solid var(--status-received);">
+                    <div class="mt-4 p-3 status-item" style="background: rgba(0, 123, 255, 0.1);">
                         <h6><i class="fas fa-lightbulb me-2"></i>Pro Tips:</h6>
                         <ul class="mb-0">
                             <li><strong>Follow up quickly:</strong> Remind friends to complete their assessment within 7 days</li>
@@ -742,7 +744,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const isPaymentEligible = (referral.statusType === 'passed' || referral.statusType === 'passedAssessment') && 
                                       !referral.isPreviousCandidate;
             
-            item.className = `card mb-3 status-${referral.statusType} ${isPaymentEligible ? 'payment-eligible' : ''}`;
+            item.className = `card mb-3 status-item status-${referral.statusType} ${isPaymentEligible ? 'payment-eligible' : ''}`;
             
             const showRemindButton = referral.statusType === 'received' && !referral.isPreviousCandidate;
             
@@ -774,7 +776,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     ${referral.statusType !== 'previouslyApplied' && referral.statusType !== 'failed' ? `
                     <div class="status-progress">
-                        <div class="status-progress-bar" style="width: ${progressPercentage}%; background-color: var(--tp-green-flash);"></div>
+                        <div class="status-progress-bar" style="width: ${progressPercentage}%;"></div>
                     </div>
                     ` : ''}
                     <div class="row mt-3">
@@ -854,15 +856,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     statusCounts.failed
                 ] : [1, 1, 1, 1, 1, 1],
                 backgroundColor: [
-                    '#0087FF',  // TP Light Blue - Application Received
-                    '#00d769',  // TP Green Flash - Passed Assessment  
-                    '#f5d200',  // TP Yellow - Hired (Probation)
-                    '#84c98b',  // TP Green Light - Hired (Confirmed)
-                    '#5f365e',  // TP Burgundy - Previously Applied
-                    '#ab2c37'   // TP Carmine - Not Selected
+                    '#0087FF',  // TP Light Blue
+                    '#00d769',  // TP Green Flash
+                    '#f5d200',  // TP Yellow
+                    '#84c98b',  // TP Green Light
+                    '#5f365e',  // TP Burgundy
+                    '#ab2c37'   // TP Carmine
                 ],
-                borderWidth: 2,
-                borderColor: '#000000',
+                borderWidth: 0,
                 hoverOffset: hasData ? 8 : 0
             }]
         };
@@ -884,7 +885,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     tooltip: {
                         enabled: hasData,
-                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                        backgroundColor: 'rgba(65, 65, 65, 0.95)',
                         titleColor: '#fff',
                         bodyColor: '#fff',
                         borderColor: '#fff',
@@ -909,29 +910,35 @@ document.addEventListener('DOMContentLoaded', function() {
                     animateRotate: true,
                     duration: 1200,
                     easing: 'easeOutQuart'
-                },
-                elements: {
-                    arc: {
-                        borderWidth: 3,
-                        borderColor: '#ffffff'
-                    }
                 }
             }
         });
 
+        // Update legend
         const legendContainer = document.getElementById('chartLegend');
         if (legendContainer) {
             legendContainer.innerHTML = '';
             
             if (!hasData) {
                 const noDataMsg = document.createElement('div');
-                noDataMsg.className = 'text-muted mt-3';
+                noDataMsg.className = 'text-muted text-center p-4';
                 noDataMsg.innerHTML = '<i class="fas fa-chart-pie me-2"></i>Start referring to see your status distribution!';
                 legendContainer.appendChild(noDataMsg);
             } else {
                 data.labels.forEach((label, i) => {
-                    const legendItem = document.createElement('span');
-                    legendItem.innerHTML = `<span style="background-color: ${data.datasets[0].backgroundColor[i]}; border: 1px solid #000;"></span>${label}`;
+                    const count = data.datasets[0].data[i];
+                    const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                    const percentage = total > 0 ? Math.round((count / total) * 100) : 0;
+                    
+                    const legendItem = document.createElement('div');
+                    legendItem.className = 'legend-item';
+                    legendItem.innerHTML = `
+                        <div class="legend-color" style="background-color: ${data.datasets[0].backgroundColor[i]};"></div>
+                        <div class="legend-info">
+                            <div class="legend-label">${label}</div>
+                            <div class="legend-count">${count} <span class="legend-percentage">(${percentage}%)</span></div>
+                        </div>
+                    `;
                     legendContainer.appendChild(legendItem);
                 });
             }
@@ -945,7 +952,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const name = button.dataset.name;
             const phone = button.dataset.phone;
             
-            const message = `Hi ${name}, this is a friendly reminder to complete your AI Interview assessment for TP. ` +
+            const message = `Hi ${name}, this is a friendly reminder to complete your assessment for TP. ` +
                            `It's quick and easy! Please complete it at your earliest convenience to move forward with your application. Thank you!`;
             window.open(`https://wa.me/+6${phone}?text=${encodeURIComponent(message)}`, '_blank');
         }
