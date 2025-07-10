@@ -217,39 +217,36 @@ function getMockData(phone, email) {
             referrer: {
                 phone: phone,
                 email: email,
-                fullName: "Alex Johnson",
-                joinDate: "2023-05-15",
-                totalEarnings: 2350,
-                nextPaymentDate: "2024-08-15"
+                fullName: "Test User"
             },
             referrals: [
-                // Status 1: Application Received (1 new, 1 needs action)
+                // Application Received - 2 examples
                 {
-                    candidateName: "Michael Chen",
-                    candidateEmail: "michael.chen@example.com",
-                    candidatePhone: "01112223344",
+                    candidateName: "Jane Smith",
+                    candidateEmail: "jane.smith@example.com",
+                    candidatePhone: "0123456790",
                     stage: "Application",
                     status: "Application Received",
                     currentStatus: "Application Received",
-                    applicationDate: "2024-07-01",
+                    applicationDate: "2024-02-01",
                     hireDate: null,
                     daysInStage: 8,
                     category: "External",
                     source: "xRAF",
                     isPreviousCandidate: false,
-                    needsAction: false,
+                    needsAction: true,
                     assessmentCEFR: null
                 },
                 {
-                    candidateName: "Sarah Williams",
-                    candidateEmail: "sarah.w@example.com",
-                    candidatePhone: "01112223345",
-                    stage: "Contact Attempt",
-                    status: "Contact Attempt 2",
-                    currentStatus: "Contact Attempt 2",
-                    applicationDate: "2024-06-28",
+                    candidateName: "David Chen",
+                    candidateEmail: "david.chen@email.com",
+                    candidatePhone: "0198765432",
+                    stage: "Application",
+                    status: "Application Received",
+                    currentStatus: "Application Received",
+                    applicationDate: "2024-01-28",
                     hireDate: null,
-                    daysInStage: 11,
+                    daysInStage: 12,
                     category: "External",
                     source: "xRAF",
                     isPreviousCandidate: false,
@@ -257,54 +254,17 @@ function getMockData(phone, email) {
                     assessmentCEFR: null
                 },
                 
-                // Status 2: Passed Assessment (2 candidates)
+                // Passed Assessment - 2 examples
                 {
-                    candidateName: "David Kim",
-                    candidateEmail: "david.kim@example.com",
-                    candidatePhone: "01112223346",
-                    stage: "Interview Stage",
-                    status: "Interview Complete / Offer Requested",
-                    currentStatus: "Interview Complete / Offer Requested",
-                    applicationDate: "2024-06-10",
-                    hireDate: null,
-                    daysInStage: 18,
-                    category: "External",
-                    source: "xRAF",
-                    isPreviousCandidate: false,
-                    needsAction: false,
-                    assessmentCEFR: "C1",
-                    assessmentScore: 92
-                },
-                {
-                    candidateName: "Emma Rodriguez",
-                    candidateEmail: "emma.r@example.com",
-                    candidatePhone: "01112223347",
-                    stage: "Assessment Stage",
-                    status: "SHL Assessment: Conversational Multichat ENG",
+                    candidateName: "John Doe",
+                    candidateEmail: "john.doe@example.com",
+                    candidatePhone: "0123456789",
+                    stage: "Assessment",
+                    status: "Passed Assessment",
                     currentStatus: "Passed Assessment",
-                    applicationDate: "2024-06-15",
+                    applicationDate: "2024-01-15",
                     hireDate: null,
-                    daysInStage: 14,
-                    category: "External",
-                    source: "xRAF",
-                    isPreviousCandidate: false,
-                    needsAction: false,
-                    assessmentCEFR: "B2",
-                    assessmentScore: 87
-                },
-                
-                // Status 3: Hired (Probation) - 3 candidates
-                {
-                    candidateName: "James Wilson",
-                    candidateEmail: "james.w@example.com",
-                    candidatePhone: "01112223348",
-                    stage: "Onboarding",
-                    status: "New Starter (Hired)",
-                    currentStatus: "Hired (Probation)",
-                    applicationDate: "2024-05-20",
-                    hireDate: "2024-06-05",
-                    daysInStage: 35,
-                    probationDays: 35,
+                    daysInStage: 25,
                     category: "External",
                     source: "xRAF",
                     isPreviousCandidate: false,
@@ -312,141 +272,32 @@ function getMockData(phone, email) {
                     assessmentCEFR: "B2"
                 },
                 {
-                    candidateName: "Olivia Brown",
-                    candidateEmail: "olivia.b@example.com",
-                    candidatePhone: "01112223349",
-                    stage: "Training",
-                    status: "Hired (Probation)",
-                    currentStatus: "Hired (Probation)",
-                    applicationDate: "2024-04-15",
-                    hireDate: "2024-05-01",
-                    daysInStage: 69,
-                    probationDays: 69,
+                    candidateName: "Sarah Wilson",
+                    candidateEmail: "sarah.wilson@gmail.com",
+                    candidatePhone: "0187654321",
+                    stage: "Assessment",
+                    status: "Passed Assessment",
+                    currentStatus: "Passed Assessment",
+                    applicationDate: "2024-01-20",
+                    hireDate: null,
+                    daysInStage: 20,
                     category: "External",
                     source: "xRAF",
                     isPreviousCandidate: false,
                     needsAction: false,
                     assessmentCEFR: "C1"
                 },
+                
+                // Hired (Probation) - 2 examples
                 {
-                    candidateName: "Daniel Taylor",
-                    candidateEmail: "daniel.t@example.com",
-                    candidatePhone: "01112223350",
-                    stage: "Production",
+                    candidateName: "Lisa Garcia",
+                    candidateEmail: "lisa.garcia@outlook.com",
+                    candidatePhone: "0176543210",
+                    stage: "Probation",
                     status: "Hired (Probation)",
                     currentStatus: "Hired (Probation)",
-                    applicationDate: "2024-06-01",
-                    hireDate: "2024-06-15",
-                    daysInStage: 24,
-                    probationDays: 24,
-                    category: "Internal",
-                    source: "Career Site",
-                    isPreviousCandidate: true,
-                    needsAction: false,
-                    assessmentCEFR: "B2"
-                },
-                
-                // Status 4: Hired (Confirmed) - 2 candidates
-                {
-                    candidateName: "Sophia Martinez",
-                    candidateEmail: "sophia.m@example.com",
-                    candidatePhone: "01112223351",
-                    stage: "Production",
-                    status: "Hired (Confirmed)",
-                    currentStatus: "Hired (Confirmed)",
-                    applicationDate: "2024-01-10",
-                    hireDate: "2024-01-25",
-                    daysInStage: 165,
-                    probationDays: 165,
-                    category: "External",
-                    source: "xRAF",
-                    isPreviousCandidate: false,
-                    needsAction: false,
-                    assessmentCEFR: "C1",
-                    bonusPaid: true
-                },
-                {
-                    candidateName: "Benjamin Anderson",
-                    candidateEmail: "benjamin.a@example.com",
-                    candidatePhone: "01112223352",
-                    stage: "Team Lead",
-                    status: "Graduate",
-                    currentStatus: "Hired (Confirmed)",
-                    applicationDate: "2023-11-05",
-                    hireDate: "2023-11-20",
-                    daysInStage: 253,
-                    probationDays: 253,
-                    category: "External",
-                    source: "xRAF",
-                    isPreviousCandidate: false,
-                    needsAction: false,
-                    assessmentCEFR: "C1",
-                    bonusPaid: true
-                },
-                
-                // Status 5: Previously Applied (No Payment) - 2 candidates
-                {
-                    candidateName: "Chloe Thomas",
-                    candidateEmail: "chloe.t@example.com",
-                    candidatePhone: "01112223353",
-                    stage: "Application",
-                    status: "Previously Applied (No Payment)",
-                    currentStatus: "Previously Applied (No Payment)",
-                    applicationDate: "2024-02-15",
-                    hireDate: null,
-                    daysInStage: 144,
-                    category: "Internal",
-                    source: "Employee Referral",
-                    isPreviousCandidate: true,
-                    needsAction: false,
-                    assessmentCEFR: "B2",
-                    previousApplicationDate: "2023-08-10"
-                },
-                {
-                    candidateName: "William Jackson",
-                    candidateEmail: "william.j@example.com",
-                    candidatePhone: "01112223354",
-                    stage: "Screening",
-                    status: "Previously Applied (No Payment)",
-                    currentStatus: "Previously Applied (No Payment)",
-                    applicationDate: "2024-05-01",
-                    hireDate: null,
-                    daysInStage: 69,
-                    category: "External",
-                    source: "Career Site",
-                    isPreviousCandidate: true,
-                    needsAction: false,
-                    assessmentCEFR: "C1",
-                    previousApplicationDate: "2023-12-15"
-                },
-                
-                // Status 6: Not Selected - 3 candidates with different reasons
-                {
-                    candidateName: "Mia White",
-                    candidateEmail: "mia.w@example.com",
-                    candidatePhone: "01112223355",
-                    stage: "Assessment",
-                    status: "Eliminated - Assessment Results Did Not Meet Criteria",
-                    currentStatus: "Not Selected",
-                    applicationDate: "2024-06-20",
-                    hireDate: null,
-                    daysInStage: 12,
-                    category: "External",
-                    source: "xRAF",
-                    isPreviousCandidate: false,
-                    needsAction: false,
-                    assessmentCEFR: "A2",
-                    assessmentScore: 45
-                },
-                {
-                    candidateName: "Ethan Harris",
-                    candidateEmail: "ethan.h@example.com",
-                    candidatePhone: "01112223356",
-                    stage: "Interview",
-                    status: "Withdrew - Other Job Offer",
-                    currentStatus: "Not Selected",
-                    applicationDate: "2024-05-25",
-                    hireDate: null,
+                    applicationDate: "2023-12-01",
+                    hireDate: "2023-12-20",
                     daysInStage: 45,
                     category: "External",
                     source: "xRAF",
@@ -455,81 +306,124 @@ function getMockData(phone, email) {
                     assessmentCEFR: "B2"
                 },
                 {
-                    candidateName: "Ava Clark",
-                    candidateEmail: "ava.c@example.com",
-                    candidatePhone: "01112223357",
-                    stage: "Screening",
-                    status: "Eliminated - Location/Country",
-                    currentStatus: "Not Selected",
-                    applicationDate: "2024-07-02",
-                    hireDate: null,
-                    daysInStage: 6,
+                    candidateName: "Ahmed Rahman",
+                    candidateEmail: "ahmed.rahman@yahoo.com",
+                    candidatePhone: "0165432109",
+                    stage: "Probation",
+                    status: "Hired (Probation)",
+                    currentStatus: "Hired (Probation)",
+                    applicationDate: "2023-11-15",
+                    hireDate: "2023-12-05",
+                    daysInStage: 65,
                     category: "External",
                     source: "xRAF",
                     isPreviousCandidate: false,
                     needsAction: false,
-                    assessmentCEFR: null
+                    assessmentCEFR: "C2"
+                },
+                
+                // Hired (Confirmed) - 2 examples
+                {
+                    candidateName: "Emily Thompson",
+                    candidateEmail: "emily.thompson@email.com",
+                    candidatePhone: "0154321098",
+                    stage: "Confirmed",
+                    status: "Hired (Confirmed)",
+                    currentStatus: "Hired (Confirmed)",
+                    applicationDate: "2023-09-01",
+                    hireDate: "2023-09-20",
+                    daysInStage: 120,
+                    category: "External",
+                    source: "xRAF",
+                    isPreviousCandidate: false,
+                    needsAction: false,
+                    assessmentCEFR: "B2"
+                },
+                {
+                    candidateName: "Michael Lee",
+                    candidateEmail: "michael.lee@gmail.com",
+                    candidatePhone: "0143210987",
+                    stage: "Confirmed",
+                    status: "Hired (Confirmed)",
+                    currentStatus: "Hired (Confirmed)",
+                    applicationDate: "2023-08-15",
+                    hireDate: "2023-09-01",
+                    daysInStage: 135,
+                    category: "External",
+                    source: "xRAF",
+                    isPreviousCandidate: false,
+                    needsAction: false,
+                    assessmentCEFR: "C1"
+                },
+                
+                // Previously Applied - 2 examples
+                {
+                    candidateName: "Mike Johnson",
+                    candidateEmail: "mike.j@example.com",
+                    candidatePhone: "0123456791",
+                    stage: "Previously Applied",
+                    status: "Previously Applied (No Payment)",
+                    currentStatus: "Previously Applied (No Payment)",
+                    applicationDate: "2024-01-10",
+                    hireDate: null,
+                    daysInStage: 30,
+                    category: "Internal",
+                    source: "Career Site",
+                    isPreviousCandidate: true,
+                    needsAction: false,
+                    assessmentCEFR: "C1"
+                },
+                {
+                    candidateName: "Anna Rodriguez",
+                    candidateEmail: "anna.rodriguez@hotmail.com",
+                    candidatePhone: "0132109876",
+                    stage: "Previously Applied",
+                    status: "Previously Applied (No Payment)",
+                    currentStatus: "Previously Applied (No Payment)",
+                    applicationDate: "2024-01-05",
+                    hireDate: null,
+                    daysInStage: 35,
+                    category: "Internal",
+                    source: "LinkedIn",
+                    isPreviousCandidate: true,
+                    needsAction: false,
+                    assessmentCEFR: "B2"
+                },
+                
+                // Not Selected - 2 examples
+                {
+                    candidateName: "Robert Kim",
+                    candidateEmail: "robert.kim@email.com",
+                    candidatePhone: "0121098765",
+                    stage: "Eliminated",
+                    status: "Not Selected",
+                    currentStatus: "Not Selected",
+                    applicationDate: "2024-01-08",
+                    hireDate: null,
+                    daysInStage: 32,
+                    category: "External",
+                    source: "xRAF",
+                    isPreviousCandidate: false,
+                    needsAction: false,
+                    assessmentCEFR: "A2"
+                },
+                {
+                    candidateName: "Maria Santos",
+                    candidateEmail: "maria.santos@gmail.com",
+                    candidatePhone: "0110987654",
+                    stage: "Eliminated",
+                    status: "Not Selected",
+                    currentStatus: "Not Selected",
+                    applicationDate: "2024-01-12",
+                    hireDate: null,
+                    daysInStage: 28,
+                    category: "External",
+                    source: "xRAF",
+                    isPreviousCandidate: false,
+                    needsAction: false,
+                    assessmentCEFR: "B1"
                 }
-            ],
-            earnings: [
-                {
-                    id: "E2024-001",
-                    candidate: "Sophia Martinez",
-                    date: "2024-04-25",
-                    type: "probation",
-                    amount: 750,
-                    status: "paid"
-                },
-                {
-                    id: "E2024-002",
-                    candidate: "Benjamin Anderson",
-                    date: "2024-02-20",
-                    type: "probation",
-                    amount: 750,
-                    status: "paid"
-                },
-                {
-                    id: "E2024-003",
-                    candidate: "Emma Rodriguez",
-                    date: "2024-06-29",
-                    type: "assessment",
-                    amount: 50,
-                    status: "paid"
-                },
-                {
-                    id: "E2024-004",
-                    candidate: "David Kim",
-                    date: "2024-06-28",
-                    type: "assessment",
-                    amount: 50,
-                    status: "paid"
-                },
-                {
-                    id: "E2024-005",
-                    candidate: "James Wilson",
-                    date: null,
-                    type: "probation",
-                    amount: 750,
-                    status: "pending",
-                    expectedDate: "2024-09-03"
-                },
-                {
-                    id: "E2024-006",
-                    candidate: "Olivia Brown",
-                    date: null,
-                    type: "probation",
-                    amount: 750,
-                    status: "pending",
-                    expectedDate: "2024-07-30"
-                }
-            ],
-            performanceStats: {
-                totalReferrals: 15,
-                hiredRate: 46.7,  // 7 hired out of 15
-                completionRate: 86.7,  // 13 out of 15 completed process
-                avgAssessmentScore: 78.4,
-                topSource: "xRAF"
-            }
+            ]
         }
     };
 }
