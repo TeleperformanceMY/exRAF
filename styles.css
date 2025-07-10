@@ -7,17 +7,27 @@
     --text-color: #000000;
     --muted-color: #555555;
     
-    /* Status Colors - Bright Solid Colors */
-    --status-received: #0066ff;        /* Bright Blue - Application Received */
-    --status-assessment: #00cc44;      /* Bright Green - Passed Assessment */
-    --status-probation: #ff6600;       /* Bright Orange - Hired (Probation) */
-    --status-confirmed: #009933;       /* Bright Dark Green - Hired (Confirmed) */
-    --status-previous: #7a7a7a;        /* Bright Gray - Previously Applied */
-    --status-failed: #ff3333;          /* Bright Red - Not Selected */
+    /* TP Brand Colors */
+    --tp-blue: #3047b0;
+    --tp-light-blue: #0087FF;
+    --tp-turquoise: #00af9b;
+    --tp-green-flash: #00d769;
+    --tp-green-light: #84c98b;
+    --tp-yellow: #f5d200;
     
-    /* WhatsApp Brand Colors */
-    --whatsapp-green: #25D366;         /* Official WhatsApp Green */
-    --whatsapp-green-hover: #128C7E;   /* WhatsApp Dark Green for hover */
+    /* TP Secondary Colors (limited use) */
+    --tp-burgundy: #5f365e;
+    --tp-carmine: #ab2c37;
+    --tp-raspberry: #d53865;
+    --tp-orange: #ff5c00;
+    
+    /* Status Colors using TP Palette */
+    --status-received: var(--tp-light-blue);     /* Light Blue - Application Received */
+    --status-assessment: var(--tp-green-flash);  /* Green Flash - Passed Assessment */
+    --status-probation: var(--tp-yellow);        /* Yellow - Hired (Probation) */
+    --status-confirmed: var(--tp-green-light);   /* Green Light - Hired (Confirmed) */
+    --status-previous: var(--tp-burgundy);       /* Burgundy - Previously Applied */
+    --status-failed: var(--tp-carmine);          /* Carmine - Not Selected */
     
     --border-radius: 0px;
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -256,34 +266,34 @@ body {
     border-color: var(--secondary-color);
 }
 
-/* Status Colors */
+/* Status Colors using TP Brand Palette */
 .status-received {
-    background: rgba(0, 102, 255, 0.1);
+    background: rgba(0, 135, 255, 0.1);
     border-left: 4px solid var(--status-received);
 }
 
 .status-passedAssessment {
-    background: rgba(0, 204, 68, 0.1);
+    background: rgba(0, 215, 105, 0.1);
     border-left: 4px solid var(--status-assessment);
 }
 
 .status-passed {
-    background: rgba(0, 153, 51, 0.1);
+    background: rgba(132, 201, 139, 0.1);
     border-left: 4px solid var(--status-confirmed);
 }
 
 .status-probation {
-    background: rgba(255, 102, 0, 0.1);
+    background: rgba(245, 210, 0, 0.1);
     border-left: 4px solid var(--status-probation);
 }
 
 .status-previouslyApplied {
-    background: rgba(122, 122, 122, 0.1);
+    background: rgba(95, 54, 94, 0.1);
     border-left: 4px solid var(--status-previous);
 }
 
 .status-failed {
-    background: rgba(255, 51, 51, 0.1);
+    background: rgba(171, 44, 55, 0.1);
     border-left: 4px solid var(--status-failed);
 }
 
@@ -373,7 +383,7 @@ body {
     border: 1px solid var(--primary-color);
 }
 
-/* Status Badges */
+/* Status Badges using TP Colors */
 .status-badge {
     font-size: 0.75rem;
     padding: 6px 14px;
@@ -398,7 +408,7 @@ body {
 
 .bg-warning {
     background-color: var(--status-probation) !important;
-    color: var(--light-color) !important;
+    color: var(--primary-color) !important;
     border-color: var(--status-probation) !important;
 }
 
@@ -507,35 +517,6 @@ body {
     letter-spacing: 0.05em;
 }
 
-/* Mini progress indicators for stats */
-.mini-progress {
-    margin-top: 0.5rem;
-}
-
-.mini-progress .progress {
-    background-color: rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--primary-color);
-}
-
-.mini-progress .progress-bar {
-    background-color: var(--status-assessment);
-}
-
-/* Progress Bar */
-.status-progress {
-    width: 100%;
-    height: 8px;
-    background: var(--light-color);
-    border: 1px solid var(--primary-color);
-    margin: 1rem 0;
-}
-
-.status-progress-bar {
-    height: 100%;
-    background: var(--status-assessment);
-    transition: width 0.3s ease;
-}
-
 /* Chart Legend */
 .chart-legend {
     display: flex;
@@ -562,7 +543,36 @@ body {
     border: 1px solid var(--primary-color);
 }
 
-/* Status Examples Section */
+/* Mini progress indicators using TP Colors */
+.mini-progress {
+    margin-top: 0.5rem;
+}
+
+.mini-progress .progress {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--primary-color);
+}
+
+.mini-progress .progress-bar {
+    background-color: var(--status-assessment);
+}
+
+/* Progress Bar using TP Colors */
+.status-progress {
+    width: 100%;
+    height: 8px;
+    background: var(--light-color);
+    border: 1px solid var(--primary-color);
+    margin: 1rem 0;
+}
+
+.status-progress-bar {
+    height: 100%;
+    background: var(--status-assessment);
+    transition: width 0.3s ease;
+}
+
+/* Status Examples using TP Brand Colors */
 .status-examples {
     margin-top: 2rem;
     border: 2px solid var(--primary-color);
