@@ -855,12 +855,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     statusCounts.failed
                 ] : [1, 1, 1, 1, 1, 1],
                 backgroundColor: [
-                    '#0066ff',  // Bright Blue - Application Received
-                    '#00cc44',  // Bright Green - Passed Assessment
-                    '#ff6600',  // Bright Orange - Hired (Probation)
-                    '#009933',  // Bright Dark Green - Hired (Confirmed)
-                    '#7a7a7a',  // Bright Gray - Previously Applied
-                    '#ff3333'   // Bright Red - Not Selected
+                    '#00BFFF',  // Deep Sky Blue - Application Received
+                    '#32CD32',  // Lime Green - Passed Assessment  
+                    '#FF4500',  // Orange Red - Hired (Probation)
+                    '#228B22',  // Forest Green - Hired (Confirmed)
+                    '#9370DB',  // Medium Purple - Previously Applied
+                    '#FF1493'   // Deep Pink - Not Selected
                 ],
                 borderWidth: 2,
                 borderColor: '#000000',
