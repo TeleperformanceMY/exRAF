@@ -775,7 +775,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     ${referral.statusType !== 'previouslyApplied' && referral.statusType !== 'failed' ? `
                     <div class="status-progress">
-                        <div class="status-progress-bar" style="width: ${progressPercentage}%"></div>
+                        <div class="status-progress-bar" style="width: ${progressPercentage}%; background-color: var(--status-assessment);"></div>
                     </div>
                     ` : ''}
                     <div class="row mt-3">
@@ -855,12 +855,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     statusCounts.failed
                 ] : [1, 1, 1, 1, 1, 1],
                 backgroundColor: [
-                    '#007bff',  // Blue - Application Received
-                    '#28a745',  // Green - Passed Assessment
-                    '#fd7e14',  // Orange - Hired (Probation)
-                    '#198754',  // Dark Green - Hired (Confirmed)
-                    '#6c757d',  // Gray - Previously Applied
-                    '#dc3545'   // Red - Not Selected
+                    '#0066ff',  // Bright Blue - Application Received
+                    '#00cc44',  // Bright Green - Passed Assessment
+                    '#ff6600',  // Bright Orange - Hired (Probation)
+                    '#009933',  // Bright Dark Green - Hired (Confirmed)
+                    '#7a7a7a',  // Bright Gray - Previously Applied
+                    '#ff3333'   // Bright Red - Not Selected
                 ],
                 borderWidth: 2,
                 borderColor: '#000000',
