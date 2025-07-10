@@ -345,7 +345,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    background: var(--light-color);
+    background: var(--tp-pastel-gray);
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow-sm);
@@ -356,6 +356,7 @@ body {
     text-align: left;
     border-bottom: 1px solid var(--tp-light-gray);
     font-size: 0.9rem;
+    background: var(--tp-pastel-gray);
 }
 
 .earnings-table th {
@@ -368,20 +369,20 @@ body {
 }
 
 .earnings-table tbody tr:hover {
-    background: var(--tp-pastel-gray);
+    background: rgba(245, 245, 245, 0.8);
 }
 
 .earnings-table tfoot th {
-    background: var(--tp-green-flash);
+    background: var(--tp-dark-gray);
     color: var(--light-color);
     font-size: 1.1rem;
     font-weight: 700;
     border-bottom: none;
-    border-top: 2px solid var(--tp-green-flash);
+    border-top: 2px solid var(--tp-dark-gray);
 }
 
 .earnings-table .payment-success {
-    background: rgba(0, 215, 105, 0.1);
+    background: var(--tp-pastel-gray);
     font-weight: 600;
     color: var(--tp-green-flash);
 }
