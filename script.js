@@ -451,18 +451,33 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="stats-card">
                         <h3 id="total-referrals" data-target="${referrals.length}">0</h3>
                         <h5 data-translate="totalReferrals"><i class="fas fa-users me-2"></i>${translation.totalReferrals}</h5>
+                        <div class="mini-progress">
+                            <div class="progress" style="height: 4px;">
+                                <div class="progress-bar" style="width: ${Math.min(referrals.length * 10, 100)}%; background-color: var(--status-received);"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="stats-card">
-                        <h3 class="text-success" id="hired-referrals" data-target="${referrals.filter(r => r.statusType === 'passed' || r.statusType === 'probation').length}">0</h3>
+                        <h3 style="color: var(--status-confirmed);" id="hired-referrals" data-target="${referrals.filter(r => r.statusType === 'passed' || r.statusType === 'probation').length}">0</h3>
                         <h5 data-translate="hiredReferrals"><i class="fas fa-check-circle me-2"></i>${translation.hiredReferrals}</h5>
+                        <div class="mini-progress">
+                            <div class="progress" style="height: 4px;">
+                                <div class="progress-bar" style="width: ${referrals.length > 0 ? (referrals.filter(r => r.statusType === 'passed' || r.statusType === 'probation').length / referrals.length * 100) : 0}%; background-color: var(--status-confirmed);"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="stats-card">
-                        <h3 class="text-warning" id="progress-referrals" data-target="${referrals.filter(r => ['received', 'passedAssessment'].includes(r.statusType)).length}">0</h3>
+                        <h3 style="color: var(--status-probation);" id="progress-referrals" data-target="${referrals.filter(r => ['received', 'passedAssessment'].includes(r.statusType)).length}">0</h3>
                         <h5 data-translate="inProgress"><i class="fas fa-clock me-2"></i>${translation.inProgress}</h5>
+                        <div class="mini-progress">
+                            <div class="progress" style="height: 4px;">
+                                <div class="progress-bar" style="width: ${referrals.length > 0 ? (referrals.filter(r => ['received', 'passedAssessment'].includes(r.statusType)).length / referrals.length * 100) : 0}%; background-color: var(--status-probation);"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -526,6 +541,59 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             
             <div id="referral-list"></div>
+            
+            <!-- Status Examples Section - Always visible -->
+            <div class="card mb-4 status-examples">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-4">
+                        <i class="fas fa-info-circle me-2"></i>Status Guide - Understand Your Referral Journey
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="status-example status-received">
+                                <h6><i class="fas fa-file-alt me-2"></i>Application Received</h6>
+                                <p>Your friend's application is in the system. <strong>Remind them to take the AI Interview assessment!</strong></p>
+                                <span class="badge bg-primary">${translation.statusReceived || 'Application Received'}</span>
+                            </div>
+                            <div class="status-example status-passedAssessment">
+                                <h6><i class="fas fa-check-circle me-2"></i>Passed Assessment 💵</h6>
+                                <p>Great news! Your friend passed the AI Interview. <strong>You earned RM50!</strong> They're now moving to the hiring process.</p>
+                                <span class="badge bg-success">${translation.statusAssessmentPassed || 'Passed Assessment'}</span>
+                            </div>
+                            <div class="status-example status-probation">
+                                <h6><i class="fas fa-clock me-2"></i>Hired (Probation)</h6>
+                                <p>Congratulations! Your friend got hired and is in their probation period. <strong>RM750 pending after 90 days.</strong></p>
+                                <span class="badge bg-warning">${translation.statusProbation || 'Hired (Probation)'}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="status-example status-passed">
+                                <h6><i class="fas fa-trophy me-2"></i>Hired (Confirmed) 💵</h6>
+                                <p>Excellent! Your friend completed 90+ days successfully. <strong>You earned RM750 bonus!</strong> Total: RM800</p>
+                                <span class="badge bg-success" style="background-color: var(--status-confirmed) !important;">${translation.statusPassed || 'Hired (Confirmed)'}</span>
+                            </div>
+                            <div class="status-example status-previouslyApplied">
+                                <h6><i class="fas fa-ban me-2"></i>Previously Applied</h6>
+                                <p>This person applied to TP before your referral. <strong>No payment will be made</strong> for previous applicants.</p>
+                                <span class="badge bg-secondary">${translation.statusPreviouslyApplied || 'Previously Applied'}</span>
+                            </div>
+                            <div class="status-example status-failed">
+                                <h6><i class="fas fa-times-circle me-2"></i>Not Selected</h6>
+                                <p>Unfortunately, your friend wasn't selected or withdrew from the process. No payment for this referral.</p>
+                                <span class="badge bg-danger">${translation.statusFailed || 'Not Selected'}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-3" style="background: rgba(0, 123, 255, 0.1); border-left: 4px solid var(--status-received);">
+                        <h6><i class="fas fa-lightbulb me-2"></i>Pro Tips:</h6>
+                        <ul class="mb-0">
+                            <li><strong>Follow up quickly:</strong> Remind friends to complete their assessment within 7 days</li>
+                            <li><strong>Earn more:</strong> You can earn up to RM800 per successful referral (RM50 + RM750)</li>
+                            <li><strong>Track progress:</strong> Use this dashboard to monitor all your referrals in real-time</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             
             ${isNewUser || referrals.length === 0 ? `
             <div class="card mb-4 getting-started">
@@ -787,12 +855,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     statusCounts.failed
                 ] : [1, 1, 1, 1, 1, 1],
                 backgroundColor: [
-                    '#000000',
-                    '#333333',
-                    '#666666',
-                    '#999999',
-                    '#cccccc',
-                    '#ffffff'
+                    '#007bff',  // Blue - Application Received
+                    '#28a745',  // Green - Passed Assessment
+                    '#fd7e14',  // Orange - Hired (Probation)
+                    '#198754',  // Dark Green - Hired (Confirmed)
+                    '#6c757d',  // Gray - Previously Applied
+                    '#dc3545'   // Red - Not Selected
                 ],
                 borderWidth: 2,
                 borderColor: '#000000',
