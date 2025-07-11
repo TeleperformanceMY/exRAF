@@ -1178,7 +1178,25 @@ body {
         transition-duration: 0.01ms !important;
     }
 }
-
+@media (max-width: 768px) {
+    .questions-card {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+    
+    .questions-card h5 {
+        font-size: 1.2rem;
+    }
+    
+    .questions-card p {
+        font-size: 1rem;
+    }
+    
+    .questions-card a {
+        font-size: 1rem !important;
+        word-break: break-all;
+    }
+}
 /* Skip link for accessibility */
 .skip-link {
     position: absolute;
