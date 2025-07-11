@@ -31,6 +31,28 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
+    // Function to get translated status
+    function getTranslatedStatus(statusType) {
+        const translation = translations[currentLanguage] || translations.en;
+        
+        switch(statusType) {
+            case 'passed':
+                return translation.statusPassed || 'Hired (Confirmed)';
+            case 'passedAssessment':
+                return translation.statusAssessmentPassed || 'Passed Assessment';
+            case 'probation':
+                return translation.statusProbation || 'Hired (Probation)';
+            case 'previouslyApplied':
+                return translation.statusPreviouslyApplied || 'Previously Applied (No Payment)';
+            case 'received':
+                return translation.statusReceived || 'Application Received';
+            case 'failed':
+                return translation.statusFailed || 'Not Selected';
+            default:
+                return statusType;
+        }
+    }
+
     // Function to calculate days between dates
     function calculateDays(startDate, endDate = new Date()) {
         const start = new Date(startDate);
@@ -122,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        const translation = translations[currentLanguage];
+        const translation = translations[currentLanguage] || translations.en;
         if (!translation) {
             console.error('Translation not found for language:', currentLanguage);
             return;
@@ -298,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
             col.className = 'col-md-6 mb-3';
             
             const translation = translations[currentLanguage] || translations.en;
-            const statusTranslation = translation.statusReceived || 'Application Received';
+            const statusTranslation = getTranslatedStatus(friend.statusType);
             
             col.innerHTML = `
                 <div class="friend-to-remind status-item status-received">
@@ -559,34 +581,34 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="status-example status-item status-received">
                                 <h6><i class="fas fa-file-alt me-2"></i>Application Received</h6>
                                 <p>Your friend's application is in the system. <strong>Remind them to take the assessment!</strong></p>
-                                <span class="badge bg-primary">${translation.statusReceived || 'Application Received'}</span>
+                                <span class="badge bg-primary">${getTranslatedStatus('received')}</span>
                             </div>
                             <div class="status-example status-item status-passedAssessment">
                                 <h6><i class="fas fa-check-circle me-2"></i>Passed Assessment 💵</h6>
                                 <p>Great news! Your friend passed the assessment. <strong>You earned RM50!</strong> They're now moving to the next stage.</p>
-                                <span class="badge bg-success">${translation.statusAssessmentPassed || 'Passed Assessment'}</span>
+                                <span class="badge bg-success">${getTranslatedStatus('passedAssessment')}</span>
                             </div>
                             <div class="status-example status-item status-probation">
                                 <h6><i class="fas fa-clock me-2"></i>Hired (Probation)</h6>
                                 <p>Congratulations! Your friend got hired and is in their probation period. <strong>RM750 pending after 90 days.</strong></p>
-                                <span class="badge bg-warning">${translation.statusProbation || 'Hired (Probation)'}</span>
+                                <span class="badge bg-warning">${getTranslatedStatus('probation')}</span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="status-example status-item status-passed">
                                 <h6><i class="fas fa-trophy me-2"></i>Hired (Confirmed) 💵</h6>
                                 <p>Excellent! Your friend completed 90+ days successfully. <strong>You earned RM750 bonus!</strong> Total: RM800</p>
-                                <span class="badge bg-success" style="background-color: var(--tp-green-light) !important;">${translation.statusPassed || 'Hired (Confirmed)'}</span>
+                                <span class="badge bg-success" style="background-color: var(--tp-green-light) !important;">${getTranslatedStatus('passed')}</span>
                             </div>
                             <div class="status-example status-item status-previouslyApplied">
                                 <h6><i class="fas fa-ban me-2"></i>Previously Applied</h6>
                                 <p>This person applied to TP before your referral. <strong>No payment will be made</strong> for previous applicants.</p>
-                                <span class="badge bg-secondary">${translation.statusPreviouslyApplied || 'Previously Applied'}</span>
+                                <span class="badge bg-secondary">${getTranslatedStatus('previouslyApplied')}</span>
                             </div>
                             <div class="status-example status-item status-failed">
                                 <h6><i class="fas fa-times-circle me-2"></i>Not Selected</h6>
                                 <p>Unfortunately, your friend wasn't selected or withdrew from the process. No payment for this referral.</p>
-                                <span class="badge bg-danger">${translation.statusFailed || 'Not Selected'}</span>
+                                <span class="badge bg-danger">${getTranslatedStatus('failed')}</span>
                             </div>
                         </div>
                     </div>
@@ -742,20 +764,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sortedReferrals.forEach((referral, index) => {
             const item = document.createElement('div');
             
-            let statusTranslation = referral.status;
-            if (referral.statusType === 'passed') {
-                statusTranslation = translation.statusPassed || 'Hired (Confirmed)';
-            } else if (referral.statusType === 'passedAssessment') {
-                statusTranslation = translation.statusAssessmentPassed || 'Passed Assessment';
-            } else if (referral.statusType === 'probation') {
-                statusTranslation = translation.statusProbation || 'Hired (Probation)';
-            } else if (referral.statusType === 'previouslyApplied') {
-                statusTranslation = translation.statusPreviouslyApplied || 'Previously Applied';
-            } else if (referral.statusType === 'received') {
-                statusTranslation = translation.statusReceived || 'Application Received';
-            } else if (referral.statusType === 'failed') {
-                statusTranslation = translation.statusFailed || 'Not Selected';
-            }
+            const statusTranslation = getTranslatedStatus(referral.statusType);
             
             const isPaymentEligible = (referral.statusType === 'passed' || referral.statusType === 'passedAssessment') && 
                                       !referral.isPreviousCandidate;
@@ -776,19 +785,21 @@ document.addEventListener('DOMContentLoaded', function() {
             
             item.innerHTML = `
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                        <div>
-                            <h6 class="mb-1">
+                    <div class="referral-header mb-3">
+                        <div class="referral-info">
+                            <h6 class="mb-1 referral-name">
                                 <i class="fas fa-user me-2"></i>${referral.name}
                                 ${isPaymentEligible ? '💵' : ''}
                             </h6>
-                            <p class="mb-1 text-muted small">
+                            <p class="mb-1 text-muted small referral-email">
                                 <i class="fas fa-envelope me-1"></i>${referral.email}
                             </p>
                         </div>
-                        <span class="badge status-badge bg-${getStatusBadgeColor(referral.statusType, referral.daysInStage, referral.isPreviousCandidate)}">
-                            ${statusTranslation}
-                        </span>
+                        <div class="status-badge-wrapper">
+                            <span class="badge status-badge bg-${getStatusBadgeColor(referral.statusType, referral.daysInStage, referral.isPreviousCandidate)}">
+                                ${statusTranslation}
+                            </span>
+                        </div>
                     </div>
                     ${referral.statusType !== 'previouslyApplied' && referral.statusType !== 'failed' ? `
                     <div class="status-progress">
@@ -796,28 +807,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     ` : ''}
                     <div class="row mt-3">
-                        <div class="col-md-3 mb-2">
+                        <div class="col-md-3 col-6 mb-2">
                             <small class="text-muted d-block">
                                 <i class="fas fa-layer-group me-1"></i>
                                 ${translation.referralStage || 'Stage'}
                             </small>
                             <span class="fw-bold">${referral.stage || 'N/A'}</span>
                         </div>
-                        <div class="col-md-3 mb-2">
+                        <div class="col-md-3 col-6 mb-2">
                             <small class="text-muted d-block">
                                 <i class="fas fa-calendar-alt me-1"></i>
                                 ${translation.referralDate || 'Application Date'}
                             </small>
                             <span class="fw-bold">${new Date(referral.applicationDate).toLocaleDateString()}</span>
                         </div>
-                        <div class="col-md-3 mb-2">
+                        <div class="col-md-3 col-6 mb-2">
                             <small class="text-muted d-block">
                                 <i class="fas fa-clock me-1"></i>
                                 ${translation.referralDays || 'Days in Stage'}
                             </small>
                             <span class="fw-bold">${referral.daysInStage}</span>
                         </div>
-                        <div class="col-md-3 mb-2">
+                        <div class="col-md-3 col-6 mb-2">
                             ${showRemindButton ? `
                             <button class="btn btn-sm btn-success w-100 remind-btn" 
                                     data-name="${referral.name}" 
@@ -855,12 +866,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const data = {
             labels: [
-                translation.statusReceived || 'Application Received',
-                translation.statusAssessmentPassed || 'Passed Assessment',
-                translation.statusProbation || 'Hired (Probation)',
-                translation.statusPassed || 'Hired (Confirmed)',
-                translation.statusPreviouslyApplied || 'Previously Applied',
-                translation.statusFailed || 'Not Selected'
+                getTranslatedStatus('received'),
+                getTranslatedStatus('passedAssessment'),
+                getTranslatedStatus('probation'),
+                getTranslatedStatus('passed'),
+                getTranslatedStatus('previouslyApplied'),
+                getTranslatedStatus('failed')
             ],
             datasets: [{
                 data: hasData ? [
