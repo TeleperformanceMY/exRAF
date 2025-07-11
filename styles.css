@@ -308,6 +308,41 @@ body {
     background: rgba(171, 44, 55, 0.1);
 }
 
+/* Referral Header Layout */
+.referral-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.referral-info {
+    flex: 1;
+    min-width: 0; /* Allow text to wrap */
+}
+
+.referral-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--tp-dark-gray);
+    margin-bottom: 0.25rem;
+    word-wrap: break-word;
+}
+
+.referral-email {
+    font-size: 0.875rem;
+    color: var(--muted-color);
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+.status-badge-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+}
+
 /* Social Icons */
 .social-icon {
     display: inline-flex;
@@ -527,6 +562,11 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     border: none;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .bg-primary {
@@ -1105,6 +1145,53 @@ body {
     #dashboard-print {
         display: none;
     }
+    
+    /* Mobile-specific referral header fixes */
+    .referral-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .status-badge-wrapper {
+        align-self: flex-start;
+        width: 100%;
+    }
+    
+    .status-badge {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        max-width: 100%;
+        word-wrap: break-word;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.3;
+        display: block;
+    }
+    
+    .referral-name {
+        font-size: 0.95rem;
+        line-height: 1.3;
+    }
+    
+    .referral-email {
+        font-size: 0.8rem;
+        line-height: 1.2;
+    }
+    
+    /* Better mobile spacing for status items */
+    .status-item {
+        padding: 1rem;
+    }
+    
+    .friend-to-remind {
+        padding: 1rem;
+    }
+    
+    /* Mobile grid adjustments */
+    .row.mt-3 > [class*="col-"] {
+        margin-bottom: 0.75rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1134,12 +1221,31 @@ body {
         padding: 8px 10px;
     }
     
-    .friend-to-remind {
-        padding: 1rem;
+    .status-item {
+        padding: 0.75rem;
     }
     
     .stats-card {
         padding: 1rem;
+    }
+    
+    .status-badge {
+        font-size: 0.65rem;
+        padding: 3px 6px;
+        line-height: 1.2;
+    }
+    
+    .referral-name {
+        font-size: 0.9rem;
+    }
+    
+    .referral-email {
+        font-size: 0.75rem;
+    }
+    
+    /* Ultra-small screen adjustments */
+    .referral-header {
+        gap: 0.5rem;
     }
 }
 
@@ -1178,6 +1284,7 @@ body {
         transition-duration: 0.01ms !important;
     }
 }
+
 @media (max-width: 768px) {
     .questions-card {
         margin-top: 1rem;
@@ -1197,6 +1304,7 @@ body {
         word-break: break-all;
     }
 }
+
 /* Skip link for accessibility */
 .skip-link {
     position: absolute;
