@@ -601,6 +601,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             
+            <!-- Questions Section -->
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-3">
+                        <i class="fas fa-question-circle me-2"></i>Questions?
+                    </h5>
+                    <p class="mb-0" style="color: var(--tp-dark-gray); font-size: 1rem;">
+                        <span data-translate="contactUsText">Email us at:</span>
+                        <br>
+                        <a href="mailto:tpmycareers@teleperformance.com" style="color: var(--tp-light-blue); font-weight: 600; font-size: 1.1rem;">
+                            tpmycareers@teleperformance.com
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
             ${isNewUser || referrals.length === 0 ? `
             <div class="card mb-4 getting-started">
                 <div class="card-body text-center">
